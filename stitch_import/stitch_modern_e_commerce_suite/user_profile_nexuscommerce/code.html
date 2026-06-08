@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#0d1c2e",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "inverse-primary": "#b4c5ff",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "tertiary": "#4d556b",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "secondary-fixed": "#d5e3fc",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "inverse-surface": "#2d3133",
+                        "outline": "#737686",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container": "#eceef0",
+                        "surface-dim": "#d8dadc",
+                        "on-background": "#191c1e",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary": "#004ac6",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-container": "#d5e3fc",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-tertiary-fixed": "#131b2e",
+                        "primary-fixed": "#dbe1ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-secondary-container": "#57657a",
+                        "on-tertiary-container": "#eef0ff",
+                        "on-primary-container": "#eeefff",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-low": "#f2f4f6",
+                        "background": "#f7f9fb",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#0053db",
+                        "surface": "#f7f9fb",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "primary-container": "#2563eb",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#515f74",
+                        "on-surface-variant": "#434655",
+                        "tertiary-container": "#656d84",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "2rem",
+                        "gutter": "1.5rem",
+                        "margin-mobile": "1rem",
+                        "2xl": "3rem",
+                        "base": "4px",
+                        "margin-desktop": "2.5rem",
+                        "xs": "0.25rem",
+                        "sm": "0.5rem",
+                        "md": "1rem",
+                        "lg": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-indicator {
+            position: relative;
+        }
+        .active-nav-indicator::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #004ac6;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E2E8F0;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface w-full h-16 border-b border-outline-variant z-50 sticky top-0">
+<div class="flex justify-between items-center px-gutter max-w-7xl mx-auto h-full">
+<div class="flex items-center gap-xl">
+<span class="text-headline-md font-headline-md text-primary font-bold cursor-pointer">NexusCommerce</span>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-secondary font-label-md text-label-md hover:text-primary transition-colors cursor-pointer" href="#">Home</a>
+<a class="text-secondary font-label-md text-label-md hover:text-primary transition-colors cursor-pointer" href="#">Catalog</a>
+<a class="text-secondary font-label-md text-label-md hover:text-primary transition-colors cursor-pointer" href="#">Cart</a>
+<a class="text-primary font-label-md text-label-md border-b-2 border-primary pb-1 cursor-pointer" href="#">Account</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden lg:flex items-center bg-surface-container px-md py-xs rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md font-label-md w-48" placeholder="Search products..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-xs hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-secondary" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="p-xs hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow max-w-7xl mx-auto w-full px-gutter py-xl">
+<div class="flex flex-col md:flex-row gap-xl items-start">
+<!-- Left Profile Card (Bento Style) -->
+<aside class="w-full md:w-1/3 flex flex-col gap-lg">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-xl flex flex-col items-center text-center shadow-sm">
+<div class="relative mb-lg">
+<img class="w-32 h-32 rounded-full border-4 border-surface-container-high object-cover shadow-lg" data-alt="A professional headshot of a person with a clean-cut look, smiling warmly against a soft-focus architectural background. The lighting is natural and bright, conveying a sense of corporate professionalism and approachability. The image style is high-definition, modern, and aligned with a premium e-commerce user experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsUPxtBLwqb4vY2n5gZErv9Nt75F_zAQPY_6OoDArCF8Clz0aJsNEZymAsFHjGL0BynjU-6_NPja_rgffR5E_Nds_idUcFmbyJWAALb7f7psx8Xd6vFgj_3dZcYky5LpibVdTe7j3v7yahxxZOx5PA_FDRv8K-smt8FtN9j2brfm0_Ye881UnzNxZJy67gf7bAe-C4vz9Lzf36m-t62AvthFZsZuVjHhG73m9t3gAzTVSkkOCkPNorYtzvn3PlyZJG73YdHvCCaw"/>
+<button class="absolute bottom-0 right-0 bg-primary text-on-primary p-xs rounded-full shadow-md border-2 border-surface-container-lowest hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface">Alex Thompson</h1>
+<p class="font-label-md text-label-md text-secondary">alex.thompson@nexus.com</p>
+<div class="mt-xl w-full flex flex-col gap-sm">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-md rounded-lg hover:opacity-90 active:scale-95 transition-all">
+                            Edit Profile
+                        </button>
+<button class="w-full border border-outline-variant text-secondary font-label-md text-label-md py-md rounded-lg hover:bg-surface-container-low transition-colors">
+                            Manage Subscriptions
+                        </button>
+</div>
+</div>
+<!-- Saved Addresses Bento Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-md">
+<div class="flex justify-between items-center">
+<h3 class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Saved Addresses</h3>
+<button class="text-primary font-label-sm text-label-sm hover:underline">Add New</button>
+</div>
+<div class="flex flex-col gap-sm">
+<div class="p-md bg-surface-bright border border-outline-variant rounded-lg flex gap-md">
+<span class="material-symbols-outlined text-secondary" data-icon="home">home</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Primary Home</p>
+<p class="font-body-md text-[13px] text-on-surface-variant">123 Corporate Blvd, Suite 400<br/>San Francisco, CA 94107</p>
+</div>
+</div>
+<div class="p-md bg-surface-bright border border-outline-variant rounded-lg flex gap-md opacity-60">
+<span class="material-symbols-outlined text-secondary" data-icon="work">work</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">The Office</p>
+<p class="font-body-md text-[13px] text-on-surface-variant">500 Tech Plaza, Floor 12<br/>Palo Alto, CA 94301</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Content Area -->
+<div class="w-full md:w-2/3 flex flex-col gap-xl">
+<!-- Recent Orders Section -->
+<section class="flex flex-col gap-lg">
+<div class="flex justify-between items-end">
+<h2 class="font-headline-md text-headline-md text-on-surface">Recent Orders</h2>
+<a class="text-primary font-label-md text-label-md hover:underline" href="#">View All Orders</a>
+</div>
+<div class="flex flex-col gap-md">
+<!-- Order Item 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-md border-b border-outline-variant bg-surface-container-low">
+<div class="flex gap-xl">
+<div>
+<p class="font-label-sm text-label-sm text-secondary uppercase">Order Placed</p>
+<p class="font-label-md text-label-md">Oct 14, 2023</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-secondary uppercase">Total</p>
+<p class="font-label-md text-label-md font-bold">$1,249.00</p>
+</div>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-secondary uppercase">Order #NX-88291</p>
+<p class="font-label-md text-label-md text-primary cursor-pointer hover:underline">Invoice</p>
+</div>
+</div>
+<div class="p-lg flex items-center justify-between">
+<div class="flex items-center gap-lg">
+<div class="w-16 h-16 rounded bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="A premium minimalist smartwatch with a sleek silver metallic body and a dark leather strap, isolated on a clean white background. High-quality product photography with soft shadows, highlighting the craftsmanship and technology. Corporate and high-end aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWo6NfQoJDzVL3q6xAP8hpCRLdFwmqo_7m2uYI2uT5NOMby17i-noEtxM6lc5S5IJ_D4lNTPbwsKhibQr7c35cWnYwkibjOPqrD5cDNgTCJ9Bywh0oYg-WhWaX4_eWun2wKeBo7kEDT9Qc9oH56pgrgTMep7pL9Ld_HtCjeSOfRWYiFByCqo9VSTmZp2CNJLIGCf_PECaVB7QPZUkeUyhvkRyvAiv4wZNhsRd7AoLA8xApzM7H-IhwIlfGX9owiykb3uwAARC8Mw"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Nexus Chrono Series 5</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Color: Space Grey | Qty: 1</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-sm">
+<span class="px-md py-xs rounded-full bg-blue-100 text-blue-700 font-label-sm text-label-sm flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-blue-700"></span>
+                                        In Transit
+                                    </span>
+<button class="text-primary font-label-md text-label-md border border-primary px-lg py-xs rounded-lg hover:bg-primary/5 transition-colors">Track Order</button>
+</div>
+</div>
+</div>
+<!-- Order Item 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-md border-b border-outline-variant bg-surface-container-low">
+<div class="flex gap-xl">
+<div>
+<p class="font-label-sm text-label-sm text-secondary uppercase">Order Placed</p>
+<p class="font-label-md text-label-md">Sep 28, 2023</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-secondary uppercase">Total</p>
+<p class="font-label-md text-label-md font-bold">$49.99</p>
+</div>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-secondary uppercase">Order #NX-87110</p>
+<p class="font-label-md text-label-md text-primary cursor-pointer hover:underline">Invoice</p>
+</div>
+</div>
+<div class="p-lg flex items-center justify-between">
+<div class="flex items-center gap-lg">
+<div class="w-16 h-16 rounded bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="A pair of bright red professional athletic sneakers shown from a side profile. The design is modern and aerodynamic, with white accents and a textured sole. The background is a very light grey, emphasizing the vibrancy of the product. Precision lighting captures the texture of the fabric." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQJupDx9-G9oFO5c46hRAHUxPkl6SVU7c33QwsZSZJAnbzNQyXqOKWOUomhPlHDuGp5kNqqRbNeT2x5qOeTT1WQeM1MwtK8GsJiCQgmdVgSG6FV5Pkz9aLyQkGDrMIRKpmT3BEMURos5Xy_UzEo1ztm5bH1_k3DrW4ZB7rqnzz1zAVCLyNhGkuewWsiEZXXJV2PBqFcWXW-9yd_0mzAvpQEwUwqzwpKNQoIzg_nm35KpvvbQEvVljcgzMCDSHZULyrcipU9Fu4CA"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Nexus Swift Run 2.0</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Size: 10 | Qty: 1</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-sm">
+<span class="px-md py-xs rounded-full bg-green-100 text-green-700 font-label-sm text-label-sm flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-green-700"></span>
+                                        Delivered
+                                    </span>
+<button class="text-secondary font-label-md text-label-md border border-outline-variant px-lg py-xs rounded-lg hover:bg-surface-container-high transition-colors">Write Review</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Account Settings Asymmetric Layout -->
+<section class="flex flex-col gap-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface">Account Settings</h2>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg hover:border-primary transition-all group">
+<div class="flex items-center gap-md mb-md">
+<div class="p-sm bg-primary/10 rounded-lg group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">Security &amp; Password</h4>
+</div>
+<p class="font-body-md text-sm text-on-surface-variant mb-lg">Manage your login credentials, two-factor authentication, and active sessions across your devices.</p>
+<button class="text-primary font-label-sm text-label-sm uppercase tracking-wide font-bold hover:underline">Manage Security →</button>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg hover:border-primary transition-all group">
+<div class="flex items-center gap-md mb-md">
+<div class="p-sm bg-primary/10 rounded-lg group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">Payment Methods</h4>
+</div>
+<p class="font-body-md text-sm text-on-surface-variant mb-lg">Securely manage your saved credit cards, digital wallets, and billing cycle information for faster checkout.</p>
+<button class="text-primary font-label-sm text-label-sm uppercase tracking-wide font-bold hover:underline">Update Payments →</button>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg hover:border-primary transition-all group lg:col-span-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="p-sm bg-primary/10 rounded-lg group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Communication Preferences</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Get notified about orders, price drops, and member-exclusive offers.</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="text-label-md font-label-md text-secondary">Opted In</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest w-full mt-auto border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center py-xl px-gutter max-w-7xl mx-auto gap-xl">
+<div class="flex flex-col gap-sm items-center md:items-start">
+<span class="font-headline-md text-headline-md text-on-background font-bold">NexusCommerce</span>
+<p class="font-body-md text-body-md text-secondary">© 2024 NexusCommerce. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="text-secondary font-body-md text-body-md hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="text-secondary font-body-md text-body-md hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="text-secondary font-body-md text-body-md hover:text-primary transition-colors cursor-pointer" href="#">Refund Policy</a>
+<a class="text-secondary font-body-md text-body-md hover:text-primary transition-colors cursor-pointer" href="#">Shipping Info</a>
+</div>
+<div class="flex gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-secondary">language</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-secondary">help</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for sidebar buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', function() {
+                this.style.opacity = '0.8';
+                this.style.transform = 'scale(0.98)';
+            });
+            button.addEventListener('mouseup', function() {
+                this.style.opacity = '1';
+                this.style.transform = 'scale(1)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.opacity = '1';
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Toggle state simulation for communication preferences
+        const toggles = document.querySelectorAll('input[type="checkbox"]');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const label = this.parentElement.previousElementSibling;
+                if(this.checked) {
+                    label.textContent = "Opted In";
+                    label.classList.remove('text-secondary');
+                    label.classList.add('text-primary');
+                } else {
+                    label.textContent = "Opted Out";
+                    label.classList.remove('text-primary');
+                    label.classList.add('text-secondary');
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: #f7f9fb;
+  color: #191c1e;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  outline-offset: 2px;
+}
+
+@layer components {
+  .focus-ring {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+  }
+
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10;
+  }
+
+  .surface-card {
+    @apply rounded-lg border border-outline-variant bg-surface-container-lowest;
+  }
+
+  .label {
+    @apply font-label text-xs font-semibold uppercase tracking-[0.08em] text-secondary;
+  }
+}

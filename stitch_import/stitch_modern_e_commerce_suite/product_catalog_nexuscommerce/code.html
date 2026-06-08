@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NexusCommerce | Product Catalog</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Typography: Inter & Geist -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.cdnfonts.com/css/geist-sans" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-secondary-fixed": "#0d1c2e",
+                "on-error-container": "#93000a",
+                "on-error": "#ffffff",
+                "on-surface": "#191c1e",
+                "inverse-primary": "#b4c5ff",
+                "secondary-fixed-dim": "#b9c7df",
+                "tertiary": "#4d556b",
+                "on-secondary-fixed-variant": "#3a485b",
+                "secondary-fixed": "#d5e3fc",
+                "surface-variant": "#e0e3e5",
+                "tertiary-fixed-dim": "#bec6e0",
+                "inverse-surface": "#2d3133",
+                "outline": "#737686",
+                "on-primary-fixed": "#00174b",
+                "surface-container": "#eceef0",
+                "surface-dim": "#d8dadc",
+                "on-background": "#191c1e",
+                "surface-container-highest": "#e0e3e5",
+                "primary": "#004ac6",
+                "inverse-on-surface": "#eff1f3",
+                "surface-bright": "#f7f9fb",
+                "surface-container-high": "#e6e8ea",
+                "secondary-container": "#d5e3fc",
+                "on-secondary": "#ffffff",
+                "tertiary-fixed": "#dae2fd",
+                "on-tertiary-fixed": "#131b2e",
+                "primary-fixed": "#dbe1ff",
+                "on-tertiary": "#ffffff",
+                "on-primary": "#ffffff",
+                "primary-fixed-dim": "#b4c5ff",
+                "on-primary-fixed-variant": "#003ea8",
+                "on-secondary-container": "#57657a",
+                "on-tertiary-container": "#eef0ff",
+                "on-primary-container": "#eeefff",
+                "outline-variant": "#c3c6d7",
+                "surface-container-low": "#f2f4f6",
+                "background": "#f7f9fb",
+                "error-container": "#ffdad6",
+                "surface-tint": "#0053db",
+                "surface": "#f7f9fb",
+                "on-tertiary-fixed-variant": "#3f465c",
+                "primary-container": "#2563eb",
+                "surface-container-lowest": "#ffffff",
+                "secondary": "#515f74",
+                "on-surface-variant": "#434655",
+                "tertiary-container": "#656d84",
+                "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "xl": "2rem",
+                "gutter": "1.5rem",
+                "margin-mobile": "1rem",
+                "2xl": "3rem",
+                "base": "4px",
+                "margin-desktop": "2.5rem",
+                "xs": "0.25rem",
+                "sm": "0.5rem",
+                "md": "1rem",
+                "lg": "1.5rem"
+            },
+            "fontFamily": {
+                "body-md": ["Inter"],
+                "label-sm": ["Geist"],
+                "label-md": ["Geist"],
+                "headline-lg": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-md": ["Inter"],
+                "headline-lg-mobile": ["Inter"],
+                "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline w-full h-16 sticky top-0 z-50">
+<div class="flex justify-between items-center px-gutter max-w-7xl mx-auto h-full">
+<div class="flex items-center gap-xl">
+<span class="text-headline-md font-headline-md text-primary dark:text-inverse-primary font-bold cursor-pointer">NexusCommerce</span>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-colors cursor-pointer active:opacity-80" href="#">Home</a>
+<a class="font-label-md text-label-md text-primary dark:text-inverse-primary border-b-2 border-primary pb-1 cursor-pointer active:opacity-80" href="#">Catalog</a>
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-colors cursor-pointer active:opacity-80" href="#">Cart</a>
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-colors cursor-pointer active:opacity-80" href="#">Account</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden lg:flex items-center bg-surface-container rounded-lg px-md py-xs border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant mr-xs">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md font-label-md w-48" placeholder="Search products..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-sm hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined text-primary dark:text-inverse-primary" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute top-0 right-0 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+</button>
+<button class="p-sm hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-inverse-primary" data-icon="account_circle">account_circle</span>
+</button>
+<button class="hidden sm:block px-lg py-xs bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity">Sign Up</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow max-w-7xl mx-auto w-full px-gutter py-xl">
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Sidebar Filter -->
+<aside class="w-full md:w-[280px] flex-shrink-0 space-y-xl">
+<!-- Mobile Toggle Label (only visible on mobile) -->
+<div class="flex items-center justify-between md:hidden pb-md border-b border-outline-variant">
+<span class="font-headline-md text-headline-md">Filters</span>
+<button class="p-sm border border-outline rounded-lg"><span class="material-symbols-outlined">filter_list</span></button>
+</div>
+<div class="space-y-xl hidden md:block">
+<!-- Category -->
+<section>
+<h3 class="font-label-md text-label-md text-on-surface mb-md uppercase tracking-wider">Category</h3>
+<div class="space-y-sm">
+<label class="flex items-center gap-sm cursor-pointer group">
+<input checked="" class="w-4 h-4 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Electronics</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Apparel</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Home &amp; Living</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Accessories</span>
+</label>
+</div>
+</section>
+<!-- Price Range -->
+<section>
+<h3 class="font-label-md text-label-md text-on-surface mb-md uppercase tracking-wider">Price Range</h3>
+<div class="px-xs">
+<input class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" max="2000" min="0" type="range"/>
+<div class="flex justify-between mt-sm text-label-sm font-label-sm text-secondary">
+<span>$0</span>
+<span>$2,000+</span>
+</div>
+</div>
+</section>
+<!-- Brand -->
+<section>
+<h3 class="font-label-md text-label-md text-on-surface mb-md uppercase tracking-wider">Brand</h3>
+<div class="space-y-sm">
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 border-outline text-primary focus:ring-primary" name="brand" type="radio"/>
+<span class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Nexus Elite</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 border-outline text-primary focus:ring-primary" name="brand" type="radio"/>
+<span class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Global Core</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 border-outline text-primary focus:ring-primary" name="brand" type="radio"/>
+<span class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Aether Design</span>
+</label>
+</div>
+</section>
+<!-- Rating -->
+<section>
+<h3 class="font-label-md text-label-md text-on-surface mb-md uppercase tracking-wider">Rating</h3>
+<div class="space-y-sm">
+<button class="flex items-center gap-xs group">
+<div class="flex text-[#FFB400]">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary group-hover:text-primary">&amp; Up</span>
+</button>
+<button class="flex items-center gap-xs group">
+<div class="flex text-[#FFB400]">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary group-hover:text-primary">&amp; Up</span>
+</button>
+</div>
+</section>
+<button class="w-full py-sm bg-surface-container-high text-primary font-label-md text-label-md rounded-lg hover:bg-surface-container-highest transition-colors">Clear All Filters</button>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="flex-grow">
+<!-- Toolbar -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md mb-xl">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Product Catalog</h1>
+<p class="text-body-md font-body-md text-secondary">Showing 1,240 items in "Electronics"</p>
+</div>
+<div class="flex items-center gap-md w-full sm:w-auto">
+<select class="bg-surface border border-outline-variant rounded-lg font-label-md text-label-md px-md py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none cursor-pointer">
+<option>Newest Arrivals</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Most Popular</option>
+</select>
+<div class="flex border border-outline-variant rounded-lg overflow-hidden">
+<button class="p-sm bg-secondary-container text-on-secondary-container"><span class="material-symbols-outlined">grid_view</span></button>
+<button class="p-sm bg-surface hover:bg-surface-container-low"><span class="material-symbols-outlined">view_list</span></button>
+</div>
+</div>
+</div>
+<!-- Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Product Card 1 -->
+<article class="group bg-surface border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300">
+<div class="aspect-square bg-surface-container overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional product photography of high-end over-ear headphones in a matte black finish, resting on a clean white surface with sharp geometric shadows. The lighting is crisp and modern, emphasizing the metallic textures and premium build quality. The background is a soft neutral grey, creating a corporate yet accessible luxury electronic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeK_xsQ5gwAJ84WQNjvMRTD8iZG0a9lJjheLm6VWs2G3uyf6UdrqPGfQ3y8DSJUmSiQDko0oUzjdp35GsZjZHGZSn_fapSzBHZyX3R-FAttUb8ZQBTi8iYRXHY46XFm6EX7OP6A3n1a44o-NbgWIzH3ytiuc6N6Z0bWUNW3uqMF988NQ0IKrfBmCfBbedt2PEABztGagE9NrEMxueka3-JBIVietD7J2A6XKh9QR3pe6iH541b72G4_i1EvnxXelvLkeaPqNLLHg"/>
+<div class="absolute top-md right-md">
+<button class="bg-white/90 p-xs rounded-full shadow-sm hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-md left-md">
+<span class="bg-primary text-white text-label-sm font-label-sm px-sm py-1 rounded">New Arrival</span>
+</div>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-tighter mb-xs">Electronics / Audio</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm line-clamp-1">Nexus Pro-Audio V2</h2>
+<div class="flex items-center gap-xs mb-md">
+<div class="flex text-[#FFB400]">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary">(4.8)</span>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold text-lg">$299.99</span>
+<button class="bg-primary text-on-primary p-sm rounded-lg hover:opacity-90 transition-opacity flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 2 -->
+<article class="group bg-surface border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300">
+<div class="aspect-square bg-surface-container overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist high-tech smartwatch with a sleek circular face and leather strap, displayed against a dark slate background. The image has high-contrast lighting that highlights the polished metallic edges and vibrant digital interface. The overall mood is sophisticated and authoritative, suitable for a modern e-commerce platform focused on precision engineering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC5ZysnVNIZe3-qEr2t68Ti8hVuHG5G3x7yFzzVjGFGvSoy1iMqlzvLu_IcD00UV64M12Hs9_fSs65e8xOei8QXpFWURVReEoAHk4zR4i_2U79x1BwIKYbRx2ve3ilUMzFjkOT1GCZraUBGW1NnTtQ8_sqFqM9U0RKVfVDfBdrMg722uS9pFQHxjG4mNMgbHkSv6m0NaYffVhxqFAV3Oga1VgaIDUv73qjfZ58UdCNJy-xkLWPTA6f5MOL-BymxS5sNOh-JxKYMg"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-tighter mb-xs">Electronics / Wearables</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm line-clamp-1">Nexus Chronos Ultra</h2>
+<div class="flex items-center gap-xs mb-md">
+<div class="flex text-[#FFB400]">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary">(5.0)</span>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold text-lg">$449.00</span>
+<button class="bg-primary text-on-primary p-sm rounded-lg hover:opacity-90 transition-opacity flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 3 -->
+<article class="group bg-surface border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300">
+<div class="aspect-square bg-surface-container overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sleek, ultra-thin smartphone in a champagne gold finish displayed vertically. The screen shows a vibrant, high-definition abstract wallpaper with deep blues and purples. The lighting is soft and ambient, casting a gentle reflection on the glass surface. The design is modern, professional, and communicates high-end technology and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZMlUv-7nDp_suhhd1OVrFhlyMFDgfOzTMs6El8d7aP-PRFwkeetO9hzobcfH6F09M5GaDU_g6w9hECO24Rs7EGhU-PUhqI_-U6HZdNyBPG03bXR5M92hNb7j2eD5PXTwDxy5oMjwcl8YwBE1AaTBeKg72gM7IigQWx0QjrOcvWG8IQMo3aNdrL6e63PU9c6vAJe14G-eAsI649LpJHjKkn-_eApXe1r3YIQoUZx9FL-WjZ6MKPSJ5bY02oXAgbrpDUkAmBvJn-g"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-tighter mb-xs">Electronics / Mobile</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm line-clamp-1">Nexus Core 14 Pro</h2>
+<div class="flex items-center gap-xs mb-md">
+<div class="flex text-[#FFB400]">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 0.5;">star_half</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary">(4.5)</span>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold text-lg">$999.00</span>
+<button class="bg-primary text-on-primary p-sm rounded-lg hover:opacity-90 transition-opacity flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</article>
+<!-- More Cards placeholder for grid visual balance -->
+<article class="group bg-surface border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300 opacity-90">
+<div class="aspect-square bg-surface-container-low overflow-hidden relative animate-pulse flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-[48px]">image</span>
+</div>
+<div class="p-md space-y-md">
+<div class="h-4 bg-surface-container w-1/3 rounded"></div>
+<div class="h-6 bg-surface-container w-full rounded"></div>
+<div class="h-4 bg-surface-container w-1/2 rounded"></div>
+<div class="flex justify-between items-center pt-md">
+<div class="h-8 bg-surface-container w-1/4 rounded"></div>
+<div class="h-10 bg-surface-container w-10 rounded-lg"></div>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<nav class="mt-2xl flex justify-center items-center gap-sm">
+<button class="p-sm text-secondary hover:text-primary transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-lg bg-primary text-on-primary font-label-md text-label-md">1</button>
+<button class="w-10 h-10 rounded-lg hover:bg-surface-container-high transition-colors font-label-md text-label-md">2</button>
+<button class="w-10 h-10 rounded-lg hover:bg-surface-container-high transition-colors font-label-md text-label-md">3</button>
+<span class="text-secondary px-sm">...</span>
+<button class="w-10 h-10 rounded-lg hover:bg-surface-container-high transition-colors font-label-md text-label-md">12</button>
+<button class="p-sm text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container-highest dark:bg-on-secondary-fixed border-t border-outline-variant dark:border-outline w-full mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center py-xl px-gutter max-w-7xl mx-auto gap-xl">
+<div class="space-y-sm">
+<span class="font-headline-md text-headline-md text-on-background dark:text-inverse-on-surface font-bold">NexusCommerce</span>
+<p class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim max-w-xs">
+                    Reliable, precise, and professional commerce solutions for the modern age.
+                </p>
+</div>
+<div class="flex flex-wrap gap-xl">
+<div class="space-y-md">
+<h4 class="font-label-md text-label-md text-on-surface dark:text-inverse-on-surface uppercase tracking-widest">Shop</h4>
+<ul class="space-y-sm">
+<li><a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors" href="#">New Arrivals</a></li>
+<li><a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors" href="#">Best Sellers</a></li>
+</ul>
+</div>
+<div class="space-y-md">
+<h4 class="font-label-md text-label-md text-on-surface dark:text-inverse-on-surface uppercase tracking-widest">Help</h4>
+<ul class="space-y-sm">
+<li><a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors" href="#">Shipping Info</a></li>
+<li><a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors" href="#">Refund Policy</a></li>
+</ul>
+</div>
+<div class="space-y-md">
+<h4 class="font-label-md text-label-md text-on-surface dark:text-inverse-on-surface uppercase tracking-widest">Legal</h4>
+<ul class="space-y-sm">
+<li><a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-gutter py-lg border-t border-outline-variant dark:border-outline text-center md:text-left">
+<p class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim">
+                © 2024 NexusCommerce. All rights reserved.
+            </p>
+</div>
+</footer>
+<script>
+        // Micro-interactions for the range input
+        const range = document.querySelector('input[type="range"]');
+        if (range) {
+            range.addEventListener('input', (e) => {
+                const val = e.target.value;
+                // Logically update price filters if needed
+            });
+        }
+
+        // Category Checkbox logic
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                // Future implementation: trigger fetch/filter
+            });
+        });
+    </script>
+</body></html>

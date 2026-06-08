@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NexusCommerce | Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#0d1c2e",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "on-surface": "#191c1e",
+                    "inverse-primary": "#b4c5ff",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "tertiary": "#4d556b",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "secondary-fixed": "#d5e3fc",
+                    "surface-variant": "#e0e3e5",
+                    "tertiary-fixed-dim": "#bec6e0",
+                    "inverse-surface": "#2d3133",
+                    "outline": "#737686",
+                    "on-primary-fixed": "#00174b",
+                    "surface-container": "#eceef0",
+                    "surface-dim": "#d8dadc",
+                    "on-background": "#191c1e",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary": "#004ac6",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-bright": "#f7f9fb",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-container": "#d5e3fc",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#dae2fd",
+                    "on-tertiary-fixed": "#131b2e",
+                    "primary-fixed": "#dbe1ff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-secondary-container": "#57657a",
+                    "on-tertiary-container": "#eef0ff",
+                    "on-primary-container": "#eeefff",
+                    "outline-variant": "#c3c6d7",
+                    "surface-container-low": "#f2f4f6",
+                    "background": "#f7f9fb",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#0053db",
+                    "surface": "#f7f9fb",
+                    "on-tertiary-fixed-variant": "#3f465c",
+                    "primary-container": "#2563eb",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#515f74",
+                    "on-surface-variant": "#434655",
+                    "tertiary-container": "#656d84",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "2rem",
+                    "gutter": "1.5rem",
+                    "margin-mobile": "1rem",
+                    "2xl": "3rem",
+                    "base": "4px",
+                    "margin-desktop": "2.5rem",
+                    "xs": "0.25rem",
+                    "sm": "0.5rem",
+                    "md": "1rem",
+                    "lg": "1.5rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Geist"],
+                    "label-md": ["Geist"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        .hero-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface w-full h-16 border-b border-outline-variant z-50 sticky top-0">
+<div class="flex justify-between items-center px-gutter max-w-7xl mx-auto h-full">
+<div class="flex items-center gap-xl">
+<span class="text-headline-md font-headline-md text-primary font-bold cursor-pointer">NexusCommerce</span>
+<nav class="hidden md:flex gap-lg items-center">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 transition-colors cursor-pointer active:opacity-80" href="#">Home</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Catalog</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Cart</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Account</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-label-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none w-64" placeholder="Search products..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant">shopping_cart</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
+</button>
+<button class="ml-2 bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md hover:bg-primary-container transition-colors cursor-pointer active:opacity-80">
+                        Sign Up
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<main class="min-h-screen">
+<!-- Hero Section -->
+<section class="relative h-[600px] w-full overflow-hidden flex items-center">
+<div class="absolute inset-0 z-0">
+<img alt="Hero Banner" class="w-full h-full object-cover" data-alt="A sophisticated lifestyle photography shot of a high-end, minimalist retail environment featuring architectural curves and soft natural lighting. The color palette is composed of crisp whites, muted slates, and deep Professional Blue accents. A single elegantly dressed figure is blurred in the background to emphasize the spacious, premium atmosphere of a flagship modern commerce hub. The mood is aspirational and quiet, embodying institutional trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjbkc9HSjnfHzKmpQ4Zspc3QJBCki7mwVqMvpfxiCXdz_Jb1qA7XFkvmECrBg2Weuag9kjk-pUz4PmvZeHN83438X73zZWVqnmQ-hxoGx5TaBDxAFBzW89xvJBMc0RpE5FnWeDylgOfGq20PckJu-afmwoHQiA3C6gOCarIhfVgwhmiBpwSMZErld29l7rhhD5v6ydFXO88dle0eq6LIFc-J-ZmRcRaXvSUPc_OR-OG7y5xhNUUD9yGCIRsgPuQCPq7SYK87-83g"/>
+<div class="absolute inset-0 bg-gradient-to-r from-on-secondary-fixed/60 to-transparent"></div>
+</div>
+<div class="max-w-7xl mx-auto px-gutter relative z-10 w-full">
+<div class="max-w-2xl text-on-primary">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-fixed mb-md block">Season 2024 Collection</span>
+<h1 class="font-display-lg text-display-lg mb-lg leading-tight">Precision in Every <span class="text-primary-fixed">Digital Detail.</span></h1>
+<p class="font-body-lg text-body-lg mb-xl text-surface-variant">Curated high-performance essentials for the modern professional. Experience frictionless commerce with our latest technology arrivals.</p>
+<div class="flex gap-md">
+<button class="bg-primary hover:bg-primary-container text-on-primary px-xl py-md rounded-lg font-label-md transition-all active:scale-95">Explore Catalog</button>
+<button class="border border-surface-variant hover:bg-white/10 text-on-primary px-xl py-md rounded-lg font-label-md transition-all active:scale-95 hero-glass">Learn More</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories Bento Grid -->
+<section class="py-2xl max-w-7xl mx-auto px-gutter">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Curated Categories</h2>
+<p class="font-body-md text-body-md text-secondary">Browse our expertly selected ecosystem of products.</p>
+</div>
+<button class="text-primary font-label-md flex items-center gap-xs hover:underline">
+                    View all categories <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 grid-rows-2 gap-gutter h-auto md:h-[500px]">
+<!-- Electronics -->
+<div class="md:col-span-8 md:row-span-2 group relative overflow-hidden rounded-xl border border-outline-variant cursor-pointer">
+<img alt="Electronics" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Close-up artistic shot of premium electronic components and high-end consumer gadgets arranged on a clean, slate-grey technical surface. The lighting is focused and dramatic, highlighting metallic textures and precise industrial design. The overall aesthetic is professional and high-tech, using a cold-toned color palette with sharp focus and clean lines to signify performance and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLnSZ3rTLEzC6muOabx1A-tIl51LqLF9VidriGt3yEL2BL-55FqS7D1W3yHvxo4FPAw6FJcvs8gxA4ihJbq-kYlPj6Ut_SuHK7-TNuuS2qdDxOV0bPR6S4NCDMkkMml4nm3mr0u_s85fTU2EplyK7OusD1L26IiHyKwyPY0mKEepsqvVtfDnjeAnkMb49V0d3yqZWv0ZhAf-JcpQCYI9WE9k7dBu4ZdvFi_NpBdi8iilk15M2aYDkf10QW-IV0kizUv3gcol5WuA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-secondary-fixed/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-lg left-lg">
+<h3 class="font-headline-md text-headline-md text-white mb-xs">Electronics</h3>
+<p class="text-surface-variant text-label-md">Next-generation hardware for high-velocity workflows.</p>
+</div>
+</div>
+<!-- Fashion -->
+<div class="md:col-span-4 md:row-span-1 group relative overflow-hidden rounded-xl border border-outline-variant cursor-pointer">
+<img alt="Fashion" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Elegant display of high-quality apparel featuring sustainable fabrics in neutral tones of beige, slate, and charcoal. The lighting is soft and diffused, creating a serene and sophisticated atmosphere typical of luxury fashion boutiques. The focus is on the textures of the textiles, emphasizing quality and timeless style within a modern corporate-retail context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNuvai7YBzc_zCKO1iPl3UpYVdiDRrzSl2EXhati_84hwbqO0ld2HEvlidGanDqZ5k1wsTmiAQH82PqPc5ZrMmV_TuvRcSgVSW8GRGp7xd9e-ws_J5DVqczSt69J9Py2PSj5apkRgzmNHarnW7FFsRg0lhZm29SDZWUGo74Rhe6IEEMt4IVh93jpM0j-jVzgrvgWGqO-_zx6oOr1AAODV5y62KFWVaABe2u_Ir2sOGjyPORgzypV8LWqhGU3JjkpVW3hJr1CEw_A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-secondary-fixed/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-md left-md">
+<h3 class="font-headline-md text-headline-md text-white">Fashion</h3>
+</div>
+</div>
+<!-- Home -->
+<div class="md:col-span-4 md:row-span-1 group relative overflow-hidden rounded-xl border border-outline-variant cursor-pointer">
+<img alt="Home" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A minimalist living space showing contemporary furniture with sharp geometric lines and a neutral, high-contrast color scheme. Large floor-to-ceiling windows provide bright, natural high-key lighting. The room is decorated with a few carefully chosen premium accessories, representing a harmonious blend of domestic comfort and professional aesthetic clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF-x2C-RQhYGKZKygiIVeUwlYhEebPIe6jOVHUTRvXPMrULHEc4NmmcAmC_J8odDN9M5zLc9_IuvqzWpNBtc3MYyYlehXsLEUDekSmxgF8mHS9jFt77hUr6ekk7SJj7rkuc0BihVn7H9XhLMvShmqKqU_Dz5wIIp3B1OIgAUxgookpqQerMjIPt5xTQBtHhb7TAQfoPA8INNZiGNYvETGwIMgHrzLG284dDdLDvXdVKlZ2mz_CHLv5MFrb0jG7_0a8hRwG17kUHA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-secondary-fixed/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-md left-md">
+<h3 class="font-headline-md text-headline-md text-white">Home</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- New Arrivals Grid -->
+<section class="bg-surface-container-low py-2xl">
+<div class="max-w-7xl mx-auto px-gutter">
+<div class="flex justify-between items-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">New Arrivals</h2>
+<div class="flex gap-sm">
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-full hover:bg-white transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-full hover:bg-white transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Product Card 1 -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img alt="Pro Studio Headphones" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Studio portrait of premium black over-ear headphones sitting on a reflective slate surface. The lighting is crisp and surgical, emphasizing the matte finishes and high-end construction materials. The background is a clean, neutral gradient of light grey, creating a professional product showcase that feels authoritative and technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGUno8nxYRTWht5zGGhGV5xeVgaHNcuUsyutsz1koKkcE9RIoiBYjk32gMoRBLn9UNDbVNUdiRWN5Ks3dqDbU1-MVK1yQ5Zo8MNb7LzIewQpgyV_0XtUUbBQWCtVI7Ny3EvqIkxZuN-cGxvur2fBJAB58E3vCLhvkGdmrNh-dOr_wps_1sq_YP534i9L1oR3Kpxc4eOXFJjFftJDLiR3859XcvXu4QOYKZKe26lLhJQaavTIGiyvizPs4XKy3AVzQqfyfatG4M5w"/>
+<div class="absolute top-sm right-sm">
+<button class="p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:text-error transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+</div>
+<div class="p-md">
+<span class="font-label-sm text-label-sm text-secondary uppercase mb-xs block">Electronics</span>
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-sm truncate">Nexus Pro Audio V2</h3>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary text-lg font-bold">$299.00</span>
+<button class="bg-primary text-on-primary p-2 rounded-lg hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img alt="Smart Watch" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A minimalist smart watch with a white silicone strap and a sleek metallic casing, presented on a light-colored wooden surface. The lighting is natural and soft, creating a bright and modern light-mode feel. The composition is clean and uncluttered, highlighting the functional beauty and industrial precision of the wearable device." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF15xrgZ-FKOHOkRQf2z2J6DP9mReOBLDIRCC0iEqANoGAykCDQ2TtdHwYue2zGkI8qj4nX5OpJodWlmxfK_sWOEdbcXEu-ejMox9mHXH0UffN-3KIV9NanlvXYhywJIeq7y6pNQ3HOLiIN02dJsPQBP5wW739FfGA3hiQS073_fu46d6HQ3akbza3avPieJ-iP0gFx4WGxe4rgM22NXibKukS7yx8223XdxZaVSY1OIERn1OwQDK6FoL5ENs0qOF-RYAo10U7og"/>
+<div class="absolute top-sm right-sm">
+<button class="p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:text-error transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+</div>
+<div class="p-md">
+<span class="font-label-sm text-label-sm text-secondary uppercase mb-xs block">Electronics</span>
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-sm truncate">Chrono Horizon S</h3>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary text-lg font-bold">$189.00</span>
+<button class="bg-primary text-on-primary p-2 rounded-lg hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img alt="Classic Sneakers" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Top-down lifestyle shot of premium white and navy sneakers against a clean, geometric background of grey concrete and blue shadows. The aesthetic is modern and urban, using high-contrast lighting to accentuate the stitching and leather textures. The image reflects a balance of casual luxury and corporate precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqsP9vWDM3nROIwDzQLXQPzIxdcSdb6Niq-ZT3m3Th-bupiFzcwmhoIXBWX-Jeawr7mjEa41ns3PUuGfs3TVHNSfFtElZCXTM70ETTu7wCWG8m-mqOS0kQqvpfgdxbTrSe89B_R6-7LtB5BJH8MKPEre19Jr0WIxIcNK_1MBl1QUU9Hb1_gWS2hvwgm45GAQnBq4NFn_FmZEUdi-q1uuT07NYNGZCWUa5Kmo1cq4rvZWjeegcOjAKluPoklpUGZ-L7JzlPWsnlSA"/>
+<div class="absolute top-sm right-sm">
+<button class="p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:text-error transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+</div>
+<div class="p-md">
+<span class="font-label-sm text-label-sm text-secondary uppercase mb-xs block">Fashion</span>
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-sm truncate">Stride Elite Trainer</h3>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary text-lg font-bold">$125.00</span>
+<button class="bg-primary text-on-primary p-2 rounded-lg hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img alt="Lounge Chair" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A premium ergonomic office chair in charcoal grey mesh with chrome accents, set in a bright, minimalist studio. The lighting is soft and ambient, casting gentle shadows that define the chair's contour. The setting feels professional and focused, communicating high ergonomic standards and reliable institutional design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa3Nz2-Eadn9lk7zuER85xbrSKOYih2A2-A5QCuXyL-4Hv-RW2af_tTlclwRHCYIEG7jKOFRUd_Gjpqm06L8_vQx4clYB-e-WitWuB8y_7GVPSgXaB4PHXOzOU2mMNJrxqIe_CmAdH892gKW8_mtJioWKK6EY-ihyTKl6AVbL4WJh_LMH12PrDg95p5Hqakdh7F9teXIO_AJlZFO82pC3nB83TR6tcU8mDqLhyUsO_ELJ9F4GsPwX0RbO6nRp8J_ADlAqMc4VB1Q"/>
+<div class="absolute top-sm right-sm">
+<button class="p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:text-error transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+</div>
+<div class="p-md">
+<span class="font-label-sm text-label-sm text-secondary uppercase mb-xs block">Home</span>
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-sm truncate">Apex Ergonomic Chair</h3>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary text-lg font-bold">$450.00</span>
+<button class="bg-primary text-on-primary p-2 rounded-lg hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Top Rated / Social Proof -->
+<section class="py-2xl max-w-7xl mx-auto px-gutter">
+<div class="bg-on-secondary-fixed text-on-tertiary-container rounded-2xl p-2xl flex flex-col md:flex-row items-center gap-2xl overflow-hidden relative">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+<div class="md:w-1/2 z-10">
+<div class="flex items-center gap-xs mb-md">
+<span class="material-symbols-outlined text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md ml-xs">Rated 4.9/5 by 10k+ Merchants</span>
+</div>
+<h2 class="font-display-lg text-headline-lg text-white mb-lg">The Nexus Standard of Quality.</h2>
+<p class="font-body-md text-body-md text-tertiary-fixed-dim mb-xl">"NexusCommerce has revolutionized how we source products for our boutique. The quality of curated electronics and fashion items is unparalleled in the market today."</p>
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full border border-outline overflow-hidden">
+<img alt="Customer Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm7cGhgzS2uuDrdNOm1kWAKvLuGn7m87HhcoJzTIyiTaRi5SmMktLJjp4pTcIoEcprBQPjEN0ofkibhkNdlHul3ZVkMDLtnxh0X5aR08q78SsR6Vxer6YAR6iKiWwr1-fykqly-dcTL7wDI7qs1YVOigEzuepJH5huUttOuNDWVBptJ3gCi_mv6Rn6-O-LdqqDHwlBL8mowTk2at2pYphRQZ9mLpLca5JqJTROEd4uxc1hgoPOpdm0kFTLN854BBObvn2HgzAfVw"/>
+</div>
+<div>
+<p class="font-label-md text-white">Alexander Chen</p>
+<p class="font-label-sm text-tertiary-fixed-dim">CEO, Horizon Ventures</p>
+</div>
+</div>
+</div>
+<div class="md:w-1/2 grid grid-cols-2 gap-md z-10">
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 p-lg rounded-xl">
+<span class="material-symbols-outlined text-primary-fixed mb-sm text-3xl">verified</span>
+<h4 class="text-white font-label-md mb-xs">Certified Quality</h4>
+<p class="text-tertiary-fixed-dim text-label-sm">Every item undergoes a rigorous 12-point inspection.</p>
+</div>
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 p-lg rounded-xl">
+<span class="material-symbols-outlined text-primary-fixed mb-sm text-3xl">bolt</span>
+<h4 class="text-white font-label-md mb-xs">Express Delivery</h4>
+<p class="text-tertiary-fixed-dim text-label-sm">Global logistics network ensuring 48-hour fulfillment.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-surface-container-highest border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center py-xl px-gutter max-w-7xl mx-auto gap-xl">
+<div class="flex flex-col gap-md">
+<span class="font-headline-md text-headline-md text-on-background font-bold">NexusCommerce</span>
+<p class="font-body-md text-body-md text-secondary max-w-xs">Building the future of corporate and individual retail through precision-engineered solutions.</p>
+<div class="flex gap-md">
+<a class="text-secondary hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">face_nod</span></a>
+<a class="text-secondary hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+<a class="text-secondary hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+<div class="flex flex-wrap justify-center gap-xl">
+<div class="flex flex-col gap-sm">
+<span class="font-label-md text-on-surface font-bold mb-xs">Quick Links</span>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="font-label-md text-on-surface font-bold mb-xs">Customer Care</span>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="#">Refund Policy</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="#">Shipping Info</a>
+</div>
+</div>
+<div class="flex flex-col items-end gap-sm">
+<span class="font-body-md text-body-md text-on-surface">© 2024 NexusCommerce. All rights reserved.</span>
+<div class="flex gap-xs">
+<img alt="Visa" class="h-6 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhQWqE4MiS2W3J6egVVmcPylPvxOg-vzXhL4fglgZevtt56yRoeuEPCk7utJMmUtwNjVcCWimHz_HtmvQu6cMPKzKRkMQ0fPW4eVf9orVyGA5lVfsCzy_TJYvZgfLOOs85xWafYeFIgAp3rYTmfjLzD6KKx9wSiB_GuHSGuv_aQu5MGrXgc4RGPIIWApDYCyoIli6iE6PyPZM0JFRGB7BKHrzceCAE2zWhnamsUeiFAjoC0cnXza-SdcC_7pPTQ_rumwaNylNibA"/>
+<img alt="Mastercard" class="h-6 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6Z59eF-I2mv8o3m0kIJMb0_sllc29BJnze5rNINk6MLn20VjL7X6WQ600Z9JTInR-UmGonyV5-uoKLLIrMixhJP0qZbmqP3RXhulHOM2Y6qB6BKUiu2lLgYv6FpbIYv7dy-eHvgB7G1f3f5ZVuXQuQUWyK4lD5g3yT3TJ07vSKt5q5iRb6zbGO-QuEMZ2KDFXz3a0shF_18BCT7ixptTxdOvwNUXb5qSVW1Eyc14iwbQ-7Bta8gWL0adIIGJVzjreaAoVDrEt2A"/>
+<img alt="Paypal" class="h-6 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP6ohR6g2v0YvhhvfetVDCnQT0Q0xD3baa6U357bPyDQg8koO1xkMWbVB6uXLUXPhsDd24fjFcHLZim34vvVPFkKGRV94gjsAPI-W5CWpd7giafaJDo-vYvTi8_OlVTUWcM6cnHkqHaUO_kdRKgVmByrIrmNhLBJEVXTTnnxO7OWV4Y9VGZqDNfg9Z8FgRwDc0IpHhsVAvozIpr8VWqvPCmR00tZYh1wxCdnSCdfKixAyQJvt1YzXW50BPWCQXhq2uoKcRvIHPSw"/>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for hover effects on cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Potential for GSAP or light micro-animations
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NexusCommerce Admin - Inventory Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .tabular-lining {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#0d1c2e",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "inverse-primary": "#b4c5ff",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "tertiary": "#4d556b",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "secondary-fixed": "#d5e3fc",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "inverse-surface": "#2d3133",
+                        "outline": "#737686",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container": "#eceef0",
+                        "surface-dim": "#d8dadc",
+                        "on-background": "#191c1e",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary": "#004ac6",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-container": "#d5e3fc",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-tertiary-fixed": "#131b2e",
+                        "primary-fixed": "#dbe1ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-secondary-container": "#57657a",
+                        "on-tertiary-container": "#eef0ff",
+                        "on-primary-container": "#eeefff",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-low": "#f2f4f6",
+                        "background": "#f7f9fb",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#0053db",
+                        "surface": "#f7f9fb",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "primary-container": "#2563eb",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#515f74",
+                        "on-surface-variant": "#434655",
+                        "tertiary-container": "#656d84",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "2rem",
+                        "gutter": "1.5rem",
+                        "margin-mobile": "1rem",
+                        "2xl": "3rem",
+                        "base": "4px",
+                        "margin-desktop": "2.5rem",
+                        "xs": "0.25rem",
+                        "sm": "0.5rem",
+                        "md": "1rem",
+                        "lg": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar Anchor -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-surface-container-low border-r border-outline-variant flex flex-col p-md z-50">
+<div class="mb-xl px-sm">
+<h1 class="font-headline-md text-headline-md text-on-surface">Admin Console</h1>
+<p class="font-label-md text-label-md text-secondary">Nexus Global Store</p>
+</div>
+<nav class="flex-1 space-y-sm">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-md p-md bg-secondary-container text-on-secondary-container font-bold rounded-lg transition-all duration-200 ease-in-out cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Customers</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto space-y-sm pt-md border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-md rounded-xl hover:opacity-90 transition-opacity mb-md">
+                New Product
+            </button>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="ml-[280px] min-h-screen flex flex-col">
+<!-- TopNavBar Anchor -->
+<header class="w-full h-14 pl-0 bg-surface-bright border-b border-outline-variant flex justify-end items-center px-lg sticky top-0 z-40">
+<div class="flex items-center gap-xl">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:bg-surface-container-high p-sm rounded-full">notifications</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:bg-surface-container-high p-sm rounded-full">mail</span>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-high p-xs rounded-lg transition-colors">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+<span class="font-label-sm text-label-sm text-on-surface">Admin User</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="flex-1 p-gutter">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md mb-2xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Product Inventory</h2>
+<p class="font-body-md text-body-md text-secondary">Manage and track your global product catalog across all regions.</p>
+</div>
+<button class="bg-primary text-on-primary px-lg py-md rounded-lg font-label-md text-label-md flex items-center gap-sm hover:shadow-lg transition-shadow">
+<span class="material-symbols-outlined">add</span>
+                    Add Product
+                </button>
+</div>
+<!-- Controls Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg mb-lg flex flex-col md:flex-row gap-lg items-center">
+<div class="relative flex-1 w-full">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-xl pr-md py-md bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search by name, SKU, or category..." type="text"/>
+</div>
+<div class="flex gap-md w-full md:w-auto">
+<button class="flex items-center gap-sm px-md py-md border border-outline-variant rounded-lg font-label-md text-label-md text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+                        Filters
+                    </button>
+<button class="flex items-center gap-sm px-md py-md border border-outline-variant rounded-lg font-label-md text-label-md text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">file_download</span>
+                        Export
+                    </button>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="p-md font-label-sm text-label-sm text-secondary border-b border-outline-variant">Product</th>
+<th class="p-md font-label-sm text-label-sm text-secondary border-b border-outline-variant">SKU</th>
+<th class="p-md font-label-sm text-label-sm text-secondary border-b border-outline-variant">Category</th>
+<th class="p-md font-label-sm text-label-sm text-secondary border-b border-outline-variant text-right">Price</th>
+<th class="p-md font-label-sm text-label-sm text-secondary border-b border-outline-variant">Stock Status</th>
+<th class="p-md font-label-sm text-label-sm text-secondary border-b border-outline-variant text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant font-body-md text-body-md">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded bg-surface-container-high flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio product photograph of a minimalist white smartwatch with a clean silicon band, shot against a soft grey background with sharp, precise lighting. The image conveys a sense of high-end consumer technology and corporate reliability, using a neutral color palette with subtle blue accents in the reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLhvpIMjy8i4CiKXcTDE0D2uecfgKqwDtMtUwSsE0NzsktH_Pzu44RonrqmXHENtYQIHD5B0VavMZd-6Vs8wlOOghPU8C0Y4UscxbaDP-yX2ew6vyTtQ9d3gv0ZPu4dgzHMiPUlhNz4C74jhtWH2aZH9E77lP_F_EFshJwaKdzK8tMFVr6JzQr-1OYKJUWkbJELfV6HIXyvWJwoM_rbRDcH4EUs4dMMGWBQ4h4RuDV7AaZjyB5A5D3Zr1c02nbFLKU4i3D5SgQvQ"/>
+</div>
+<div>
+<p class="font-headline-md text-label-md text-on-surface block">Nexus Watch Series 5</p>
+<span class="text-xs text-secondary font-label-sm">Updated 2h ago</span>
+</div>
+</div>
+</td>
+<td class="p-md font-label-md text-label-md text-secondary tabular-lining">NX-WT5-2024</td>
+<td class="p-md font-label-sm text-label-sm">Electronics</td>
+<td class="p-md text-right font-label-md text-label-md tabular-lining">$349.00</td>
+<td class="p-md">
+<span class="px-sm py-xs rounded-full bg-green-100 text-green-700 font-label-sm text-label-sm">In Stock</span>
+</td>
+<td class="p-md text-center">
+<button class="p-sm hover:bg-surface-container-high rounded-full text-secondary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded bg-surface-container-high flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sleek, high-definition studio shot of matte black over-ear headphones featuring premium leather ear cups. The lighting is dramatic and directional, highlighting the metallic textures and high-contrast finishes. The overall aesthetic is professional, modern, and high-performance, fitting a corporate premium brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHHgM0EaoMMMSGl1ujI1dh2I1NQK-6J1Vsp5WygO6aFpA-Go48UUJ98xGEqIhy31XtkHarY6uJ1sqJuM4TR9R2ejlranBQ1zDLVkWML3SsGeTKIZN5rvuffUdmpBnJvzy49cm40GfnYIwW6twMOs2xVylJgXviavzcrRSnrgYLalK4OvI7xpop7nL_3k3XGHEQy5Q7loQwAWRkRe4WStxttvI7sefUAJxswD_Bw2TKmQiurwt_pvmoeELk-L09h7sfxfqtuwGPLQ"/>
+</div>
+<div>
+<p class="font-headline-md text-label-md text-on-surface block">Acoustic Pro XL</p>
+<span class="text-xs text-secondary font-label-sm">Updated 5h ago</span>
+</div>
+</div>
+</td>
+<td class="p-md font-label-md text-label-md text-secondary tabular-lining">AC-XL-889</td>
+<td class="p-md font-label-sm text-label-sm">Audio</td>
+<td class="p-md text-right font-label-md text-label-md tabular-lining">$199.50</td>
+<td class="p-md">
+<span class="px-sm py-xs rounded-full bg-amber-100 text-amber-700 font-label-sm text-label-sm">Low Stock (5)</span>
+</td>
+<td class="p-md text-center">
+<button class="p-sm hover:bg-surface-container-high rounded-full text-secondary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded bg-surface-container-high flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A macro studio shot of a mechanical designer watch with a visible gear mechanism and a brown leather strap. The background is a clean, bright white, emphasizing the watch's intricate craftsmanship and precision engineering. The lighting is soft but high-key, creating a professional and trustworthy atmosphere for luxury management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2ghW2dVwOzR7R7hL6Npm3J6TbzHrezeHtl8ukP0SUODPoHvfcDskI56PZScP4hbmZsvngQ_X49TMFjuC4JW_qNluwPtoKrjnY-OXrgnve0UIwaZt2lzxG8A4y65Dxn-fP54yGO6hqefio_sths03tuzsvvlZaENWDsOofggiRUwDAiUYJZs__b1VKnalNcS_ybJJEu8i6cT932wYV3rUw40SBuswkSU2Ir7_4InB4AN1ZZGJGYTgzxscmD155CU3cLXDLa4WZvA"/>
+</div>
+<div>
+<p class="font-headline-md text-label-md text-on-surface block">Classic Chrono Brown</p>
+<span class="text-xs text-secondary font-label-sm">Updated 1d ago</span>
+</div>
+</div>
+</td>
+<td class="p-md font-label-md text-label-md text-secondary tabular-lining">CH-BR-112</td>
+<td class="p-md font-label-sm text-label-sm">Accessories</td>
+<td class="p-md text-right font-label-md text-label-md tabular-lining">$540.00</td>
+<td class="p-md">
+<span class="px-sm py-xs rounded-full bg-green-100 text-green-700 font-label-sm text-label-sm">In Stock</span>
+</td>
+<td class="p-md text-center">
+<button class="p-sm hover:bg-surface-container-high rounded-full text-secondary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded bg-surface-container-high flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A pair of crisp white high-top sneakers presented on a minimalist platform in a professional studio setting. The lighting is clean and balanced, showcasing the textile details and sleek silhouette. The color palette is composed of bright whites and soft greys, maintaining a modern and high-contrast visual clarity throughout the frame." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKUcOzwEH3v6hLLICzc96ZAZ1Cklf3yDQfYM028Avrap_Eog3rshacxZIypukRATOmf57ZeNeWVtLoLbfm0t5BuF6u7CzGt44gR3S-OiU_KmZuau1KScSu5pwaNPyPXm0MmPfK_j0f95De3jttBUK-EmV1WF0UaOJqlhPLSIcnGztoBLxQy4CQskWcvnTN1Ou24KAuX_wAmaLr2rSc2T1kC-Uvp0bPOby9mvsDJm0y0L-349jAGp2YlOo1KNxSY2vVv5HgCxtH_g"/>
+</div>
+<div>
+<p class="font-headline-md text-label-md text-on-surface block">Urban Step Sneakers</p>
+<span class="text-xs text-secondary font-label-sm">Updated 3d ago</span>
+</div>
+</div>
+</td>
+<td class="p-md font-label-md text-label-md text-secondary tabular-lining">FT-US-42</td>
+<td class="p-md font-label-sm text-label-sm">Apparel</td>
+<td class="p-md text-right font-label-md text-label-md tabular-lining">$120.00</td>
+<td class="p-md">
+<span class="px-sm py-xs rounded-full bg-red-100 text-red-700 font-label-sm text-label-sm">Out of Stock</span>
+</td>
+<td class="p-md text-center">
+<button class="p-sm hover:bg-surface-container-high rounded-full text-secondary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="p-md bg-surface-container-low flex justify-between items-center border-t border-outline-variant">
+<span class="font-label-sm text-label-sm text-secondary">Showing 1 to 4 of 248 entries</span>
+<div class="flex items-center gap-sm">
+<button class="p-xs rounded border border-outline-variant text-secondary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<span class="px-md font-label-md text-label-md text-primary font-bold">1</span>
+<button class="p-xs rounded border border-outline-variant text-secondary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Anchor -->
+<footer class="w-full mt-auto border-t border-outline-variant bg-surface-container-highest flex flex-col md:flex-row justify-between items-center py-xl px-gutter max-w-full">
+<div class="mb-md md:mb-0">
+<span class="font-headline-md text-headline-md text-on-background">NexusCommerce</span>
+<p class="font-body-md text-body-md text-secondary mt-xs">© 2024 NexusCommerce. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="#">Refund Policy</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="#">Shipping Info</a>
+</div>
+</footer>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', () => {
+                // Logic for selecting rows or opening details could go here
+                console.log('Row clicked');
+            });
+        });
+    </script>
+</body></html>

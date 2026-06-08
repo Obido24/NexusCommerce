@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#0d1c2e",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "on-surface": "#191c1e",
+                    "inverse-primary": "#b4c5ff",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "tertiary": "#4d556b",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "secondary-fixed": "#d5e3fc",
+                    "surface-variant": "#e0e3e5",
+                    "tertiary-fixed-dim": "#bec6e0",
+                    "inverse-surface": "#2d3133",
+                    "outline": "#737686",
+                    "on-primary-fixed": "#00174b",
+                    "surface-container": "#eceef0",
+                    "surface-dim": "#d8dadc",
+                    "on-background": "#191c1e",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary": "#004ac6",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-bright": "#f7f9fb",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-container": "#d5e3fc",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#dae2fd",
+                    "on-tertiary-fixed": "#131b2e",
+                    "primary-fixed": "#dbe1ff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-secondary-container": "#57657a",
+                    "on-tertiary-container": "#eef0ff",
+                    "on-primary-container": "#eeefff",
+                    "outline-variant": "#c3c6d7",
+                    "surface-container-low": "#f2f4f6",
+                    "background": "#f7f9fb",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#0053db",
+                    "surface": "#f7f9fb",
+                    "on-tertiary-fixed-variant": "#3f465c",
+                    "primary-container": "#2563eb",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#515f74",
+                    "on-surface-variant": "#434655",
+                    "tertiary-container": "#656d84",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "2rem",
+                    "gutter": "1.5rem",
+                    "margin-mobile": "1rem",
+                    "2xl": "3rem",
+                    "base": "4px",
+                    "margin-desktop": "2.5rem",
+                    "xs": "0.25rem",
+                    "sm": "0.5rem",
+                    "md": "1rem",
+                    "lg": "1.5rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Geist"],
+                    "label-md": ["Geist"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .active-thumb {
+            border: 2px solid #004ac6;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface w-full h-16 border-b border-outline-variant dark:border-outline z-50 sticky top-0">
+<div class="flex justify-between items-center px-gutter max-w-7xl mx-auto h-full">
+<div class="flex items-center gap-8">
+<span class="text-headline-md font-headline-md text-primary dark:text-inverse-primary font-bold cursor-pointer">NexusCommerce</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-secondary dark:text-secondary-fixed-dim font-label-md text-label-md hover:text-primary dark:hover:text-inverse-primary transition-colors cursor-pointer active:opacity-80" href="#">Home</a>
+<a class="text-primary dark:text-inverse-primary border-b-2 border-primary pb-1 font-label-md text-label-md transition-colors cursor-pointer active:opacity-80" href="#">Catalog</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-label-md text-label-md hover:text-primary dark:hover:text-inverse-primary transition-colors cursor-pointer active:opacity-80" href="#">Cart</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-label-md text-label-md hover:text-primary dark:hover:text-inverse-primary transition-colors cursor-pointer active:opacity-80" href="#">Account</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-surface-container px-3 py-1.5 rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-secondary mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-48" placeholder="Search products..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary" data-icon="shopping_cart">shopping_cart</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary" data-icon="account_circle">account_circle</span>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">Sign Up</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow max-w-7xl mx-auto px-gutter py-xl w-full">
+<!-- Breadcrumbs -->
+<nav class="mb-lg flex items-center gap-2 text-label-sm font-label-sm text-secondary">
+<span class="hover:text-primary cursor-pointer">Catalog</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<span class="hover:text-primary cursor-pointer">Electronics</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface">Nexus Ultra Pro Tablet</span>
+</nav>
+<!-- Product Hero Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Left: Image Gallery -->
+<div class="lg:col-span-7 flex flex-col gap-md">
+<div class="relative aspect-square w-full bg-surface-container rounded-xl overflow-hidden border border-outline-variant">
+<img alt="Nexus Ultra Pro Tablet Main View" class="w-full h-full object-cover" data-alt="A professional high-end studio product photograph of a sleek, charcoal gray tablet computer resting on a minimalist white stone surface. The lighting is bright and clean with soft, diffused shadows, highlighting the ultra-thin bezels and high-resolution glass display. The overall aesthetic is modern, corporate, and premium, using a neutral color palette with subtle blue reflections on the screen to match the NexusCommerce brand identity." id="main-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy3-nTKjY24sdK5a_aczN4UmzeVnI4rRDwia-OB8_hRIqjmhOCekhEUHM7vcQUdrRCAiCe-WiVemcWirBx8U9f8ivfa90JDJIhiXo99PDfhyeDzTSZkc29th1yxMWgo5XCIGpXSlEafSjRYcQl5bWaPEKSwD35xDD_nEj86WDIEFxqbBoux6KogSUCR9pX_qXbejQzwWvxZMBuwtW8XWvMN4y1zwkhQFyzfEfxAT8CVN85Scb_n-P-iz4uD9Te0s1XpM6_GNg6Jg"/>
+</div>
+<div class="grid grid-cols-4 gap-md">
+<button class="aspect-square bg-surface-container rounded-lg border-2 active-thumb overflow-hidden" onclick="changeImage(this, 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&amp;w=1000&amp;auto=format&amp;fit=crop')">
+<img alt="Thumbnail 1" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT-ZOLTswjkSvGa2P7DfvdPnKFlnidXNsTuFBBg9jJ-RJr0ozBPhS3ERhfX53YQtSlxwuw3x7rxWNu8ZTyrMeDlxy4HZMCsjMOssiol8vqaDgv-5JVARkBW0Vs0MEKPCIVspi6jg8-QVGX1uvcjkcun8Lt1ejGbdNSiGG9lwVU-jq8eTg8caSfMN52tlHzmwrUA734JUZqMGvmjEr3vEvNH2Ks0LK8p4GbmcYKBufWoEbn6AEiXRgFdRh6dfEFdYuCz33J1txeNg"/>
+</button>
+<button class="aspect-square bg-surface-container rounded-lg border-2 border-transparent hover:border-primary overflow-hidden" onclick="changeImage(this, 'https://images.unsplash.com/photo-1561154464-82e9adf32764?q=80&amp;w=1000&amp;auto=format&amp;fit=crop')">
+<img alt="Thumbnail 2" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRpnNaJQ50ucXZSletjRu1aCfJ5_qMe5NzGys4V_E2aLzMBPFHNev4FxBLpw9t9XsTsNWuX40i-Nbh3nd631V1WDxTaIU3kBwbBhgKr-B1gT6bJ3GBLaUcQohPhoE2Q4ZEA7Oi8Lrku9c-3nIKZXMmA1jZlm7h7rAyIFY6f5bEy9BFLtqO5EGX91siPovUiKhpkPUsFmACKh7CwKB817a5BPuODG_NdY_QPcbGFa2dR0HIgLEtmNqRJhKrDmgvZJkNAfLdPFEGUA"/>
+</button>
+<button class="aspect-square bg-surface-container rounded-lg border-2 border-transparent hover:border-primary overflow-hidden" onclick="changeImage(this, 'https://images.unsplash.com/photo-1585791780658-f002b54d2f8b?q=80&amp;w=1000&amp;auto=format&amp;fit=crop')">
+<img alt="Thumbnail 3" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpm9IjiN03z5d0-Q2YrtYsELfl0cNuKPOWja7e3YfNqwy7uzuF-8exPoK8PPzrsiRA4Ps1doky43q_EqJwZB9yGXhcCGJp6mT7W0PoTU1LqUtkKHCSRi-Vzk_H39PHHPDLd3oqQn6qUEi1pMDGBh9mjPc-8P8BGzn0nOrjOB3Te-8XKyEugBo4QVQpCHgbPWl8d_d_9nL50kmwxCN7AvPcw0rLrRcyU3UfZvJO9GM5F4_holyGKbuSvLJU2fskX3PaBRYlzvpqDA"/>
+</button>
+<button class="aspect-square bg-surface-container rounded-lg border-2 border-transparent hover:border-primary overflow-hidden" onclick="changeImage(this, 'https://images.unsplash.com/photo-1517336714460-d1353164a66e?q=80&amp;w=1000&amp;auto=format&amp;fit=crop')">
+<img alt="Thumbnail 4" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDomjzwNO227v9EL3JTCMUS1nsF-GyY7g-ySkM76NhPU_IWJqWXUQbAX3hrX7qpOW22turoMnJwNYU-LBttsUQ6wr-m9NXhDaq4algm2wVVcxjJbkqkxd6_EtIN1izRTMQ3XHOrpgpdE5jmXViNVPEA-cpc3Q8WDDdHjoIGPQnOt0pOez6w8j2aSKJoCzx9LRXb4Z5B3o5dI7Sc_owMdSl6sjWsczZPc3_C2_C3L76NUjmA7AfZLGWrxOcMjhze7ZPuHBk4wATwwQ"/>
+</button>
+</div>
+</div>
+<!-- Right: Product Info -->
+<div class="lg:col-span-5 flex flex-col gap-lg">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Nexus Ultra Pro Tablet</h1>
+<div class="flex items-center gap-4">
+<div class="flex items-center text-[#FFB800]">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0.5;">star_half</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">4.8 (1,240 Reviews)</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-headline-md text-headline-md text-primary">$899.00</span>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-label-sm text-label-sm">In Stock</span>
+<span class="font-label-sm text-label-sm text-secondary">Ready for immediate shipping</span>
+</div>
+</div>
+<div class="p-md bg-surface-container-low rounded-xl border border-outline-variant">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Experience the ultimate productivity powerhouse. The Nexus Ultra Pro features the latest M3 Enterprise chip, a stunning 12.9-inch Liquid OLED display, and all-day battery life designed for the modern merchant on the move.
+                    </p>
+</div>
+<!-- Selectors -->
+<div class="flex flex-col gap-md">
+<div class="flex flex-col gap-sm">
+<span class="font-label-md text-label-md text-on-surface">Quantity</span>
+<div class="flex items-center w-32 border border-outline rounded-lg overflow-hidden">
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-variant transition-colors" onclick="updateQty(-1)"><span class="material-symbols-outlined">remove</span></button>
+<input class="w-12 text-center border-none focus:ring-0 font-label-md text-label-md bg-transparent" id="qty-input" min="1" type="number" value="1"/>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-variant transition-colors" onclick="updateQty(1)"><span class="material-symbols-outlined">add</span></button>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col sm:flex-row gap-md">
+<button class="flex-1 bg-primary text-on-primary py-4 rounded-xl font-label-md text-label-md font-bold hover:opacity-90 active:scale-95 transition-all shadow-md">Add to Cart</button>
+<button class="flex-1 border-2 border-primary text-primary py-4 rounded-xl font-label-md text-label-md font-bold hover:bg-primary-container/10 active:scale-95 transition-all">Buy Now</button>
+</div>
+<!-- Delivery Info -->
+<div class="grid grid-cols-2 gap-md pt-md border-t border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="local_shipping">local_shipping</span>
+<div>
+<p class="font-label-md text-label-md">Free Delivery</p>
+<p class="font-label-sm text-label-sm text-secondary">Orders over $500</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="replay">replay</span>
+<div>
+<p class="font-label-md text-label-md">30-Day Returns</p>
+<p class="font-label-sm text-label-sm text-secondary">Hassle-free process</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Details & Reviews Tabs/Sections -->
+<div class="mt-2xl space-y-2xl">
+<!-- Specifications -->
+<section>
+<h2 class="font-headline-md text-headline-md mb-lg flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                    Product Specifications
+                </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="overflow-hidden border border-outline-variant rounded-xl">
+<table class="w-full text-left">
+<tbody>
+<tr class="border-b border-outline-variant bg-surface-container-low">
+<th class="p-md font-label-md text-label-md w-1/3">Processor</th>
+<td class="p-md font-body-md text-body-md">Nexus M3 Enterprise Chip</td>
+</tr>
+<tr class="border-b border-outline-variant">
+<th class="p-md font-label-md text-label-md">Memory</th>
+<td class="p-md font-body-md text-body-md">16GB Unified LPDDR5X</td>
+</tr>
+<tr class="border-b border-outline-variant bg-surface-container-low">
+<th class="p-md font-label-md text-label-md">Storage</th>
+<td class="p-md font-body-md text-body-md">512GB NVMe SSD</td>
+</tr>
+<tr class="border-b border-outline-variant">
+<th class="p-md font-label-md text-label-md">Display</th>
+<td class="p-md font-body-md text-body-md">12.9" ProMotion OLED (120Hz)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="overflow-hidden border border-outline-variant rounded-xl">
+<table class="w-full text-left">
+<tbody>
+<tr class="border-b border-outline-variant bg-surface-container-low">
+<th class="p-md font-label-md text-label-md w-1/3">Battery</th>
+<td class="p-md font-body-md text-body-md">Up to 15 hours work time</td>
+</tr>
+<tr class="border-b border-outline-variant">
+<th class="p-md font-label-md text-label-md">OS</th>
+<td class="p-md font-body-md text-body-md">NexusOS 4.0 Pro</td>
+</tr>
+<tr class="border-b border-outline-variant bg-surface-container-low">
+<th class="p-md font-label-md text-label-md">Weight</th>
+<td class="p-md font-body-md text-body-md">680g (Ultra Light)</td>
+</tr>
+<tr class="border-b border-outline-variant">
+<th class="p-md font-label-md text-label-md">Warranty</th>
+<td class="p-md font-body-md text-body-md">2-Year Global Warranty</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Customer Reviews -->
+<section id="reviews">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-headline-md text-headline-md mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="reviews">reviews</span>
+                            Customer Reviews
+                        </h2>
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-[40px] font-bold">4.8</span>
+<div class="flex flex-col">
+<div class="flex text-[#FFB800]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Based on 1,240 ratings</span>
+</div>
+</div>
+</div>
+<button class="px-6 py-2.5 border border-outline rounded-lg font-label-md text-label-md hover:bg-surface-container transition-all">Write a Review</button>
+</div>
+<!-- Review Cards Asymmetric Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="p-lg bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-on-primary-fixed">JD</div>
+<div>
+<p class="font-label-md text-label-md">James Donovan</p>
+<p class="font-label-sm text-label-sm text-secondary">Verified Purchaser</p>
+</div>
+</div>
+<div class="flex text-[#FFB800]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="font-headline-md text-[18px] mb-2">Absolute Workhorse</p>
+<p class="font-body-md text-body-md text-on-surface-variant">The M3 chip is no joke. I run full warehouse inventory management software alongside heavy browser tabs and there isn't a single stutter. The screen is incredibly bright even in warehouse conditions.</p>
+</div>
+<div class="p-lg bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center font-bold text-on-secondary-fixed">SR</div>
+<div>
+<p class="font-label-md text-label-md">Sarah Reed</p>
+<p class="font-label-sm text-label-sm text-secondary">Verified Purchaser</p>
+</div>
+</div>
+<div class="flex text-[#FFB800]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+</div>
+<p class="font-headline-md text-[18px] mb-2">Great, but pricey</p>
+<p class="font-body-md text-body-md text-on-surface-variant">The hardware is 10/10. My only gripe is the price point for the accessories like the pen and keyboard which are sold separately. Other than that, it's the best tablet I've owned for my business.</p>
+</div>
+</div>
+<div class="mt-lg text-center">
+<button class="text-primary font-label-md text-label-md hover:underline">View all 1,240 reviews</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-on-secondary-fixed w-full mt-auto border-t border-outline-variant dark:border-outline">
+<div class="flex flex-col md:flex-row justify-between items-center py-xl px-gutter max-w-7xl mx-auto gap-8">
+<div class="flex flex-col gap-4 text-center md:text-left">
+<span class="font-headline-md text-headline-md text-on-background dark:text-inverse-on-surface font-bold">NexusCommerce</span>
+<p class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim max-w-xs">Empowering modern commerce with institutional reliability and cutting-edge technology.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+<a class="text-secondary dark:text-secondary-fixed-dim font-body-md text-body-md hover:text-primary transition-colors cursor-default" href="#">Privacy Policy</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-body-md text-body-md hover:text-primary transition-colors cursor-default" href="#">Terms of Service</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-body-md text-body-md hover:text-primary transition-colors cursor-default" href="#">Refund Policy</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-body-md text-body-md hover:text-primary transition-colors cursor-default" href="#">Shipping Info</a>
+</div>
+<div class="text-on-surface dark:text-inverse-on-surface font-body-md text-body-md text-center md:text-right">
+                © 2024 NexusCommerce. All rights reserved.
+            </div>
+</div>
+</footer>
+<script>
+        function changeImage(el, src) {
+            document.getElementById('main-image').src = src;
+            // Clear all active states
+            document.querySelectorAll('.active-thumb').forEach(thumb => {
+                thumb.classList.remove('active-thumb');
+                thumb.classList.add('border-transparent');
+            });
+            // Set new active state
+            el.classList.add('active-thumb');
+            el.classList.remove('border-transparent');
+        }
+
+        function updateQty(val) {
+            const input = document.getElementById('qty-input');
+            let current = parseInt(input.value);
+            if (current + val >= 1) {
+                input.value = current + val;
+            }
+        }
+    </script>
+</body></html>
