@@ -6,6 +6,7 @@ import { getCart } from "@/lib/store";
 const nav = [
   { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
+  { href: "/demo", label: "Demo Guide" },
   { href: "/cart", label: "Cart" },
   { href: "/account", label: "Account" }
 ];

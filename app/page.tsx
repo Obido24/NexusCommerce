@@ -26,6 +26,9 @@ export default function HomePage() {
               <Link href="/login" className="font-bold underline-offset-4 hover:underline">
                 Demo Login
               </Link>
+              <Link href="/demo" className="font-bold underline-offset-4 hover:underline">
+                How to Test
+              </Link>
             </div>
           </div>
         </div>
@@ -52,6 +55,9 @@ export default function HomePage() {
                 </Link>
               </Button>
               <WhatsAppSupport label="WhatsApp Support" />
+              <Button asChild size="lg" variant="secondary">
+                <Link href="/demo">How to Test This Demo</Link>
+              </Button>
             </div>
             <div className="mt-4">
               <DemoLoginButtons />
