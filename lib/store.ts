@@ -1,5 +1,5 @@
 import { demoAddresses, demoCart, demoCategories, demoCoupons, demoOrders, demoProducts, demoUsers, demoWishlist } from "@/lib/mock-data";
-import type { Address, CartItem, Category, Coupon, DashboardStats, Order, OrderStatus, Product, ProductStatus, User } from "@/lib/types";
+import type { Address, AnalyticsReport, CartItem, Category, Coupon, DashboardStats, Order, OrderStatus, PaymentProvider, Product, ProductStatus, User } from "@/lib/types";
 
 type StoreState = {
   users: User[];
@@ -347,5 +347,71 @@ export function getDashboardStats(): DashboardStats {
       { label: "Jun", sales: 22190, orders: 63 }
     ],
     productPerformance: [...productMap.values()].sort((a, b) => b.revenue - a.revenue)
+  };
+}
+
+export function getAnalyticsReport(): AnalyticsReport {
+  const stats = getDashboardStats();
+  const paidOrders = store.orders.filter((order) => order.paymentStatus === "PAID");
+  const inventoryReport = getInventoryReport();
+
+  const categoryMap = new Map<string, { category: string; revenue: number; units: number }>();
+  const paymentMap = new Map<PaymentProvider, { provider: PaymentProvider; orders: number; revenue: number }>();
+  const statusMap = new Map<OrderStatus, { status: OrderStatus; count: number; revenue: number }>();
+
+  for (const order of store.orders) {
+    const payment = paymentMap.get(order.paymentProvider) ?? { provider: order.paymentProvider, orders: 0, revenue: 0 };
+    payment.orders += 1;
+    payment.revenue += order.total;
+    paymentMap.set(order.paymentProvider, payment);
+
+    const status = statusMap.get(order.status) ?? { status: order.status, count: 0, revenue: 0 };
+    status.count += 1;
+    status.revenue += order.total;
+    statusMap.set(order.status, status);
+
+    for (const item of order.items) {
+      const product = getProductById(item.productId);
+      const categoryName = product?.category ?? "Uncategorized";
+      const category = categoryMap.get(categoryName) ?? { category: categoryName, revenue: 0, units: 0 };
+      category.revenue += item.total;
+      category.units += item.quantity;
+      categoryMap.set(categoryName, category);
+    }
+  }
+
+  const totalVisitors = 1240;
+  const productViews = 685;
+  const carts = 214;
+  const checkouts = Math.max(store.orders.length * 3, store.orders.length);
+  const purchases = paidOrders.length;
+
+  return {
+    ...stats,
+    averageOrderValue: paidOrders.length ? stats.totalRevenue / paidOrders.length : 0,
+    paidOrderRate: store.orders.length ? Math.round((paidOrders.length / store.orders.length) * 100) : 0,
+    lowStockCount: inventoryReport.filter((item) => item.low).length,
+    inventoryValue: inventoryReport.reduce((sum, item) => sum + item.stockValue, 0),
+    categoryRevenue: [...categoryMap.values()].sort((a, b) => b.revenue - a.revenue),
+    paymentBreakdown: [...paymentMap.values()].sort((a, b) => b.revenue - a.revenue),
+    orderStatusBreakdown: [...statusMap.values()].sort((a, b) => b.count - a.count),
+    inventoryRisk: inventoryReport
+      .map((item) => ({
+        productId: item.product.id,
+        name: item.product.name,
+        sku: item.product.sku,
+        available: item.available,
+        reorderPoint: item.product.inventory.reorderPoint,
+        warehouse: item.product.inventory.warehouse,
+        risk: item.low ? ("LOW" as const) : ("STABLE" as const)
+      }))
+      .sort((a, b) => (a.risk === b.risk ? a.available - b.available : a.risk === "LOW" ? -1 : 1)),
+    funnel: [
+      { label: "Visitors", count: totalVisitors, rate: 100 },
+      { label: "Product views", count: productViews, rate: Math.round((productViews / totalVisitors) * 100) },
+      { label: "Carts", count: carts, rate: Math.round((carts / totalVisitors) * 100) },
+      { label: "Checkouts", count: checkouts, rate: Math.round((checkouts / totalVisitors) * 100) },
+      { label: "Purchases", count: purchases, rate: Math.round((purchases / totalVisitors) * 100) }
+    ]
   };
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addToCart, adjustInventory, createOrder, deleteCategory, getCart, getCategoryProductCounts, getCustomerProfile, getDashboardStats, getInventoryReport, listProducts, store, updateCustomerDisabled, updateOrderStatus, upsertCategory } from "@/lib/store";
+import { addToCart, adjustInventory, createOrder, deleteCategory, getAnalyticsReport, getCart, getCategoryProductCounts, getCustomerProfile, getDashboardStats, getInventoryReport, listProducts, store, updateCustomerDisabled, updateOrderStatus, upsertCategory } from "@/lib/store";
 
 describe("commerce store", () => {
   it("filters products by search query", () => {
@@ -70,5 +70,13 @@ describe("commerce store", () => {
     const inventory = adjustInventory(product.id, { action: "RESTOCK", quantity: 5 });
     expect(inventory?.quantity).toBe(before + 5);
     expect(getInventoryReport().some((item) => item.product.id === product.id)).toBe(true);
+  });
+
+  it("builds an analytics report for admin dashboards", () => {
+    const report = getAnalyticsReport();
+    expect(report.averageOrderValue).toBeGreaterThan(0);
+    expect(report.categoryRevenue.length).toBeGreaterThan(0);
+    expect(report.paymentBreakdown.length).toBeGreaterThan(0);
+    expect(report.funnel[0].label).toBe("Visitors");
   });
 });

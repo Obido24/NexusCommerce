@@ -135,3 +135,15 @@ export type DashboardStats = {
   salesSeries: Array<{ label: string; sales: number; orders: number }>;
   productPerformance: Array<{ name: string; revenue: number; units: number }>;
 };
+
+export type AnalyticsReport = DashboardStats & {
+  averageOrderValue: number;
+  paidOrderRate: number;
+  lowStockCount: number;
+  inventoryValue: number;
+  categoryRevenue: Array<{ category: string; revenue: number; units: number }>;
+  paymentBreakdown: Array<{ provider: PaymentProvider; orders: number; revenue: number }>;
+  orderStatusBreakdown: Array<{ status: OrderStatus; count: number; revenue: number }>;
+  inventoryRisk: Array<{ productId: string; name: string; sku: string; available: number; reorderPoint: number; warehouse: string; risk: "LOW" | "STABLE" }>;
+  funnel: Array<{ label: string; count: number; rate: number }>;
+};
