@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
       id: `rev_${Date.now()}`,
       productId: input.productId,
       userId: "usr_customer",
-      userName: "Jordan Blake",
+      userName: "Amara Cole",
       rating: input.rating,
       title: input.title,
       comment: input.comment,

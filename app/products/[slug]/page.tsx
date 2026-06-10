@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { ShieldCheck, Star, Truck } from "lucide-react";
-import { AddToCartButton } from "@/components/add-to-cart-button";
 import { ProductCard } from "@/components/product-card";
+import { ProductPurchasePanel } from "@/components/product-purchase-panel";
+import { ReviewForm } from "@/components/review-form";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Badge } from "@/components/ui/badge";
@@ -50,18 +51,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               {product.comparePrice ? <span className="pb-1 text-lg text-secondary line-through">{money(product.comparePrice)}</span> : null}
             </div>
             <p className="mt-5 text-lg leading-8 text-secondary">{product.description}</p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {product.variants.map((variant) => (
-                <div key={variant.id} className="rounded-md border border-outline-variant bg-white p-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.08em] text-secondary">{variant.name}</p>
-                  <p className="mt-1 font-semibold">{variant.value}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <AddToCartButton productId={product.id} className="h-12 flex-1" />
-              <button className="focus-ring h-12 rounded-md border border-outline-variant bg-white px-5 text-sm font-semibold">Add to wishlist</button>
-            </div>
+            <ProductPurchasePanel product={product} />
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               <div className="surface-card flex gap-3 p-4">
                 <Truck className="h-5 w-5 text-primary" />
@@ -105,22 +95,23 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             <div className="mt-4 space-y-3">
               {(product.reviews.length ? product.reviews : [{ id: "empty", userName: "Midr buyer", rating: 5, title: "Reliable quality", comment: "A clean, premium experience from product page to delivery." }]).map((review) => (
                 <div key={review.id} className="surface-card p-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-4">
                     <h3 className="font-semibold">{review.title}</h3>
-                    <span className="text-sm text-warning">★★★★★</span>
+                    <span className="shrink-0 text-sm font-semibold text-warning">{review.rating}/5</span>
                   </div>
                   <p className="mt-2 text-sm leading-6 text-secondary">{review.comment}</p>
                   <p className="mt-3 text-xs font-semibold text-secondary">{review.userName}</p>
                 </div>
               ))}
             </div>
+            <ReviewForm productId={product.id} />
           </div>
         </section>
 
         {related.length ? (
           <section className="mt-14">
             <p className="label">Related products</p>
-            <h2 className="mt-2 text-3xl font-semibold">Complete the setup</h2>
+            <h2 className="mt-2 text-3xl font-semibold">Complete the look</h2>
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {related.map((item) => (
                 <ProductCard key={item.id} product={item} />
