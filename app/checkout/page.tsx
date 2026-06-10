@@ -14,6 +14,9 @@ export default function CheckoutPage() {
         <div>
           <p className="label">Checkout</p>
           <h1 className="mt-2 text-4xl font-semibold">Complete purchase</h1>
+          <p className="mt-3 max-w-2xl text-secondary">
+            This is a safe demo checkout. Testers can submit the form, see a confirmation, and print an invoice without making a real payment.
+          </p>
           <div className="mt-8">
             <CheckoutForm />
           </div>

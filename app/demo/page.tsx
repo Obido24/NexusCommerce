@@ -22,7 +22,7 @@ const customerSteps = [
   },
   {
     title: "Try checkout",
-    description: "Use the demo checkout form and confirm the order. Payments are simulated.",
+    description: "Use the demo checkout form, confirm the order, and open the printable invoice. Payments are simulated.",
     href: "/checkout",
     icon: CreditCard
   },
