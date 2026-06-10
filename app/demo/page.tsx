@@ -84,6 +84,7 @@ export default function DemoGuidePage() {
                 <p className="font-semibold">Admin</p>
                 <p className="mt-1 font-label text-secondary">admin@midr.store</p>
                 <p className="font-label text-secondary">Password123!</p>
+                <p className="mt-2 text-xs font-semibold text-primary">Or use Admin Demo Login with no password.</p>
               </div>
             </div>
             <div className="mt-5">

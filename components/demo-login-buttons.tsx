@@ -25,11 +25,14 @@ export function DemoLoginButtons() {
   async function loginAs(role: "customer" | "admin") {
     setLoading(role);
     const account = demoAccounts[role];
-    const response = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: account.email, password: account.password })
-    });
+    const response =
+      role === "admin"
+        ? await fetch("/api/auth/demo-admin", { method: "POST" })
+        : await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: account.email, password: account.password })
+          });
     setLoading(null);
     if (response.ok) router.push(account.path);
   }
@@ -42,7 +45,7 @@ export function DemoLoginButtons() {
       </Button>
       <Button type="button" variant="secondary" size="lg" onClick={() => loginAs("admin")} disabled={loading !== null}>
         <ShieldCheck className="h-4 w-4" />
-        {loading === "admin" ? "Opening admin" : "Login as Admin"}
+        {loading === "admin" ? "Opening admin" : "Admin Demo Login"}
       </Button>
     </div>
   );

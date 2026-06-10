@@ -16,6 +16,8 @@ Demo accounts:
 - Admin: `admin@midr.store` / `Password123!`
 - Customer: `customer@midr.store` / `Password123!`
 
+For quick client testing, the login screen also includes **Enter Admin Demo Without Password**.
+
 The app runs with realistic in-memory data by default so the complete workflow is available immediately: browse products, manage cart, checkout, view customer dashboard, log in as admin, create products, inspect inventory, update orders, and review analytics.
 
 ## Database

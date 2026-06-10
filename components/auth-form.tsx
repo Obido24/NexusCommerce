@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { LogIn } from "lucide-react";
+import { LogIn, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function AuthForm({ mode }: { mode: "login" | "register" }) {
@@ -25,10 +25,31 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
     router.push(result.data.user.role === "ADMIN" ? "/admin" : "/account");
   }
 
+  async function loginAsDemoAdmin() {
+    setError("");
+    const response = await fetch("/api/auth/demo-admin", { method: "POST" });
+    const result = await response.json();
+    if (!result.ok) {
+      setError(result.error?.message ?? "Demo admin login failed");
+      return;
+    }
+    router.push("/admin");
+  }
+
   return (
     <form action={submit} className="surface-card w-full max-w-md p-6">
       <h1 className="text-2xl font-semibold">{mode === "login" ? "Secure login" : "Create account"}</h1>
       <p className="mt-2 text-sm text-secondary">Demo credentials: admin@midr.store or customer@midr.store with Password123!</p>
+      {mode === "login" ? (
+        <button
+          type="button"
+          onClick={loginAsDemoAdmin}
+          className="focus-ring mt-4 flex w-full items-center justify-center gap-2 rounded-md border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-bold text-primary transition hover:bg-blue-100"
+        >
+          <ShieldCheck className="h-4 w-4" />
+          Enter Admin Demo Without Password
+        </button>
+      ) : null}
       <div className="mt-5 space-y-4">
         {mode === "register" ? (
           <label>
