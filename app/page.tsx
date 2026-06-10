@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Mail } from "lucide-react";
+import { ArrowRight, CheckCircle2, Mail, MessageCircle, ShoppingBag } from "lucide-react";
 import { DemoLoginButtons } from "@/components/demo-login-buttons";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -15,13 +15,13 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="pb-20 md:pb-0">
         <div className="border-b border-blue-200 bg-blue-50">
-          <div className="page-shell flex flex-col gap-3 py-3 text-sm text-primary md:flex-row md:items-center md:justify-between">
-            <p className="font-semibold">Demo Mode: Midr Store is ready for client testing. Payments are not real.</p>
-            <div className="flex flex-wrap gap-2">
+          <div className="page-shell flex flex-col gap-2 py-2.5 text-sm text-primary md:flex-row md:items-center md:justify-between">
+            <p className="font-semibold leading-5">Demo mode: safe for client testing. Payments are not real.</p>
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
               <Link href="/shop" className="font-bold underline-offset-4 hover:underline">
-                Browse Store
+                Shop
               </Link>
               <Link href="/login" className="font-bold underline-offset-4 hover:underline">
                 Demo Login
@@ -32,30 +32,30 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <section className="relative flex min-h-[560px] items-center overflow-hidden bg-slate-950">
+        <section className="relative flex min-h-[calc(100svh-7.5rem)] items-start overflow-hidden bg-slate-950 md:min-h-[560px] md:items-center">
           <img
             src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=2200&q=80"
             alt="Fashion model wearing a refined outfit for Midr Store"
-            className="absolute inset-0 h-full w-full object-cover opacity-55"
+            className="absolute inset-0 h-full w-full object-cover object-center opacity-55"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-transparent" />
-          <div className="page-shell relative py-20 text-white">
-            <p className="text-sm font-bold uppercase tracking-[0.12em] text-blue-200">Clothes, bags, and perfume</p>
-            <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/95 via-slate-950/70 to-slate-950/20 md:bg-gradient-to-r md:from-slate-950 md:via-slate-950/70 md:to-transparent" />
+          <div className="page-shell relative py-12 text-white sm:py-16 md:py-20">
+            <p className="text-xs font-bold uppercase tracking-[0.12em] text-blue-200 sm:text-sm">Clothes, bags, and perfume</p>
+            <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight sm:mt-4 sm:text-5xl lg:text-6xl">
               Midr Store brings polished fashion shopping online.
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
-              Explore ready-to-wear outfits, statement bags, and signature perfumes through a smooth demo storefront with cart, checkout, customer account, and admin dashboard.
+            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200 sm:mt-5 sm:text-lg sm:leading-8">
+              Shop clothes, bags, and signature perfumes in a smooth demo with cart, checkout, customer account, and admin dashboard.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg">
+            <div className="mt-7 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+              <Button asChild size="lg" className="h-12 justify-center">
                 <Link href="/shop">
                   Browse Store
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
               <WhatsAppSupport label="WhatsApp Support" />
-              <Button asChild size="lg" variant="secondary">
+              <Button asChild size="lg" variant="secondary" className="col-span-2 h-12 justify-center sm:col-span-1">
                 <Link href="/demo">How to Test This Demo</Link>
               </Button>
             </div>
@@ -156,6 +156,18 @@ export default function HomePage() {
           </div>
         </section>
       </main>
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-outline-variant bg-white/95 px-4 py-3 shadow-ambient backdrop-blur md:hidden">
+        <div className="grid grid-cols-2 gap-3">
+          <Link href="/shop" className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-3 text-sm font-bold text-white">
+            <ShoppingBag className="h-4 w-4" />
+            Shop
+          </Link>
+          <a href="https://wa.me/2348106464613" target="_blank" rel="noreferrer" className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#25D366] px-3 text-sm font-bold text-white">
+            <MessageCircle className="h-4 w-4" />
+            WhatsApp
+          </a>
+        </div>
+      </div>
       <SiteFooter />
     </>
   );
