@@ -62,6 +62,10 @@ export const orderStatusSchema = z.object({
   status: z.enum(["PENDING", "PAID", "PROCESSING", "SHIPPED", "DELIVERED", "CANCELLED", "REFUNDED"])
 });
 
+export const customerStatusSchema = z.object({
+  disabled: z.boolean()
+});
+
 export const reviewSchema = z.object({
   productId: z.string().min(1),
   rating: z.coerce.number().int().min(1).max(5),

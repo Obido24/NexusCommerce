@@ -1,6 +1,6 @@
 import { type NextRequest } from "next/server";
 import { handleApiError, jsonOk, rateLimit, requireRole } from "@/lib/api";
-import { store } from "@/lib/store";
+import { getCustomerProfile, store } from "@/lib/store";
 
 export async function GET(request: NextRequest) {
   try {
@@ -10,7 +10,8 @@ export async function GET(request: NextRequest) {
       .filter((user) => user.role === "CUSTOMER")
       .map(({ passwordHash: _passwordHash, ...user }) => ({
         ...user,
-        orders: store.orders.filter((order) => order.userId === user.id)
+        orders: store.orders.filter((order) => order.userId === user.id),
+        lifetimeValue: getCustomerProfile(user.id)?.lifetimeValue ?? 0
       }));
     return jsonOk({ customers });
   } catch (error) {

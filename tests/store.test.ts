@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addToCart, createOrder, deleteCategory, getCart, getCategoryProductCounts, getDashboardStats, listProducts, store, updateOrderStatus, upsertCategory } from "@/lib/store";
+import { addToCart, createOrder, deleteCategory, getCart, getCategoryProductCounts, getCustomerProfile, getDashboardStats, listProducts, store, updateCustomerDisabled, updateOrderStatus, upsertCategory } from "@/lib/store";
 
 describe("commerce store", () => {
   it("filters products by search query", () => {
@@ -55,5 +55,12 @@ describe("commerce store", () => {
     const order = store.orders[0];
     const updated = updateOrderStatus(order.id, "SHIPPED");
     expect(updated?.status).toBe("SHIPPED");
+  });
+
+  it("updates customer account status", () => {
+    const customer = store.users.find((user) => user.role === "CUSTOMER")!;
+    expect(getCustomerProfile(customer.id)?.user.email).toBe(customer.email);
+    expect(updateCustomerDisabled(customer.id, true)?.disabled).toBe(true);
+    expect(updateCustomerDisabled(customer.id, false)?.disabled).toBe(false);
   });
 });

@@ -253,6 +253,29 @@ export function updateOrderStatus(orderId: string, status: OrderStatus) {
   return order;
 }
 
+export function getCustomerProfile(customerId: string) {
+  const user = store.users.find((item) => item.id === customerId && item.role === "CUSTOMER");
+  if (!user) return null;
+  const orders = store.orders.filter((order) => order.userId === customerId);
+  const addresses = store.addresses.filter((address) => address.userId === customerId);
+  const wishlist = getWishlistProducts(customerId);
+  return {
+    user,
+    orders,
+    addresses,
+    wishlist,
+    lifetimeValue: orders.reduce((sum, order) => sum + order.total, 0),
+    lastOrderAt: orders[0]?.createdAt ?? null
+  };
+}
+
+export function updateCustomerDisabled(customerId: string, disabled: boolean) {
+  const user = store.users.find((item) => item.id === customerId && item.role === "CUSTOMER");
+  if (!user) return null;
+  user.disabled = disabled;
+  return user;
+}
+
 export function getDashboardStats(): DashboardStats {
   const paidOrders = store.orders.filter((order) => order.paymentStatus === "PAID");
   const productMap = new Map<string, { name: string; revenue: number; units: number }>();
