@@ -29,6 +29,12 @@ export const productSchema = z.object({
   warehouse: z.string().min(2).optional()
 });
 
+export const categorySchema = z.object({
+  name: z.string().min(2),
+  description: z.string().min(5),
+  image: z.string().url().optional()
+});
+
 export const cartSchema = z.object({
   productId: z.string().min(1),
   quantity: z.coerce.number().int().min(1).max(99).default(1)

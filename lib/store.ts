@@ -1,5 +1,5 @@
 import { demoAddresses, demoCart, demoCategories, demoCoupons, demoOrders, demoProducts, demoUsers, demoWishlist } from "@/lib/mock-data";
-import type { Address, CartItem, Coupon, DashboardStats, Order, OrderStatus, Product, ProductStatus, User } from "@/lib/types";
+import type { Address, CartItem, Category, Coupon, DashboardStats, Order, OrderStatus, Product, ProductStatus, User } from "@/lib/types";
 
 type StoreState = {
   users: User[];
@@ -51,6 +51,63 @@ export function listProducts(filters?: { query?: string; category?: string; stat
 export const getProductBySlug = (slug: string) => store.products.find((product) => product.slug === slug);
 export const getProductById = (id: string) => store.products.find((product) => product.id === id);
 
+export function slugify(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+export function getCategoryProductCounts() {
+  return store.categories.map((category) => ({
+    ...category,
+    productCount: store.products.filter((product) => product.categoryId === category.id).length
+  }));
+}
+
+export function upsertCategory(input: Partial<Category> & { name: string; description: string }) {
+  const slug = slugify(input.name);
+  const duplicate = store.categories.find((category) => category.slug === slug && category.id !== input.id);
+  if (duplicate) {
+    throw new Error("A category with this name already exists.");
+  }
+
+  if (input.id) {
+    const index = store.categories.findIndex((category) => category.id === input.id);
+    if (index >= 0) {
+      const next = {
+        ...store.categories[index],
+        name: input.name,
+        slug,
+        description: input.description,
+        image: input.image ?? store.categories[index].image
+      };
+      store.categories[index] = next;
+      store.products = store.products.map((product) =>
+        product.categoryId === next.id ? { ...product, category: next.name } : product
+      );
+      return next;
+    }
+  }
+
+  const category: Category = {
+    id: `cat_${Date.now()}`,
+    name: input.name,
+    slug,
+    description: input.description,
+    image: input.image ?? "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=1200&q=80"
+  };
+  store.categories.push(category);
+  return category;
+}
+
+export function deleteCategory(id: string) {
+  const productCount = store.products.filter((product) => product.categoryId === id).length;
+  if (productCount > 0) {
+    throw new Error("Move or delete products in this category before deleting it.");
+  }
+  const before = store.categories.length;
+  store.categories = store.categories.filter((category) => category.id !== id);
+  return store.categories.length < before;
+}
+
 export function upsertProduct(input: Partial<Product> & { name: string; price: number; categoryId: string }) {
   const category = store.categories.find((item) => item.id === input.categoryId) ?? store.categories[0];
   if (input.id) {
@@ -69,7 +126,7 @@ export function upsertProduct(input: Partial<Product> & { name: string; price: n
   const product: Product = {
     id,
     name: input.name,
-    slug: input.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
+    slug: slugify(input.name),
     sku: input.sku ?? `MID-${Math.floor(Math.random() * 9000 + 1000)}`,
     description: input.description ?? "New Midr Store product.",
     price: input.price,

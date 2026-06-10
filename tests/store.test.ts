@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addToCart, createOrder, getCart, getDashboardStats, listProducts, store } from "@/lib/store";
+import { addToCart, createOrder, deleteCategory, getCart, getCategoryProductCounts, getDashboardStats, listProducts, store, upsertCategory } from "@/lib/store";
 
 describe("commerce store", () => {
   it("filters products by search query", () => {
@@ -40,5 +40,14 @@ describe("commerce store", () => {
     const stats = getDashboardStats();
     expect(stats.totalProducts).toBeGreaterThan(0);
     expect(stats.totalRevenue).toBeGreaterThan(0);
+  });
+
+  it("creates and deletes unused categories", () => {
+    const category = upsertCategory({
+      name: `Test Category ${Date.now()}`,
+      description: "Temporary category for admin testing."
+    });
+    expect(getCategoryProductCounts().some((item) => item.id === category.id && item.productCount === 0)).toBe(true);
+    expect(deleteCategory(category.id)).toBe(true);
   });
 });
