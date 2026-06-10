@@ -276,6 +276,52 @@ export function updateCustomerDisabled(customerId: string, disabled: boolean) {
   return user;
 }
 
+export function getInventoryReport() {
+  return store.products.map((product) => {
+    const available = product.inventory.quantity - product.inventory.reserved;
+    const low = available <= product.inventory.reorderPoint;
+    return {
+      product,
+      available,
+      low,
+      stockValue: product.price * available
+    };
+  });
+}
+
+export function adjustInventory(
+  productId: string,
+  input: { action: "RESTOCK" | "RESERVE" | "RELEASE" | "SET"; quantity: number; reorderPoint?: number; warehouse?: string }
+) {
+  const product = store.products.find((item) => item.id === productId);
+  if (!product) return null;
+
+  if (input.action === "RESTOCK") {
+    product.inventory.quantity += input.quantity;
+    product.inventory.lastRestockedAt = new Date().toISOString();
+  }
+
+  if (input.action === "RESERVE") {
+    const available = product.inventory.quantity - product.inventory.reserved;
+    product.inventory.reserved += Math.min(input.quantity, Math.max(available, 0));
+  }
+
+  if (input.action === "RELEASE") {
+    product.inventory.reserved = Math.max(0, product.inventory.reserved - input.quantity);
+  }
+
+  if (input.action === "SET") {
+    product.inventory.quantity = input.quantity;
+    product.inventory.reserved = Math.min(product.inventory.reserved, input.quantity);
+    product.inventory.lastRestockedAt = new Date().toISOString();
+  }
+
+  if (input.reorderPoint !== undefined) product.inventory.reorderPoint = input.reorderPoint;
+  if (input.warehouse) product.inventory.warehouse = input.warehouse;
+
+  return product.inventory;
+}
+
 export function getDashboardStats(): DashboardStats {
   const paidOrders = store.orders.filter((order) => order.paymentStatus === "PAID");
   const productMap = new Map<string, { name: string; revenue: number; units: number }>();

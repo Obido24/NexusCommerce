@@ -66,6 +66,13 @@ export const customerStatusSchema = z.object({
   disabled: z.boolean()
 });
 
+export const inventoryAdjustmentSchema = z.object({
+  action: z.enum(["RESTOCK", "RESERVE", "RELEASE", "SET"]),
+  quantity: z.coerce.number().int().min(0).max(100000).default(0),
+  reorderPoint: z.coerce.number().int().min(0).max(100000).optional(),
+  warehouse: z.string().min(2).optional()
+});
+
 export const reviewSchema = z.object({
   productId: z.string().min(1),
   rating: z.coerce.number().int().min(1).max(5),

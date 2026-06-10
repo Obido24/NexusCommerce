@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addToCart, createOrder, deleteCategory, getCart, getCategoryProductCounts, getCustomerProfile, getDashboardStats, listProducts, store, updateCustomerDisabled, updateOrderStatus, upsertCategory } from "@/lib/store";
+import { addToCart, adjustInventory, createOrder, deleteCategory, getCart, getCategoryProductCounts, getCustomerProfile, getDashboardStats, getInventoryReport, listProducts, store, updateCustomerDisabled, updateOrderStatus, upsertCategory } from "@/lib/store";
 
 describe("commerce store", () => {
   it("filters products by search query", () => {
@@ -62,5 +62,13 @@ describe("commerce store", () => {
     expect(getCustomerProfile(customer.id)?.user.email).toBe(customer.email);
     expect(updateCustomerDisabled(customer.id, true)?.disabled).toBe(true);
     expect(updateCustomerDisabled(customer.id, false)?.disabled).toBe(false);
+  });
+
+  it("adjusts inventory for admin stock control", () => {
+    const product = store.products[0];
+    const before = product.inventory.quantity;
+    const inventory = adjustInventory(product.id, { action: "RESTOCK", quantity: 5 });
+    expect(inventory?.quantity).toBe(before + 5);
+    expect(getInventoryReport().some((item) => item.product.id === product.id)).toBe(true);
   });
 });
