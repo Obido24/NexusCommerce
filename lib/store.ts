@@ -70,7 +70,7 @@ export function upsertProduct(input: Partial<Product> & { name: string; price: n
     id,
     name: input.name,
     slug: input.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
-    sku: input.sku ?? `NX-${Math.floor(Math.random() * 9000 + 1000)}`,
+    sku: input.sku ?? `MID-${Math.floor(Math.random() * 9000 + 1000)}`,
     description: input.description ?? "New Midr Store product.",
     price: input.price,
     comparePrice: input.comparePrice,
@@ -83,13 +83,13 @@ export function upsertProduct(input: Partial<Product> & { name: string; price: n
     images: input.images?.length
       ? input.images
       : [{ id: `img_${id}`, url: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80", alt: input.name, position: 0 }],
-    inventory: input.inventory ?? {
+    inventory: {
       productId: id,
-      quantity: 20,
-      reserved: 0,
-      reorderPoint: 8,
-      warehouse: "Midr Lagos",
-      lastRestockedAt: new Date().toISOString()
+      quantity: input.inventory?.quantity ?? 20,
+      reserved: input.inventory?.reserved ?? 0,
+      reorderPoint: input.inventory?.reorderPoint ?? 8,
+      warehouse: input.inventory?.warehouse ?? "Midr Lagos",
+      lastRestockedAt: input.inventory?.lastRestockedAt ?? new Date().toISOString()
     },
     variants: input.variants ?? [],
     reviews: input.reviews ?? [],

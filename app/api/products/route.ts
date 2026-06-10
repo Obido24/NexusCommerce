@@ -25,6 +25,14 @@ export async function POST(request: NextRequest) {
     const input = await parseJson(request, productSchema);
     const product = upsertProduct({
       ...input,
+      inventory: {
+        productId: input.id ?? `prd_${Date.now()}`,
+        quantity: input.quantity ?? 20,
+        reserved: input.reserved ?? 0,
+        reorderPoint: input.reorderPoint ?? 8,
+        warehouse: input.warehouse ?? "Midr Lagos",
+        lastRestockedAt: new Date().toISOString()
+      },
       images: input.imageUrl ? [{ id: `img_${Date.now()}`, url: input.imageUrl, alt: input.name, position: 0 }] : undefined
     });
     return jsonOk({ product }, { status: 201 });

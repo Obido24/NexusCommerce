@@ -15,7 +15,21 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     await requireRole(request, ["ADMIN"]);
     const { id } = await params;
     const input = await parseJson(request, productSchema.partial().extend({ name: productSchema.shape.name, price: productSchema.shape.price, categoryId: productSchema.shape.categoryId }));
-    const product = upsertProduct({ ...input, id });
+    const product = upsertProduct({
+      ...input,
+      id,
+      inventory:
+        input.quantity !== undefined || input.reserved !== undefined || input.reorderPoint !== undefined || input.warehouse
+          ? {
+              productId: id,
+              quantity: input.quantity ?? 20,
+              reserved: input.reserved ?? 0,
+              reorderPoint: input.reorderPoint ?? 8,
+              warehouse: input.warehouse ?? "Midr Lagos",
+              lastRestockedAt: new Date().toISOString()
+            }
+          : undefined
+    });
     return jsonOk({ product });
   } catch (error) {
     return handleApiError(error);

@@ -22,7 +22,11 @@ export const productSchema = z.object({
   status: z.enum(["DRAFT", "ACTIVE", "ARCHIVED"]).default("ACTIVE"),
   featured: z.boolean().optional(),
   bestSeller: z.boolean().optional(),
-  imageUrl: z.string().url().optional()
+  imageUrl: z.string().url().optional(),
+  quantity: z.coerce.number().int().min(0).max(100000).optional(),
+  reserved: z.coerce.number().int().min(0).max(100000).optional(),
+  reorderPoint: z.coerce.number().int().min(0).max(100000).optional(),
+  warehouse: z.string().min(2).optional()
 });
 
 export const cartSchema = z.object({
