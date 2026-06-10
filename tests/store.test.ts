@@ -3,19 +3,19 @@ import { addToCart, createOrder, getCart, getDashboardStats, listProducts, store
 
 describe("commerce store", () => {
   it("filters products by search query", () => {
-    const results = listProducts({ query: "tablet" });
-    expect(results.some((product) => product.slug === "nexus-ultra-pro-tablet")).toBe(true);
+    const results = listProducts({ query: "perfume" });
+    expect(results.some((product) => product.slug === "midr-oud-bloom-perfume")).toBe(true);
   });
 
   it("adds products to cart and calculates totals", () => {
-    addToCart("prd_watch_chronos", 2);
+    addToCart("prd_oud_perfume", 2);
     const cart = getCart();
-    expect(cart.items.some((item) => item.productId === "prd_watch_chronos")).toBe(true);
+    expect(cart.items.some((item) => item.productId === "prd_oud_perfume")).toBe(true);
     expect(cart.total).toBeGreaterThan(cart.subtotal);
   });
 
   it("creates an order from the active cart", () => {
-    addToCart("prd_audio_v2", 1);
+    addToCart("prd_ankara_dress", 1);
     const before = store.orders.length;
     const order = createOrder({
       provider: "stripe",
@@ -23,16 +23,16 @@ describe("commerce store", () => {
         id: "addr_test",
         userId: "usr_customer",
         label: "Test",
-        firstName: "Taylor",
-        lastName: "Morgan",
-        line1: "42 Commerce Ave",
-        city: "Austin",
-        state: "TX",
-        postalCode: "78701",
-        country: "US"
+        firstName: "Amara",
+        lastName: "Cole",
+        line1: "12 Admiralty Way",
+        city: "Lekki",
+        state: "Lagos",
+        postalCode: "105102",
+        country: "NG"
       }
     });
-    expect(order.orderNumber).toMatch(/^NX-/);
+    expect(order.orderNumber).toMatch(/^MID-/);
     expect(store.orders.length).toBe(before + 1);
   });
 

@@ -4,10 +4,10 @@ import { CartProvider } from "@/components/cart-provider";
 
 export const metadata: Metadata = {
   title: {
-    default: "NexusCommerce",
-    template: "%s | NexusCommerce"
+    default: "Midr Store",
+    template: "%s | Midr Store"
   },
-  description: "A production-ready commerce prototype with storefront, checkout, admin operations, and API workflows.",
+  description: "A fashion commerce demo for clothes, bags, perfume, checkout, and admin operations.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000")
 };
 

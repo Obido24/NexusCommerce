@@ -5,224 +5,224 @@ const now = new Date("2026-06-08T09:00:00.000Z").toISOString();
 export const demoUsers: User[] = [
   {
     id: "usr_admin",
-    name: "Avery Admin",
-    email: "admin@nexuscommerce.dev",
+    name: "Midr Admin",
+    email: "admin@midr.store",
     passwordHash: "$2a$12$V7zC0VuP7YH4ja8vMKLFXeJlf06SOuQFD82TnyBdNx4laD8Zt9V9K",
     role: "ADMIN",
     createdAt: now
   },
   {
     id: "usr_customer",
-    name: "Jordan Blake",
-    email: "customer@nexuscommerce.dev",
+    name: "Amara Cole",
+    email: "customer@midr.store",
     passwordHash: "$2a$12$V7zC0VuP7YH4ja8vMKLFXeJlf06SOuQFD82TnyBdNx4laD8Zt9V9K",
     role: "CUSTOMER",
-    phone: "+1 555 0148",
+    phone: "+234 810 646 4613",
     createdAt: now
   }
 ];
 
 export const demoCategories: Category[] = [
   {
-    id: "cat_audio",
-    name: "Audio",
-    slug: "audio",
-    description: "Noise-controlled sound systems for work, travel, and focus.",
-    image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80"
+    id: "cat_clothes",
+    name: "Clothes",
+    slug: "clothes",
+    description: "Everyday fits, occasion wear, and refined ready-to-wear pieces.",
+    image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=1200&q=80"
   },
   {
-    id: "cat_wearables",
-    name: "Wearables",
-    slug: "wearables",
-    description: "Connected devices with premium industrial design.",
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80"
+    id: "cat_bags",
+    name: "Bags",
+    slug: "bags",
+    description: "Structured totes, crossbody bags, and statement carry pieces.",
+    image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1200&q=80"
   },
   {
-    id: "cat_computing",
-    name: "Computing",
-    slug: "computing",
-    description: "Performance tablets and laptops for modern teams.",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+    id: "cat_perfume",
+    name: "Perfume",
+    slug: "perfume",
+    description: "Signature fragrances for daily wear, gifting, and special events.",
+    image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1200&q=80"
   },
   {
-    id: "cat_lifestyle",
-    name: "Lifestyle",
-    slug: "lifestyle",
-    description: "Refined essentials for offices, travel, and everyday commerce.",
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
+    id: "cat_accessories",
+    name: "Accessories",
+    slug: "accessories",
+    description: "Scarves, small leather goods, and finishing touches.",
+    image: "https://images.unsplash.com/photo-1511556820780-d912e42b4980?auto=format&fit=crop&w=1200&q=80"
   }
 ];
 
 export const demoProducts: Product[] = [
   {
-    id: "prd_audio_v2",
-    name: "Nexus Pro Audio V2",
-    slug: "nexus-pro-audio-v2",
-    sku: "NX-AUD-200",
+    id: "prd_ankara_dress",
+    name: "Midr Ankara Wrap Dress",
+    slug: "midr-ankara-wrap-dress",
+    sku: "MID-CLS-101",
     description:
-      "Adaptive spatial audio, clean call pickup, and all-day battery life for buyers who move between office, showroom, and travel without missing a beat.",
-    price: 249,
-    comparePrice: 299,
-    categoryId: "cat_audio",
-    category: "Audio",
+      "A polished wrap dress with a flattering waist tie, soft lining, and bold Ankara-inspired print for brunch, work events, and weekend outings.",
+    price: 72,
+    comparePrice: 95,
+    categoryId: "cat_clothes",
+    category: "Clothes",
     status: "ACTIVE",
     featured: true,
     bestSeller: true,
-    tags: ["wireless", "audio", "travel"],
+    tags: ["dress", "ankara", "occasion"],
     images: [
       {
-        id: "img_audio_1",
-        url: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80",
-        alt: "Premium wireless headphones on a blue-gray surface",
+        id: "img_dress_1",
+        url: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80",
+        alt: "Stylish fashion model wearing a patterned dress",
         position: 0
       }
     ],
     inventory: {
-      productId: "prd_audio_v2",
-      quantity: 128,
-      reserved: 16,
-      reorderPoint: 30,
-      warehouse: "Nexus East",
+      productId: "prd_ankara_dress",
+      quantity: 64,
+      reserved: 8,
+      reorderPoint: 14,
+      warehouse: "Midr Lagos",
       lastRestockedAt: "2026-06-02T10:00:00.000Z"
     },
     variants: [
-      { id: "var_audio_black", name: "Color", value: "Graphite", sku: "NX-AUD-200-GPH", price: 249 },
-      { id: "var_audio_blue", name: "Color", value: "Nexus Blue", sku: "NX-AUD-200-BLU", price: 259 }
+      { id: "var_dress_s", name: "Size", value: "Small", sku: "MID-CLS-101-S", price: 72 },
+      { id: "var_dress_m", name: "Size", value: "Medium", sku: "MID-CLS-101-M", price: 72 }
     ],
     reviews: [
       {
-        id: "rev_audio_1",
-        productId: "prd_audio_v2",
+        id: "rev_dress_1",
+        productId: "prd_ankara_dress",
         userId: "usr_customer",
-        userName: "Jordan Blake",
+        userName: "Amara Cole",
         rating: 5,
-        title: "Exactly as polished as promised",
-        comment: "The finish is premium and the call quality is excellent for daily operations.",
+        title: "Beautiful fit",
+        comment: "The material feels premium and the shape is very flattering.",
         createdAt: "2026-05-24T10:00:00.000Z"
       }
     ],
     createdAt: now
   },
   {
-    id: "prd_tablet_ultra",
-    name: "Nexus Ultra Pro Tablet",
-    slug: "nexus-ultra-pro-tablet",
-    sku: "NX-TAB-129",
+    id: "prd_leather_tote",
+    name: "Midr Structured Leather Tote",
+    slug: "midr-structured-leather-tote",
+    sku: "MID-BAG-210",
     description:
-      "A productivity tablet with a 12.9-inch Liquid OLED display, M3 Enterprise chip, secure biometric unlock, and a bright color-accurate panel for catalog and inventory teams.",
-    price: 899,
-    comparePrice: 1049,
-    categoryId: "cat_computing",
-    category: "Computing",
+      "A roomy structured tote with a smooth finish, reinforced handles, and a laptop-friendly interior for workdays and travel.",
+    price: 118,
+    comparePrice: 145,
+    categoryId: "cat_bags",
+    category: "Bags",
     status: "ACTIVE",
     featured: true,
     bestSeller: true,
-    tags: ["tablet", "enterprise", "productivity"],
+    tags: ["bag", "tote", "work"],
     images: [
       {
-        id: "img_tablet_1",
-        url: "https://lh3.googleusercontent.com/aida-public/AB6AXuBy3-nTKjY24sdK5a_aczN4UmzeVnI4rRDwia-OB8_hRIqjmhOCekhEUHM7vcQUdrRCAiCe-WiVemcWirBx8U9f8ivfa90JDJIhiXo99PDfhyeDzTSZkc29th1yxMWgo5XCIGpXSlEafSjRYcQl5bWaPEKSwD35xDD_nEj86WDIEFxqbBoux6KogSUCR9pX_qXbejQzwWvxZMBuwtW8XWvMN4y1zwkhQFyzfEfxAT8CVN85Scb_n-P-iz4uD9Te0s1XpM6_GNg6Jg",
-        alt: "Nexus Ultra Pro Tablet main view",
+        id: "img_tote_1",
+        url: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1200&q=80",
+        alt: "Brown leather handbag on a clean background",
         position: 0
       },
       {
-        id: "img_tablet_2",
-        url: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1200&q=80",
-        alt: "Tablet angled on a minimal desk",
+        id: "img_tote_2",
+        url: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1200&q=80",
+        alt: "Fashion handbag with structured silhouette",
         position: 1
       }
     ],
     inventory: {
-      productId: "prd_tablet_ultra",
-      quantity: 48,
-      reserved: 6,
-      reorderPoint: 12,
-      warehouse: "Nexus Central",
+      productId: "prd_leather_tote",
+      quantity: 38,
+      reserved: 5,
+      reorderPoint: 10,
+      warehouse: "Midr Lagos",
       lastRestockedAt: "2026-05-29T10:00:00.000Z"
     },
     variants: [
-      { id: "var_tablet_256", name: "Storage", value: "256GB", sku: "NX-TAB-129-256", price: 899 },
-      { id: "var_tablet_512", name: "Storage", value: "512GB", sku: "NX-TAB-129-512", price: 1049 }
+      { id: "var_tote_black", name: "Color", value: "Black", sku: "MID-BAG-210-BLK", price: 118 },
+      { id: "var_tote_tan", name: "Color", value: "Tan", sku: "MID-BAG-210-TAN", price: 118 }
     ],
     reviews: [
       {
-        id: "rev_tablet_1",
-        productId: "prd_tablet_ultra",
+        id: "rev_tote_1",
+        productId: "prd_leather_tote",
         userId: "usr_customer",
-        userName: "Jordan Blake",
+        userName: "Amara Cole",
         rating: 5,
-        title: "Powerful field device",
-        comment: "Our merchandising team uses it for catalog updates and order checks with no slowdown.",
+        title: "Looks expensive",
+        comment: "It is sturdy, elegant, and fits my laptop perfectly.",
         createdAt: "2026-05-30T10:00:00.000Z"
       }
     ],
     createdAt: now
   },
   {
-    id: "prd_watch_chronos",
-    name: "Nexus Chronos Ultra",
-    slug: "nexus-chronos-ultra",
-    sku: "NX-WAT-500",
-    description: "A durable connected watch with advanced health metrics, LTE, sapphire glass, and a low-profile titanium body.",
-    price: 429,
-    comparePrice: 479,
-    categoryId: "cat_wearables",
-    category: "Wearables",
+    id: "prd_oud_perfume",
+    name: "Midr Oud Bloom Perfume",
+    slug: "midr-oud-bloom-perfume",
+    sku: "MID-PRF-070",
+    description: "A warm oud fragrance softened with rose, amber, and vanilla. Made for evening wear and memorable gifting.",
+    price: 54,
+    comparePrice: 68,
+    categoryId: "cat_perfume",
+    category: "Perfume",
     status: "ACTIVE",
     featured: true,
     bestSeller: true,
-    tags: ["watch", "wearable", "lte"],
+    tags: ["perfume", "oud", "gift"],
     images: [
       {
-        id: "img_watch_1",
-        url: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80",
-        alt: "Minimal smart watch product photography",
+        id: "img_perfume_1",
+        url: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1200&q=80",
+        alt: "Luxury perfume bottle on a soft neutral background",
         position: 0
       }
     ],
     inventory: {
-      productId: "prd_watch_chronos",
-      quantity: 74,
-      reserved: 12,
+      productId: "prd_oud_perfume",
+      quantity: 82,
+      reserved: 14,
       reorderPoint: 20,
-      warehouse: "Nexus East",
+      warehouse: "Midr Abuja",
       lastRestockedAt: "2026-06-04T10:00:00.000Z"
     },
     variants: [
-      { id: "var_watch_41", name: "Size", value: "41mm", sku: "NX-WAT-500-41", price: 429 },
-      { id: "var_watch_45", name: "Size", value: "45mm", sku: "NX-WAT-500-45", price: 459 }
+      { id: "var_perfume_50", name: "Size", value: "50ml", sku: "MID-PRF-070-50", price: 54 },
+      { id: "var_perfume_100", name: "Size", value: "100ml", sku: "MID-PRF-070-100", price: 88 }
     ],
     reviews: [],
     createdAt: now
   },
   {
-    id: "prd_laptop_core",
-    name: "Nexus Core 14 Pro",
-    slug: "nexus-core-14-pro",
-    sku: "NX-LAP-140",
-    description: "A lightweight laptop tuned for operators, analysts, and creative teams who need secure performance on the go.",
-    price: 1299,
-    comparePrice: 1399,
-    categoryId: "cat_computing",
-    category: "Computing",
+    id: "prd_linen_set",
+    name: "Midr Linen Co-ord Set",
+    slug: "midr-linen-coord-set",
+    sku: "MID-CLS-144",
+    description: "A breathable two-piece linen set with a relaxed fit, clean tailoring, and easy day-to-night styling.",
+    price: 86,
+    comparePrice: 105,
+    categoryId: "cat_clothes",
+    category: "Clothes",
     status: "ACTIVE",
     featured: false,
     bestSeller: false,
-    tags: ["laptop", "business", "portable"],
+    tags: ["linen", "set", "casual"],
     images: [
       {
-        id: "img_laptop_1",
-        url: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
-        alt: "Slim laptop on a desk",
+        id: "img_linen_1",
+        url: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80",
+        alt: "Elegant casual fashion outfit in a studio setting",
         position: 0
       }
     ],
     inventory: {
-      productId: "prd_laptop_core",
-      quantity: 34,
-      reserved: 8,
-      reorderPoint: 10,
-      warehouse: "Nexus West",
+      productId: "prd_linen_set",
+      quantity: 29,
+      reserved: 4,
+      reorderPoint: 9,
+      warehouse: "Midr Lagos",
       lastRestockedAt: "2026-05-21T10:00:00.000Z"
     },
     variants: [],
@@ -230,32 +230,32 @@ export const demoProducts: Product[] = [
     createdAt: now
   },
   {
-    id: "prd_swift_run",
-    name: "Nexus Swift Run 2.0",
-    slug: "nexus-swift-run-2",
-    sku: "NX-LIF-210",
-    description: "Breathable everyday trainers with a tailored silhouette, engineered foam, and water-resistant textile finishing.",
-    price: 138,
-    categoryId: "cat_lifestyle",
-    category: "Lifestyle",
+    id: "prd_evening_clutch",
+    name: "Midr Satin Evening Clutch",
+    slug: "midr-satin-evening-clutch",
+    sku: "MID-BAG-330",
+    description: "A compact satin clutch with a soft sheen, magnetic closure, and detachable chain for dinner dates and events.",
+    price: 42,
+    categoryId: "cat_bags",
+    category: "Bags",
     status: "ACTIVE",
     featured: false,
     bestSeller: true,
-    tags: ["footwear", "travel"],
+    tags: ["clutch", "event", "bag"],
     images: [
       {
-        id: "img_shoe_1",
-        url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80",
-        alt: "Modern running shoe product photography",
+        id: "img_clutch_1",
+        url: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=1200&q=80",
+        alt: "Small elegant handbag on a display surface",
         position: 0
       }
     ],
     inventory: {
-      productId: "prd_swift_run",
-      quantity: 8,
-      reserved: 2,
-      reorderPoint: 18,
-      warehouse: "Nexus East",
+      productId: "prd_evening_clutch",
+      quantity: 12,
+      reserved: 3,
+      reorderPoint: 16,
+      warehouse: "Midr Lagos",
       lastRestockedAt: "2026-04-19T10:00:00.000Z"
     },
     variants: [],
@@ -263,32 +263,32 @@ export const demoProducts: Product[] = [
     createdAt: now
   },
   {
-    id: "prd_desk_dock",
-    name: "Nexus Desk Dock",
-    slug: "nexus-desk-dock",
-    sku: "NX-ACC-080",
-    description: "A compact aluminum USB-C dock with fast charging, dual-display output, and secure device passthrough.",
-    price: 189,
-    categoryId: "cat_lifestyle",
-    category: "Lifestyle",
+    id: "prd_fresh_mist",
+    name: "Midr Fresh Mist Perfume",
+    slug: "midr-fresh-mist-perfume",
+    sku: "MID-PRF-040",
+    description: "A fresh daytime scent with citrus, clean musk, and jasmine for everyday wear.",
+    price: 38,
+    categoryId: "cat_perfume",
+    category: "Perfume",
     status: "ACTIVE",
     featured: false,
     bestSeller: false,
-    tags: ["accessory", "office"],
+    tags: ["perfume", "fresh", "daily"],
     images: [
       {
-        id: "img_dock_1",
-        url: "https://images.unsplash.com/photo-1625842268584-8f3296236761?auto=format&fit=crop&w=1200&q=80",
-        alt: "Office technology dock on a clean desk",
+        id: "img_mist_1",
+        url: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80",
+        alt: "Perfume bottle with clean minimal styling",
         position: 0
       }
     ],
     inventory: {
-      productId: "prd_desk_dock",
-      quantity: 96,
-      reserved: 11,
+      productId: "prd_fresh_mist",
+      quantity: 95,
+      reserved: 9,
       reorderPoint: 24,
-      warehouse: "Nexus Central",
+      warehouse: "Midr Abuja",
       lastRestockedAt: "2026-06-03T10:00:00.000Z"
     },
     variants: [],
@@ -302,31 +302,31 @@ export const demoAddresses: Address[] = [
     id: "addr_home",
     userId: "usr_customer",
     label: "Home",
-    firstName: "Jordan",
-    lastName: "Blake",
-    line1: "120 Market Street",
-    city: "Austin",
-    state: "TX",
-    postalCode: "78701",
-    country: "US"
+    firstName: "Amara",
+    lastName: "Cole",
+    line1: "12 Admiralty Way",
+    city: "Lekki",
+    state: "Lagos",
+    postalCode: "105102",
+    country: "NG"
   }
 ];
 
 export const demoOrders: Order[] = [
   {
     id: "ord_10045",
-    orderNumber: "NX-10045",
+    orderNumber: "MID-10045",
     userId: "usr_customer",
-    customerName: "Jordan Blake",
-    customerEmail: "customer@nexuscommerce.dev",
+    customerName: "Amara Cole",
+    customerEmail: "customer@midr.store",
     status: "PROCESSING",
-    items: [{ productId: "prd_tablet_ultra", name: "Nexus Ultra Pro Tablet", quantity: 1, unitPrice: 899, total: 899 }],
-    subtotal: 899,
+    items: [{ productId: "prd_leather_tote", name: "Midr Structured Leather Tote", quantity: 1, unitPrice: 118, total: 118 }],
+    subtotal: 118,
     discount: 0,
-    tax: 71.92,
+    tax: 9.44,
     shipping: 18,
-    total: 988.92,
-    paymentProvider: "stripe",
+    total: 145.44,
+    paymentProvider: "paystack",
     paymentStatus: "PAID",
     shippingAddress: demoAddresses[0],
     createdAt: "2026-06-03T11:30:00.000Z",
@@ -334,17 +334,17 @@ export const demoOrders: Order[] = [
   },
   {
     id: "ord_10044",
-    orderNumber: "NX-10044",
+    orderNumber: "MID-10044",
     userId: "usr_customer",
-    customerName: "Jordan Blake",
-    customerEmail: "customer@nexuscommerce.dev",
+    customerName: "Amara Cole",
+    customerEmail: "customer@midr.store",
     status: "SHIPPED",
-    items: [{ productId: "prd_audio_v2", name: "Nexus Pro Audio V2", quantity: 2, unitPrice: 249, total: 498 }],
-    subtotal: 498,
-    discount: 49.8,
-    tax: 35.86,
+    items: [{ productId: "prd_oud_perfume", name: "Midr Oud Bloom Perfume", quantity: 2, unitPrice: 54, total: 108 }],
+    subtotal: 108,
+    discount: 10.8,
+    tax: 7.78,
     shipping: 0,
-    total: 484.06,
+    total: 104.98,
     paymentProvider: "paystack",
     paymentStatus: "PAID",
     shippingAddress: demoAddresses[0],
@@ -355,12 +355,12 @@ export const demoOrders: Order[] = [
 
 export const demoCoupons: Coupon[] = [
   { id: "cpn_welcome", code: "WELCOME10", description: "10% off first order", percentOff: 10, active: true },
-  { id: "cpn_ops", code: "OPS25", description: "$25 operations credit", amountOff: 25, active: true }
+  { id: "cpn_midr", code: "MIDR25", description: "$25 Midr shopping credit", amountOff: 25, active: true }
 ];
 
 export const demoCart: CartItem[] = [
-  { productId: "prd_audio_v2", quantity: 1 },
-  { productId: "prd_desk_dock", quantity: 1 }
+  { productId: "prd_ankara_dress", quantity: 1 },
+  { productId: "prd_fresh_mist", quantity: 1 }
 ];
 
-export const demoWishlist = ["prd_tablet_ultra", "prd_watch_chronos"];
+export const demoWishlist = ["prd_leather_tote", "prd_oud_perfume"];

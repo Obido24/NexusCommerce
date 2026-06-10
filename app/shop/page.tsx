@@ -17,8 +17,8 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
         <div className="flex flex-col gap-5 border-b border-outline-variant pb-8 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="label">Product catalog</p>
-            <h1 className="mt-2 text-4xl font-semibold">Shop Nexus products</h1>
-            <p className="mt-3 max-w-2xl text-secondary">Search, filter, sort, add to cart, and complete checkout through connected API workflows.</p>
+            <h1 className="mt-2 text-4xl font-semibold">Shop Midr fashion</h1>
+            <p className="mt-3 max-w-2xl text-secondary">Browse clothes, bags, perfume, and accessories with a simple demo checkout flow.</p>
           </div>
           <form className="grid gap-3 sm:grid-cols-[1fr_180px_180px_auto]">
             <input name="q" defaultValue={params.q} placeholder="Search products" className="focus-ring h-10 rounded-md border border-outline-variant bg-white px-3 text-sm" />

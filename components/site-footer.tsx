@@ -6,10 +6,10 @@ export function SiteFooter() {
       <div className="page-shell grid gap-8 py-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <Link href="/" className="text-xl font-bold text-on-background">
-            NexusCommerce
+            Midr Store
           </Link>
           <p className="mt-3 max-w-sm text-sm leading-6 text-secondary">
-            A complete commerce operating system for premium storefronts, high-density inventory teams, and modern checkout workflows.
+            A polished fashion store for clothes, bags, perfume, and a smooth customer shopping experience.
           </p>
         </div>
         {[

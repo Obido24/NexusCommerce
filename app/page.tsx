@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Mail } from "lucide-react";
+import { DemoLoginButtons } from "@/components/demo-login-buttons";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ProductCard } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
+import { WhatsAppSupport } from "@/components/whatsapp-support";
 import { listProducts, store } from "@/lib/store";
 
 export default function HomePage() {
@@ -14,31 +16,45 @@ export default function HomePage() {
     <>
       <SiteHeader />
       <main>
+        <div className="border-b border-blue-200 bg-blue-50">
+          <div className="page-shell flex flex-col gap-3 py-3 text-sm text-primary md:flex-row md:items-center md:justify-between">
+            <p className="font-semibold">Demo Mode: Midr Store is ready for client testing. Payments are not real.</p>
+            <div className="flex flex-wrap gap-2">
+              <Link href="/shop" className="font-bold underline-offset-4 hover:underline">
+                Browse Store
+              </Link>
+              <Link href="/login" className="font-bold underline-offset-4 hover:underline">
+                Demo Login
+              </Link>
+            </div>
+          </div>
+        </div>
         <section className="relative flex min-h-[560px] items-center overflow-hidden bg-slate-950">
           <img
-            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2200&q=80"
-            alt="Premium modern commerce workspace"
+            src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=2200&q=80"
+            alt="Fashion model wearing a refined outfit for Midr Store"
             className="absolute inset-0 h-full w-full object-cover opacity-55"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-transparent" />
           <div className="page-shell relative py-20 text-white">
-            <p className="text-sm font-bold uppercase tracking-[0.12em] text-blue-200">Modern commerce suite</p>
+            <p className="text-sm font-bold uppercase tracking-[0.12em] text-blue-200">Clothes, bags, and perfume</p>
             <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-              Premium storefronts and precise operations in one flow.
+              Midr Store brings polished fashion shopping online.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
-              Shop curated Nexus products, move through checkout, then manage products, inventory, customers, orders, and analytics from the connected admin portal.
+              Explore ready-to-wear outfits, statement bags, and signature perfumes through a smooth demo storefront with cart, checkout, customer account, and admin dashboard.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
                 <Link href="/shop">
-                  Shop collection
+                  Browse Store
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="secondary">
-                <Link href="/admin">Open admin dashboard</Link>
-              </Button>
+              <WhatsAppSupport label="WhatsApp Support" />
+            </div>
+            <div className="mt-4">
+              <DemoLoginButtons />
             </div>
           </div>
         </section>
@@ -47,7 +63,7 @@ export default function HomePage() {
           <div className="flex items-end justify-between gap-6">
             <div>
               <p className="label">Featured products</p>
-              <h2 className="mt-2 text-3xl font-semibold">Curated for high-velocity teams</h2>
+              <h2 className="mt-2 text-3xl font-semibold">New styles for your next outing</h2>
             </div>
             <Button asChild variant="secondary">
               <Link href="/shop">View all</Link>
@@ -79,8 +95,8 @@ export default function HomePage() {
         <section className="page-shell grid gap-10 py-14 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="rounded-lg bg-primary p-8 text-white">
             <p className="text-sm font-bold uppercase tracking-[0.12em] text-blue-100">Promotional offer</p>
-            <h2 className="mt-3 text-3xl font-semibold">Operations bundle: save 10% with WELCOME10.</h2>
-            <p className="mt-4 max-w-xl text-blue-50">Combine audio, tablet, and dock essentials for a clean procurement flow from browsing to order management.</p>
+            <h2 className="mt-3 text-3xl font-semibold">First order offer: save 10% with WELCOME10.</h2>
+            <p className="mt-4 max-w-xl text-blue-50">Try the demo checkout with a dress, bag, or perfume and see how customers move from product discovery to order confirmation.</p>
             <Button asChild className="mt-6 bg-white text-primary hover:bg-blue-50">
               <Link href="/shop">Build bundle</Link>
             </Button>
@@ -108,7 +124,7 @@ export default function HomePage() {
                 <CheckCircle2 className="mt-1 h-5 w-5 text-blue-300" />
                 <div>
                   <h3 className="font-semibold">{item}</h3>
-                  <p className="mt-1 text-sm leading-6 text-slate-300">Designed to demonstrate the complete commerce workflow with clean, accessible screens.</p>
+                  <p className="mt-1 text-sm leading-6 text-slate-300">Designed to help testers understand the shopping, checkout, and admin workflow quickly.</p>
                 </div>
               </div>
             ))}

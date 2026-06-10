@@ -1,4 +1,4 @@
-# NexusCommerce API
+# Midr Store API
 
 All responses follow:
 
@@ -17,7 +17,7 @@ Errors follow:
 `POST /api/auth/login`
 
 ```json
-{ "email": "admin@nexuscommerce.dev", "password": "Password123!" }
+{ "email": "admin@midr.store", "password": "Password123!" }
 ```
 
 Sets an HTTP-only `nexus_session` JWT cookie.
@@ -32,17 +32,17 @@ Sets an HTTP-only `nexus_session` JWT cookie.
 
 ## Products
 
-`GET /api/products?q=tablet&category=computing&sort=price-asc`
+`GET /api/products?q=perfume&category=perfume&sort=price-asc`
 
 `POST /api/products` requires an admin JWT:
 
 ```json
 {
-  "name": "Nexus Desk Lamp",
-  "sku": "NX-LMP-100",
-  "description": "A focused task lamp for modern commerce teams.",
-  "price": 149,
-  "categoryId": "cat_lifestyle",
+  "name": "Midr Satin Evening Clutch",
+  "sku": "MID-BAG-330",
+  "description": "A compact satin clutch for dinner dates and events.",
+  "price": 42,
+  "categoryId": "cat_bags",
   "status": "ACTIVE",
   "imageUrl": "https://images.unsplash.com/photo.jpg"
 }
@@ -53,7 +53,7 @@ Sets an HTTP-only `nexus_session` JWT cookie.
 `POST /api/cart`
 
 ```json
-{ "productId": "prd_audio_v2", "quantity": 1 }
+{ "productId": "prd_ankara_dress", "quantity": 1 }
 ```
 
 `POST /api/orders`

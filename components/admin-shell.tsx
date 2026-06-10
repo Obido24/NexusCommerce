@@ -17,7 +17,7 @@ export function AdminShell({ children, title, actions }: { children: React.React
     <div className="min-h-screen bg-surface">
       <aside className="fixed inset-y-0 left-0 hidden w-[280px] border-r border-outline-variant bg-white p-5 lg:block">
         <Link href="/" className="text-xl font-bold text-primary">
-          NexusCommerce
+          Midr Store
         </Link>
         <p className="mt-1 text-xs font-semibold uppercase tracking-[0.08em] text-secondary">Admin Portal</p>
         <nav className="mt-8 space-y-1">
@@ -35,7 +35,7 @@ export function AdminShell({ children, title, actions }: { children: React.React
         <header className="sticky top-0 z-30 border-b border-outline-variant bg-surface/95 backdrop-blur">
           <div className="flex min-h-16 items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
             <div>
-              <p className="label">Nexus Global Store</p>
+              <p className="label">Midr Store Admin</p>
               <h1 className="text-2xl font-semibold text-on-surface">{title}</h1>
             </div>
             <div className="flex items-center gap-2">{actions}</div>

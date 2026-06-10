@@ -17,7 +17,7 @@ export function SiteHeader() {
       <div className="page-shell flex h-full items-center justify-between gap-6">
         <div className="flex items-center gap-8">
           <Link href="/" className="text-xl font-bold text-primary">
-            NexusCommerce
+            Midr Store
           </Link>
           <nav className="hidden items-center gap-5 md:flex">
             {nav.map((item) => (

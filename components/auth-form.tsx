@@ -28,7 +28,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
   return (
     <form action={submit} className="surface-card w-full max-w-md p-6">
       <h1 className="text-2xl font-semibold">{mode === "login" ? "Secure login" : "Create account"}</h1>
-      <p className="mt-2 text-sm text-secondary">Demo credentials: admin@nexuscommerce.dev or customer@nexuscommerce.dev with Password123!</p>
+      <p className="mt-2 text-sm text-secondary">Demo credentials: admin@midr.store or customer@midr.store with Password123!</p>
       <div className="mt-5 space-y-4">
         {mode === "register" ? (
           <label>
@@ -38,7 +38,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
         ) : null}
         <label>
           <span className="text-sm font-semibold">Email</span>
-          <input name="email" type="email" required defaultValue={mode === "login" ? "admin@nexuscommerce.dev" : ""} className="focus-ring mt-1 h-10 w-full rounded-md border border-outline-variant px-3 text-sm" />
+          <input name="email" type="email" required defaultValue={mode === "login" ? "admin@midr.store" : ""} className="focus-ring mt-1 h-10 w-full rounded-md border border-outline-variant px-3 text-sm" />
         </label>
         <label>
           <span className="text-sm font-semibold">Password</span>

@@ -13,23 +13,23 @@ async function main() {
 
   const [admin, customer] = await Promise.all([
     prisma.user.upsert({
-      where: { email: "admin@nexuscommerce.dev" },
+      where: { email: "admin@midr.store" },
       update: {},
-      create: { name: "Avery Admin", email: "admin@nexuscommerce.dev", passwordHash, roleId: adminRole.id }
+      create: { name: "Midr Admin", email: "admin@midr.store", passwordHash, roleId: adminRole.id }
     }),
     prisma.user.upsert({
-      where: { email: "customer@nexuscommerce.dev" },
+      where: { email: "customer@midr.store" },
       update: {},
-      create: { name: "Jordan Blake", email: "customer@nexuscommerce.dev", passwordHash, roleId: customerRole.id }
+      create: { name: "Amara Cole", email: "customer@midr.store", passwordHash, phone: "+2348106464613", roleId: customerRole.id }
     })
   ]);
 
   const categories = await Promise.all(
     [
-      ["Audio", "Premium sound for work and travel"],
-      ["Wearables", "Connected devices for modern routines"],
-      ["Computing", "Performance hardware for commerce teams"],
-      ["Lifestyle", "Essential accessories with refined finishes"]
+      ["Clothes", "Ready-to-wear outfits and occasion pieces"],
+      ["Bags", "Structured totes, clutches, and everyday carry pieces"],
+      ["Perfume", "Signature fragrances for daily wear and gifting"],
+      ["Accessories", "Finishing touches for polished looks"]
     ].map(([name, description]) =>
       prisma.category.upsert({
         where: { slug: name.toLowerCase() },
@@ -41,34 +41,31 @@ async function main() {
 
   const products = [
     {
-      name: "Nexus Pro Audio V2",
-      slug: "nexus-pro-audio-v2",
-      sku: "NX-AUD-200",
-      price: "249.00",
-      comparePrice: "299.00",
+      name: "Midr Ankara Wrap Dress",
+      slug: "midr-ankara-wrap-dress",
+      sku: "MID-CLS-101",
+      price: "72.00",
+      comparePrice: "95.00",
       categoryId: categories[0].id,
-      featured: true,
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDjbkc9HSjnfHzKmpQ4Zspc3QJBCki7mwVqMvpfxiCXdz_Jb1qA7XFkvmECrBg2Weuag9kjk-pUz4PmvZeHN83438X73zZWVqnmQ-hxoGx5TaBDxAFBzW89xvJBMc0RpE5FnWeDylgOfGq20PckJu-afmwoHQiA3C6gOCarIhfVgwhmiBpwSMZErld29l7rhhD5v6ydFXO88dle0eq6LIFc-J-ZmRcRaXvSUPc_OR-OG7y5xhNUUD9yGCIRsgPuQCPq7SYK87-83g"
+      image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80"
     },
     {
-      name: "Nexus Ultra Pro Tablet",
-      slug: "nexus-ultra-pro-tablet",
-      sku: "NX-TAB-129",
-      price: "899.00",
-      comparePrice: "1049.00",
-      categoryId: categories[2].id,
-      featured: true,
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBy3-nTKjY24sdK5a_aczN4UmzeVnI4rRDwia-OB8_hRIqjmhOCekhEUHM7vcQUdrRCAiCe-WiVemcWirBx8U9f8ivfa90JDJIhiXo99PDfhyeDzTSZkc29th1yxMWgo5XCIGpXSlEafSjRYcQl5bWaPEKSwD35xDD_nEj86WDIEFxqbBoux6KogSUCR9pX_qXbejQzwWvxZMBuwtW8XWvMN4y1zwkhQFyzfEfxAT8CVN85Scb_n-P-iz4uD9Te0s1XpM6_GNg6Jg"
-    },
-    {
-      name: "Nexus Chronos Ultra",
-      slug: "nexus-chronos-ultra",
-      sku: "NX-WAT-500",
-      price: "429.00",
-      comparePrice: "479.00",
+      name: "Midr Structured Leather Tote",
+      slug: "midr-structured-leather-tote",
+      sku: "MID-BAG-210",
+      price: "118.00",
+      comparePrice: "145.00",
       categoryId: categories[1].id,
-      featured: true,
-      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80"
+      image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      name: "Midr Oud Bloom Perfume",
+      slug: "midr-oud-bloom-perfume",
+      sku: "MID-PRF-070",
+      price: "54.00",
+      comparePrice: "68.00",
+      categoryId: categories[2].id,
+      image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1200&q=80"
     }
   ];
 
@@ -80,14 +77,14 @@ async function main() {
         name: item.name,
         slug: item.slug,
         sku: item.sku,
-        description: "A premium NexusCommerce product designed for high-velocity operations and polished customer experiences.",
+        description: "A premium Midr Store fashion item prepared for client demo testing.",
         price: item.price,
         comparePrice: item.comparePrice,
         status: "ACTIVE",
-        featured: item.featured,
+        featured: true,
         categoryId: item.categoryId,
         images: { create: [{ url: item.image, alt: item.name, position: 0 }] },
-        inventory: { create: { quantity: 64, reserved: 4, reorderPoint: 12, warehouse: "Nexus East" } }
+        inventory: { create: { quantity: 64, reserved: 4, reorderPoint: 12, warehouse: "Midr Lagos" } }
       }
     });
 
@@ -96,8 +93,8 @@ async function main() {
         productId: product.id,
         userId: customer.id,
         rating: 5,
-        title: "Excellent quality",
-        comment: "Fast shipping, clean packaging, and exactly the premium feel promised."
+        title: "Lovely quality",
+        comment: "The item looks premium and the checkout experience is smooth."
       }
     });
   }
@@ -105,43 +102,45 @@ async function main() {
   const address = await prisma.address.create({
     data: {
       label: "Home",
-      firstName: "Jordan",
-      lastName: "Blake",
-      line1: "120 Market Street",
-      city: "Austin",
-      state: "TX",
-      postalCode: "78701",
-      country: "US",
+      firstName: "Amara",
+      lastName: "Cole",
+      line1: "12 Admiralty Way",
+      city: "Lekki",
+      state: "Lagos",
+      postalCode: "105102",
+      country: "NG",
       userId: customer.id
     }
   });
 
-  const product = await prisma.product.findFirstOrThrow({ where: { slug: "nexus-ultra-pro-tablet" } });
+  const product = await prisma.product.findFirstOrThrow({ where: { slug: "midr-structured-leather-tote" } });
   const order = await prisma.order.create({
     data: {
-      orderNumber: "NX-10045",
+      orderNumber: "MID-10045",
       userId: customer.id,
       status: "PROCESSING",
-      subtotal: "899.00",
-      tax: "71.92",
+      subtotal: "118.00",
+      tax: "9.44",
       shipping: "18.00",
-      total: "988.92",
+      total: "145.44",
       shippingAddressId: address.id,
       items: {
-        create: [{ productId: product.id, quantity: 1, unitPrice: "899.00", total: "899.00" }]
+        create: [{ productId: product.id, quantity: 1, unitPrice: "118.00", total: "118.00" }]
       }
     }
   });
 
   await prisma.payment.create({
     data: {
-      provider: "STRIPE",
+      provider: "PAYSTACK",
       status: "PAID",
-      amount: "988.92",
+      amount: "145.44",
       reference: "pay_seed_10045",
       orderId: order.id
     }
   });
+
+  console.log(`Seeded Midr Store demo with admin ${admin.email}`);
 }
 
 main()

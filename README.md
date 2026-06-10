@@ -1,6 +1,6 @@
-# NexusCommerce
+# Midr Store
 
-NexusCommerce is a full-stack e-commerce prototype converted from the Stitch screen suite in `stitch_import`. It uses Next.js 15, React, TypeScript, Tailwind CSS, shadcn-style primitives, Framer Motion-ready dependencies, Prisma/PostgreSQL schema, JWT sessions, RBAC-protected admin APIs, and a payment abstraction layer.
+Midr Store is a full-stack fashion e-commerce prototype for clothes, bags, perfume, checkout, customer accounts, and admin operations. It uses Next.js 15, React, TypeScript, Tailwind CSS, shadcn-style primitives, Prisma/PostgreSQL schema, JWT sessions, RBAC-protected admin APIs, and a payment abstraction layer.
 
 ## Quick Start
 
@@ -13,8 +13,8 @@ Open `http://localhost:3000`.
 
 Demo accounts:
 
-- Admin: `admin@nexuscommerce.dev` / `Password123!`
-- Customer: `customer@nexuscommerce.dev` / `Password123!`
+- Admin: `admin@midr.store` / `Password123!`
+- Customer: `customer@midr.store` / `Password123!`
 
 The app runs with realistic in-memory data by default so the complete workflow is available immediately: browse products, manage cart, checkout, view customer dashboard, log in as admin, create products, inspect inventory, update orders, and review analytics.
 

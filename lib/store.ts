@@ -71,7 +71,7 @@ export function upsertProduct(input: Partial<Product> & { name: string; price: n
     name: input.name,
     slug: input.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
     sku: input.sku ?? `NX-${Math.floor(Math.random() * 9000 + 1000)}`,
-    description: input.description ?? "New NexusCommerce product.",
+    description: input.description ?? "New Midr Store product.",
     price: input.price,
     comparePrice: input.comparePrice,
     categoryId: category.id,
@@ -88,7 +88,7 @@ export function upsertProduct(input: Partial<Product> & { name: string; price: n
       quantity: 20,
       reserved: 0,
       reorderPoint: 8,
-      warehouse: "Nexus Central",
+      warehouse: "Midr Lagos",
       lastRestockedAt: new Date().toISOString()
     },
     variants: input.variants ?? [],
@@ -160,7 +160,7 @@ export function createOrder(input: { userId?: string; address: Address; provider
   const total = Math.max(0, cart.subtotal - discount + cart.tax + cart.shipping);
   const order: Order = {
     id: `ord_${Date.now()}`,
-    orderNumber: `NX-${Math.floor(Math.random() * 90000 + 10000)}`,
+    orderNumber: `MID-${Math.floor(Math.random() * 90000 + 10000)}`,
     userId,
     customerName: user.name,
     customerEmail: user.email,

@@ -103,7 +103,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           <div>
             <p className="label">Customer reviews</p>
             <div className="mt-4 space-y-3">
-              {(product.reviews.length ? product.reviews : [{ id: "empty", userName: "Nexus buyer", rating: 5, title: "Reliable quality", comment: "A clean, premium experience from product page to delivery." }]).map((review) => (
+              {(product.reviews.length ? product.reviews : [{ id: "empty", userName: "Midr buyer", rating: 5, title: "Reliable quality", comment: "A clean, premium experience from product page to delivery." }]).map((review) => (
                 <div key={review.id} className="surface-card p-4">
                   <div className="flex items-center justify-between">
                     <h3 className="font-semibold">{review.title}</h3>
