@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addToCart, createOrder, deleteCategory, getCart, getCategoryProductCounts, getDashboardStats, listProducts, store, upsertCategory } from "@/lib/store";
+import { addToCart, createOrder, deleteCategory, getCart, getCategoryProductCounts, getDashboardStats, listProducts, store, updateOrderStatus, upsertCategory } from "@/lib/store";
 
 describe("commerce store", () => {
   it("filters products by search query", () => {
@@ -49,5 +49,11 @@ describe("commerce store", () => {
     });
     expect(getCategoryProductCounts().some((item) => item.id === category.id && item.productCount === 0)).toBe(true);
     expect(deleteCategory(category.id)).toBe(true);
+  });
+
+  it("updates order status for admin fulfillment", () => {
+    const order = store.orders[0];
+    const updated = updateOrderStatus(order.id, "SHIPPED");
+    expect(updated?.status).toBe("SHIPPED");
   });
 });

@@ -1,4 +1,5 @@
-import { Printer, FileDown } from "lucide-react";
+import Link from "next/link";
+import { Eye, FileDown } from "lucide-react";
 import { AdminShell } from "@/components/admin-shell";
 import { OrderStatusForm } from "@/components/order-status-form";
 import { OrderStatusBadge } from "@/components/status-badge";
@@ -7,12 +8,22 @@ import { money, store } from "@/lib/store";
 
 export default function AdminOrdersPage() {
   return (
-    <AdminShell title="Order Management" actions={<><Button variant="secondary"><Printer className="h-4 w-4" />Print invoice</Button><Button><FileDown className="h-4 w-4" />Export orders</Button></>}>
+    <AdminShell
+      title="Order Management"
+      actions={
+        <Button asChild>
+          <a href="/api/orders/export">
+            <FileDown className="h-4 w-4" />
+            Export orders
+          </a>
+        </Button>
+      }
+    >
       <section className="surface-card overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[900px] text-left text-sm">
+          <table className="w-full min-w-[980px] text-left text-sm">
             <thead className="bg-surface-container-low text-xs uppercase tracking-[0.08em] text-secondary">
-              <tr><th className="p-3">Order</th><th className="p-3">Customer</th><th className="p-3">Items</th><th className="p-3">Total</th><th className="p-3">Payment</th><th className="p-3">Status</th><th className="p-3">Change status</th></tr>
+              <tr><th className="p-3">Order</th><th className="p-3">Customer</th><th className="p-3">Items</th><th className="p-3">Total</th><th className="p-3">Payment</th><th className="p-3">Status</th><th className="p-3">Change status</th><th className="p-3">Details</th></tr>
             </thead>
             <tbody className="divide-y divide-outline-variant">
               {store.orders.map((order) => (
@@ -24,6 +35,14 @@ export default function AdminOrdersPage() {
                   <td className="p-3">{order.paymentProvider}</td>
                   <td className="p-3"><OrderStatusBadge status={order.status} /></td>
                   <td className="p-3"><OrderStatusForm orderId={order.id} initialStatus={order.status} /></td>
+                  <td className="p-3">
+                    <Button asChild variant="secondary" size="sm">
+                      <Link href={`/admin/orders/${order.id}`}>
+                        <Eye className="h-4 w-4" />
+                        View
+                      </Link>
+                    </Button>
+                  </td>
                 </tr>
               ))}
             </tbody>
