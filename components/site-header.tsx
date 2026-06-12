@@ -1,14 +1,13 @@
 import Link from "next/link";
-import { Heart, LayoutDashboard, Search, ShoppingCart, UserCircle } from "lucide-react";
+import { Heart, Search, ShoppingCart, UserCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getCart } from "@/lib/store";
 
 const nav = [
-  { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
-  { href: "/demo", label: "Demo Guide" },
-  { href: "/cart", label: "Cart" },
-  { href: "/account", label: "Account" }
+  { href: "/#categories", label: "Categories" },
+  { href: "/#new-arrivals", label: "New Arrivals" },
+  { href: "https://wa.me/2348106464613", label: "Contact", external: true }
 ];
 
 export function SiteHeader() {
@@ -20,19 +19,24 @@ export function SiteHeader() {
           <Link href="/" className="text-xl font-bold text-primary">
             Midr Store
           </Link>
-          <nav className="hidden items-center gap-5 md:flex">
+          <nav className="hidden items-center gap-5 lg:flex">
             {nav.map((item) => (
-              <Link key={item.href} href={item.href} className="text-sm font-semibold text-secondary transition hover:text-primary">
+              <Link key={item.href} href={item.href} target={item.external ? "_blank" : undefined} rel={item.external ? "noreferrer" : undefined} className="text-sm font-semibold text-secondary transition hover:text-primary">
                 {item.label}
               </Link>
             ))}
           </nav>
         </div>
-        <form action="/shop" className="hidden w-full max-w-sm items-center rounded-full border border-outline-variant bg-surface-container-low px-3 sm:flex">
+        <form action="/shop" className="hidden w-full max-w-sm items-center rounded-full border border-outline-variant bg-surface-container-low px-3 md:flex">
           <Search className="h-4 w-4 text-secondary" />
           <input name="q" className="h-9 flex-1 bg-transparent px-2 text-sm outline-none" placeholder="Search products" />
         </form>
         <div className="flex items-center gap-1">
+          <Button asChild variant="ghost" size="icon" aria-label="Search products" className="sm:hidden">
+            <Link href="/shop">
+              <Search className="h-5 w-5" />
+            </Link>
+          </Button>
           <Button asChild variant="ghost" size="icon" aria-label="Wishlist">
             <Link href="/account?tab=wishlist">
               <Heart className="h-5 w-5" />
@@ -51,12 +55,6 @@ export function SiteHeader() {
           <Button asChild variant="ghost" size="icon" aria-label="Account">
             <Link href="/account">
               <UserCircle className="h-5 w-5" />
-            </Link>
-          </Button>
-          <Button asChild variant="secondary" size="sm" className="hidden lg:inline-flex">
-            <Link href="/admin">
-              <LayoutDashboard className="h-4 w-4" />
-              Admin
             </Link>
           </Button>
         </div>

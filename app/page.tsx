@@ -1,96 +1,83 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Mail, MessageCircle, ShoppingBag } from "lucide-react";
-import { DemoLoginButtons } from "@/components/demo-login-buttons";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
+import { ArrowRight, Headphones, Mail, MessageCircle, RefreshCw, ShieldCheck, ShoppingBag, Sparkles, Truck } from "lucide-react";
 import { ProductCard } from "@/components/product-card";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { WhatsAppSupport } from "@/components/whatsapp-support";
 import { listProducts, store } from "@/lib/store";
 
+const trustBadges = [
+  { title: "Secure Payments", description: "Safe checkout with live-ready payment protection.", icon: ShieldCheck },
+  { title: "Fast Delivery", description: "Quick dispatch for clothes, bags, and perfumes.", icon: Truck },
+  { title: "Easy Returns", description: "A smoother support path if an item is not right.", icon: RefreshCw },
+  { title: "WhatsApp Support", description: "Chat with Midr Store before or after checkout.", icon: Headphones }
+];
+
 export default function HomePage() {
-  const featured = listProducts().filter((product) => product.featured).slice(0, 4);
-  const bestSellers = listProducts().filter((product) => product.bestSeller).slice(0, 3);
+  const trending = listProducts().filter((product) => product.bestSeller || product.featured).slice(0, 4);
 
   return (
     <>
       <SiteHeader />
-      <main className="pb-20 md:pb-0">
-        <div className="border-b border-blue-200 bg-blue-50">
-          <div className="page-shell flex flex-col gap-2 py-2.5 text-sm text-primary md:flex-row md:items-center md:justify-between">
-            <p className="font-semibold leading-5">Demo mode: safe for client testing. Payments are not real.</p>
-            <div className="flex flex-wrap gap-x-4 gap-y-1">
-              <Link href="/shop" className="font-bold underline-offset-4 hover:underline">
-                Shop
-              </Link>
-              <Link href="/login" className="font-bold underline-offset-4 hover:underline">
-                Demo Login
-              </Link>
-              <Link href="/demo" className="font-bold underline-offset-4 hover:underline">
-                How to Test
-              </Link>
-            </div>
-          </div>
-        </div>
-        <section className="relative flex min-h-[calc(100svh-7.5rem)] items-start overflow-hidden bg-slate-950 md:min-h-[560px] md:items-center">
+      <main className="pb-16 md:pb-0">
+        <section className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-slate-950 md:min-h-[640px]">
           <img
-            src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=2200&q=80"
-            alt="Fashion model wearing a refined outfit for Midr Store"
-            className="absolute inset-0 h-full w-full object-cover object-center opacity-55"
+            src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=2200&q=85"
+            alt="Premium fashion model styled for Midr Store"
+            className="absolute inset-0 h-full w-full object-cover object-center opacity-70"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/95 via-slate-950/70 to-slate-950/20 md:bg-gradient-to-r md:from-slate-950 md:via-slate-950/70 md:to-transparent" />
-          <div className="page-shell relative py-12 text-white sm:py-16 md:py-20">
-            <p className="text-xs font-bold uppercase tracking-[0.12em] text-blue-200 sm:text-sm">Clothes, bags, and perfume</p>
-            <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight sm:mt-4 sm:text-5xl lg:text-6xl">
-              Midr Store brings polished fashion shopping online.
-            </h1>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200 sm:mt-5 sm:text-lg sm:leading-8">
-              Shop clothes, bags, and signature perfumes in a smooth demo with cart, checkout, customer account, and admin dashboard.
-            </p>
-            <div className="mt-7 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
-              <Button asChild size="lg" className="h-12 justify-center">
-                <Link href="/shop">
-                  Browse Store
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <WhatsAppSupport label="WhatsApp Support" />
-              <Button asChild size="lg" variant="secondary" className="col-span-2 h-12 justify-center sm:col-span-1">
-                <Link href="/demo">How to Test This Demo</Link>
-              </Button>
-            </div>
-            <div className="mt-4">
-              <DemoLoginButtons />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/68 to-slate-950/42 md:bg-gradient-to-r md:from-slate-950/95 md:via-slate-950/72 md:to-slate-950/10" />
+          <div className="page-shell relative py-14 text-white sm:py-16 md:py-24">
+            <div className="max-w-3xl">
+              <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-blue-100 backdrop-blur">
+                <Sparkles className="h-3.5 w-3.5" />
+                Clothes, bags, and perfumes
+              </p>
+              <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+                Luxury Fashion, Delivered To Your Doorstep
+              </h1>
+              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-100 sm:text-lg sm:leading-8">
+                Shop premium clothes, stylish bags, and signature perfumes carefully selected for modern fashion lovers.
+              </p>
+              <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
+                <Button asChild size="lg" className="h-12 px-8 text-base shadow-ambient">
+                  <Link href="/shop">
+                    Shop Now
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+                <a
+                  href="https://wa.me/2348106464613"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="focus-ring inline-flex h-12 items-center justify-center gap-2 rounded-md border border-white/25 bg-white/10 px-5 text-sm font-bold text-white backdrop-blur transition hover:bg-white/20"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Need Help?
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="page-shell py-14">
-          <div className="flex items-end justify-between gap-6">
+        <section id="categories" className="page-shell py-12 sm:py-14">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="label">Featured products</p>
-              <h2 className="mt-2 text-3xl font-semibold">New styles for your next outing</h2>
+              <p className="label">Shop by Category</p>
+              <h2 className="mt-2 text-3xl font-semibold">Find your next signature piece</h2>
             </div>
-            <Button asChild variant="secondary">
-              <Link href="/shop">View all</Link>
+            <Button asChild variant="secondary" className="w-fit">
+              <Link href="/shop">View all categories</Link>
             </Button>
           </div>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {featured.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </section>
-
-        <section className="border-y border-outline-variant bg-surface-container-low">
-          <div className="page-shell grid gap-6 py-14 md:grid-cols-4">
+          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {store.categories.map((category) => (
-              <Link key={category.id} href={`/shop?category=${category.slug}`} className="surface-card overflow-hidden transition hover:shadow-ambient">
-                <div className="aspect-[5/3] overflow-hidden bg-surface-container">
-                  <img src={category.image} alt={category.name} className="h-full w-full object-cover" />
+              <Link key={category.id} href={`/shop?category=${category.slug}`} className="surface-card group overflow-hidden bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-ambient">
+                <div className="h-44 overflow-hidden bg-surface-container sm:h-48">
+                  <img src={category.image} alt={category.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold">{category.name}</h3>
+                  <h3 className="text-lg font-semibold">{category.name}</h3>
                   <p className="mt-1 text-sm leading-6 text-secondary">{category.description}</p>
                 </div>
               </Link>
@@ -98,56 +85,66 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="page-shell grid gap-10 py-14 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-lg bg-primary p-8 text-white">
-            <p className="text-sm font-bold uppercase tracking-[0.12em] text-blue-100">Promotional offer</p>
-            <h2 className="mt-3 text-3xl font-semibold">First order offer: save 10% with WELCOME10.</h2>
-            <p className="mt-4 max-w-xl text-blue-50">Try the demo checkout with a dress, bag, or perfume and see how customers move from product discovery to order confirmation.</p>
-            <Button asChild className="mt-6 bg-white text-primary hover:bg-blue-50">
-              <Link href="/shop">Build bundle</Link>
-            </Button>
-          </div>
-          <div>
-            <p className="label">Best sellers</p>
-            <div className="mt-4 space-y-3">
-              {bestSellers.map((product) => (
-                <Link key={product.id} href={`/products/${product.slug}`} className="surface-card flex items-center gap-4 p-3 transition hover:shadow-ambient">
-                  <img src={product.images[0].url} alt={product.images[0].alt} className="h-20 w-20 rounded-md object-cover" />
-                  <div>
-                    <h3 className="font-semibold">{product.name}</h3>
-                    <p className="text-sm text-secondary">{product.category}</p>
-                  </div>
-                </Link>
-              ))}
+        <section className="page-shell">
+          <div className="overflow-hidden rounded-lg bg-primary text-white shadow-ambient">
+            <div className="grid gap-5 p-6 sm:p-8 md:grid-cols-[1fr_auto] md:items-center">
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.12em] text-blue-100">Flash sale</p>
+                <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">Weekend Sale — Up to 30% Off Selected Items</h2>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-blue-50">Refresh your wardrobe with curated fashion picks before the offer ends.</p>
+              </div>
+              <Button asChild className="bg-white text-primary hover:bg-blue-50">
+                <Link href="/shop?sort=price-desc">Shop sale</Link>
+              </Button>
             </div>
           </div>
         </section>
 
-        <section className="bg-slate-950 text-white">
-          <div className="page-shell grid gap-8 py-14 md:grid-cols-3">
-            {["Verified checkout", "Inventory-aware cart", "Admin-ready analytics"].map((item) => (
-              <div key={item} className="flex gap-3">
-                <CheckCircle2 className="mt-1 h-5 w-5 text-blue-300" />
-                <div>
-                  <h3 className="font-semibold">{item}</h3>
-                  <p className="mt-1 text-sm leading-6 text-slate-300">Designed to help testers understand the shopping, checkout, and admin workflow quickly.</p>
-                </div>
-              </div>
+        <section id="new-arrivals" className="page-shell py-12 sm:py-14">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="label">Trending Products</p>
+              <h2 className="mt-2 text-3xl font-semibold">Loved by modern fashion shoppers</h2>
+            </div>
+            <Button asChild variant="secondary" className="w-fit">
+              <Link href="/shop">Shop all</Link>
+            </Button>
+          </div>
+          <div className="mt-7 grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+            {trending.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
         </section>
 
-        <section className="page-shell py-14">
-          <div className="surface-card flex flex-col gap-4 p-6 md:flex-row md:items-center md:justify-between">
+        <section className="border-y border-outline-variant bg-white">
+          <div className="page-shell grid gap-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
+            {trustBadges.map((badge) => {
+              const Icon = badge.icon;
+              return (
+                <div key={badge.title} className="surface-card bg-white p-5 shadow-sm">
+                  <span className="grid h-11 w-11 place-items-center rounded-md bg-blue-50 text-primary">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-4 font-semibold">{badge.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-secondary">{badge.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="page-shell py-12 sm:py-14">
+          <div className="surface-card flex flex-col gap-4 bg-white p-6 shadow-sm md:flex-row md:items-center md:justify-between">
             <div>
               <p className="label">Newsletter</p>
-              <h2 className="mt-1 text-2xl font-semibold">Get launch drops and operations insights.</h2>
+              <h2 className="mt-1 text-2xl font-semibold">Get new drops and private offers.</h2>
             </div>
             <form className="flex w-full gap-2 md:max-w-md">
               <label className="sr-only" htmlFor="newsletter-email">
                 Email
               </label>
-              <input id="newsletter-email" type="email" placeholder="you@example.com" className="focus-ring h-11 flex-1 rounded-md border border-outline-variant px-3 text-sm" />
+              <input id="newsletter-email" type="email" placeholder="you@example.com" className="focus-ring h-11 min-w-0 flex-1 rounded-md border border-outline-variant px-3 text-sm" />
               <Button type="submit">
                 <Mail className="h-4 w-4" />
                 Subscribe
@@ -156,15 +153,15 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-outline-variant bg-white/95 px-4 py-3 shadow-ambient backdrop-blur md:hidden">
-        <div className="grid grid-cols-2 gap-3">
-          <Link href="/shop" className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-3 text-sm font-bold text-white">
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-outline-variant bg-white/95 px-3 py-2 shadow-ambient backdrop-blur md:hidden">
+        <div className="grid grid-cols-[1.15fr_0.85fr] gap-2">
+          <Link href="/shop" className="focus-ring inline-flex h-10 items-center justify-center gap-2 rounded-md bg-primary px-3 text-sm font-bold text-white">
             <ShoppingBag className="h-4 w-4" />
-            Shop
+            Shop Now
           </Link>
-          <a href="https://wa.me/2348106464613" target="_blank" rel="noreferrer" className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#25D366] px-3 text-sm font-bold text-white">
+          <a href="https://wa.me/2348106464613" target="_blank" rel="noreferrer" className="focus-ring inline-flex h-10 items-center justify-center gap-2 rounded-md bg-[#25D366] px-3 text-sm font-bold text-white">
             <MessageCircle className="h-4 w-4" />
-            WhatsApp
+            Help
           </a>
         </div>
       </div>

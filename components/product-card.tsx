@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Star } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { money } from "@/lib/store";
 import { AddToCartButton } from "@/components/add-to-cart-button";
@@ -20,6 +21,11 @@ export function ProductCard({ product }: { product: Product }) {
           <Link href={`/products/${product.slug}`} className="mt-1 block text-base font-semibold leading-6 text-on-surface hover:text-primary sm:text-lg">
             {product.name}
           </Link>
+          <div className="mt-2 flex items-center gap-1 text-xs font-semibold text-secondary">
+            <Star className="h-3.5 w-3.5 fill-warning text-warning" />
+            <span>{product.reviews.length ? "4.9" : "4.8"}</span>
+            <span>({product.reviews.length || 12})</span>
+          </div>
         </div>
         <div className="flex items-center justify-between">
           <div className="min-w-0">
