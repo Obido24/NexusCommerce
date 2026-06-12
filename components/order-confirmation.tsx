@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { CheckCircle2, Download, Mail, MessageCircle, PackageCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { money } from "@/lib/store";
+import type { Order } from "@/lib/types";
 
 type StoredOrder = {
   order: {
@@ -18,6 +19,7 @@ type StoredOrder = {
     shipping: number;
     total: number;
     paymentProvider: string;
+    paymentStatus?: string;
     shippingAddress: {
       firstName: string;
       lastName: string;
@@ -33,7 +35,7 @@ type StoredOrder = {
   };
 };
 
-export function OrderConfirmation({ orderNumber }: { orderNumber?: string }) {
+export function OrderConfirmation({ orderNumber, fallbackOrder }: { orderNumber?: string; fallbackOrder?: Order }) {
   const [stored, setStored] = useState<StoredOrder | null>(null);
 
   useEffect(() => {
@@ -46,24 +48,27 @@ export function OrderConfirmation({ orderNumber }: { orderNumber?: string }) {
     }
   }, []);
 
-  const displayOrder = stored?.order;
+  const displayOrder = stored?.order ?? fallbackOrder;
   const whatsappText = useMemo(() => {
     const order = displayOrder?.orderNumber ?? orderNumber ?? "my demo order";
     return encodeURIComponent(`Hi, I tested Midr Store checkout. My demo order is ${order}.`);
   }, [displayOrder?.orderNumber, orderNumber]);
 
+  const paymentStatus = stored?.payment.status ?? displayOrder?.paymentStatus ?? "PAID";
+  const isPending = paymentStatus === "PENDING";
+
   return (
     <div className="grid w-full max-w-5xl gap-6 lg:grid-cols-[1fr_360px]">
-      <section className="surface-card p-8">
-        <CheckCircle2 className="h-14 w-14 text-success" />
-        <h1 className="mt-4 text-3xl font-semibold">Demo order confirmed</h1>
-        <p className="mt-3 max-w-2xl text-secondary">
-          Order {displayOrder?.orderNumber ?? orderNumber ?? "created"} has been added to the demo flow. A real launch would send email, SMS, and payment confirmations here.
+      <section className="surface-card p-5 sm:p-8">
+        <CheckCircle2 className={`h-12 w-12 sm:h-14 sm:w-14 ${isPending ? "text-warning" : "text-success"}`} />
+        <h1 className="mt-4 text-2xl font-semibold sm:text-3xl">{isPending ? "Payment started" : "Order confirmed"}</h1>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-secondary sm:text-base">
+          Order {displayOrder?.orderNumber ?? orderNumber ?? "created"} {isPending ? "is waiting for payment confirmation from the hosted checkout." : "has been added to the checkout flow."}
         </p>
 
         <div className="mt-6 grid gap-3 sm:grid-cols-3">
           {[
-            ["Payment", stored?.payment.status ?? "PAID"],
+            ["Payment", paymentStatus],
             ["Provider", displayOrder?.paymentProvider ?? "demo"],
             ["Reference", stored?.payment.reference ?? "demo-reference"]
           ].map(([label, value]) => (
@@ -104,20 +109,20 @@ export function OrderConfirmation({ orderNumber }: { orderNumber?: string }) {
           </div>
         )}
 
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Button asChild>
+        <div className="mt-6 grid gap-3 sm:flex sm:flex-wrap">
+          <Button asChild className="w-full sm:w-auto">
             <Link href="/account">
               <PackageCheck className="h-4 w-4" />
               View account
             </Link>
           </Button>
-          <Button asChild variant="secondary">
+          <Button asChild variant="secondary" className="w-full sm:w-auto">
             <Link href={`/invoice?order=${displayOrder?.orderNumber ?? orderNumber ?? ""}`}>
               <Download className="h-4 w-4" />
               View invoice
             </Link>
           </Button>
-          <Button asChild variant="secondary">
+          <Button asChild variant="secondary" className="w-full sm:w-auto">
             <a href={`https://wa.me/2348106464613?text=${whatsappText}`} target="_blank" rel="noreferrer">
               <MessageCircle className="h-4 w-4" />
               Send feedback
@@ -126,7 +131,7 @@ export function OrderConfirmation({ orderNumber }: { orderNumber?: string }) {
         </div>
       </section>
 
-      <aside className="surface-card h-fit p-5">
+      <aside className="surface-card h-fit p-5 lg:sticky lg:top-20">
         <div className="flex items-center gap-3">
           <span className="grid h-10 w-10 place-items-center rounded-md bg-blue-50 text-primary">
             <Mail className="h-5 w-5" />
@@ -137,8 +142,8 @@ export function OrderConfirmation({ orderNumber }: { orderNumber?: string }) {
           </div>
         </div>
         <div className="mt-5 space-y-4 text-sm leading-6 text-secondary">
-          <p>For this prototype, checkout stores a test order and shows a confirmation immediately.</p>
-          <p>For production, this step would trigger payment verification, stock reservation, invoice email, admin notification, and delivery status updates.</p>
+          <p>In demo mode, checkout stores a test order and shows confirmation immediately.</p>
+          <p>With Paystack keys configured, checkout redirects to Paystack and returns here after hosted payment.</p>
         </div>
         <Button asChild className="mt-5 w-full" variant="secondary">
           <Link href="/admin/orders">Open admin orders</Link>

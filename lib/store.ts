@@ -207,7 +207,7 @@ export function getWishlistProducts(userId = "usr_customer") {
   return (store.wishlists[userId] ?? []).map(getProductById).filter(Boolean) as Product[];
 }
 
-export function createOrder(input: { userId?: string; address: Address; provider: string; couponCode?: string }) {
+export function createOrder(input: { userId?: string; address: Address; provider: string; couponCode?: string; status?: OrderStatus; paymentStatus?: Order["paymentStatus"] }) {
   const userId = input.userId ?? "usr_customer";
   const user = store.users.find((item) => item.id === userId) ?? store.users[1];
   const cart = getCart(userId);
@@ -221,7 +221,7 @@ export function createOrder(input: { userId?: string; address: Address; provider
     userId,
     customerName: user.name,
     customerEmail: user.email,
-    status: "PAID",
+    status: input.status ?? "PAID",
     items: cart.items.map((item) => ({
       productId: item.productId,
       name: item.product.name,
@@ -235,7 +235,7 @@ export function createOrder(input: { userId?: string; address: Address; provider
     shipping: cart.shipping,
     total,
     paymentProvider: input.provider as Order["paymentProvider"],
-    paymentStatus: "PAID",
+    paymentStatus: input.paymentStatus ?? "PAID",
     shippingAddress: input.address,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()

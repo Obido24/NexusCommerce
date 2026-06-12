@@ -23,13 +23,22 @@ export async function POST(request: NextRequest) {
       userId: input.address.userId ?? "usr_customer",
       label: input.address.label ?? "Shipping"
     };
-    const order = createOrder({ address, provider: input.provider, couponCode: input.couponCode });
+    const origin = request.headers.get("origin") ?? process.env.NEXT_PUBLIC_SITE_URL ?? request.nextUrl.origin;
+    const liveHostedCheckout = input.provider === "paystack" && Boolean(process.env.PAYSTACK_SECRET_KEY);
+    const order = createOrder({
+      address,
+      provider: input.provider,
+      couponCode: input.couponCode,
+      status: liveHostedCheckout ? "PENDING" : "PAID",
+      paymentStatus: liveHostedCheckout ? "PENDING" : "PAID"
+    });
     const payment = await createPaymentIntent({
       provider: input.provider,
       amount: order.total,
-      currency: "USD",
+      currency: input.provider === "paystack" ? (process.env.PAYSTACK_CURRENCY ?? "NGN") : "USD",
       orderNumber: order.orderNumber,
-      customerEmail: order.customerEmail
+      customerEmail: order.customerEmail,
+      callbackUrl: `${origin}/checkout/success?order=${order.orderNumber}`
     });
     return jsonOk({ order, payment }, { status: 201 });
   } catch (error) {

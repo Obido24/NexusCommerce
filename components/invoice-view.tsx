@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Printer, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { money } from "@/lib/store";
+import type { Order } from "@/lib/types";
 
 type StoredOrder = {
   order: {
@@ -34,7 +35,7 @@ type StoredOrder = {
   };
 };
 
-export function InvoiceView({ orderNumber }: { orderNumber?: string }) {
+export function InvoiceView({ orderNumber, fallbackOrder }: { orderNumber?: string; fallbackOrder?: Order }) {
   const [stored, setStored] = useState<StoredOrder | null>(null);
 
   useEffect(() => {
@@ -47,24 +48,24 @@ export function InvoiceView({ orderNumber }: { orderNumber?: string }) {
     }
   }, []);
 
-  const order = stored?.order;
+  const order = stored?.order ?? fallbackOrder;
 
   return (
     <div className="mx-auto w-full max-w-4xl">
-      <div className="mb-5 flex flex-wrap justify-between gap-3 print:hidden">
-        <Button asChild variant="secondary">
+      <div className="mb-5 grid gap-3 print:hidden sm:flex sm:flex-wrap sm:justify-between">
+        <Button asChild variant="secondary" className="w-full sm:w-auto">
           <Link href="/checkout/success">
             <ShoppingBag className="h-4 w-4" />
             Back to confirmation
           </Link>
         </Button>
-        <Button type="button" onClick={() => window.print()}>
+        <Button type="button" onClick={() => window.print()} className="w-full sm:w-auto">
           <Printer className="h-4 w-4" />
           Print invoice
         </Button>
       </div>
 
-      <section className="surface-card bg-white p-8 print:border-0 print:shadow-none">
+      <section className="surface-card bg-white p-5 print:border-0 print:shadow-none sm:p-8">
         <div className="flex flex-col gap-6 border-b border-outline-variant pb-6 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="text-2xl font-bold text-primary">Midr Store</p>
@@ -73,7 +74,7 @@ export function InvoiceView({ orderNumber }: { orderNumber?: string }) {
           </div>
           <div className="text-left sm:text-right">
             <p className="label">Invoice</p>
-            <h1 className="mt-1 text-3xl font-semibold">{order?.orderNumber ?? orderNumber ?? "Demo order"}</h1>
+            <h1 className="mt-1 text-2xl font-semibold sm:text-3xl">{order?.orderNumber ?? orderNumber ?? "Demo order"}</h1>
             <p className="mt-2 text-sm text-secondary">{order?.createdAt ? new Date(order.createdAt).toLocaleDateString() : new Date().toLocaleDateString()}</p>
           </div>
         </div>
@@ -100,7 +101,20 @@ export function InvoiceView({ orderNumber }: { orderNumber?: string }) {
           </div>
         </div>
 
-        <div className="overflow-x-auto py-6">
+        <div className="space-y-3 py-6 sm:hidden">
+          {(order?.items ?? []).map((item) => (
+            <div key={item.name} className="rounded-md border border-outline-variant p-3 text-sm">
+              <div className="flex justify-between gap-4">
+                <p className="font-semibold">{item.name}</p>
+                <p className="font-semibold">{money(item.total)}</p>
+              </div>
+              <p className="mt-2 text-secondary">Qty {item.quantity} x {money(item.unitPrice)}</p>
+            </div>
+          ))}
+          {!order ? <div className="rounded-md border border-outline-variant p-5 text-center text-sm text-secondary">No browser-saved checkout found yet.</div> : null}
+        </div>
+
+        <div className="hidden overflow-x-auto py-6 sm:block">
           <table className="w-full min-w-[620px] text-left text-sm">
             <thead className="border-b border-outline-variant text-xs uppercase tracking-[0.08em] text-secondary">
               <tr>

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { createPaymentIntent } from "@/lib/payments";
 import { addToCart, adjustInventory, createOrder, deleteCategory, getAnalyticsReport, getCart, getCategoryProductCounts, getCustomerProfile, getDashboardStats, getInventoryReport, listProducts, store, updateCustomerDisabled, updateOrderStatus, upsertCategory } from "@/lib/store";
 
 describe("commerce store", () => {
@@ -34,6 +35,35 @@ describe("commerce store", () => {
     });
     expect(order.orderNumber).toMatch(/^MID-/);
     expect(store.orders.length).toBe(before + 1);
+  });
+
+  it("supports pending hosted checkout orders", () => {
+    addToCart("prd_leather_tote", 1);
+    const order = createOrder({
+      provider: "paystack",
+      status: "PENDING",
+      paymentStatus: "PENDING",
+      address: {
+        id: "addr_pending",
+        userId: "usr_customer",
+        label: "Test",
+        firstName: "Amara",
+        lastName: "Cole",
+        line1: "12 Admiralty Way",
+        city: "Lekki",
+        state: "Lagos",
+        postalCode: "105102",
+        country: "NG"
+      }
+    });
+    expect(order.status).toBe("PENDING");
+    expect(order.paymentStatus).toBe("PENDING");
+  });
+
+  it("returns safe demo payment intents without credentials", async () => {
+    const payment = await createPaymentIntent({ provider: "paystack", amount: 120, currency: "NGN" });
+    expect(payment.mode).toBe("demo");
+    expect(payment.status).toBe("PAID");
   });
 
   it("summarizes dashboard analytics", () => {

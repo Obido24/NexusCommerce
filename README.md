@@ -52,7 +52,14 @@ Validation uses Zod, passwords use bcryptjs, sessions use signed JWT cookies, ad
 
 ## Payment and Uploads
 
-`lib/payments.ts` defines the provider interface for Stripe, PayPal, Flutterwave, Paystack, and manual payments. It currently returns deterministic demo intents so checkout is fully testable without payment credentials.
+`lib/payments.ts` defines the provider interface for Stripe, PayPal, Flutterwave, Paystack, and manual payments. Checkout stays in safe demo mode when payment credentials are empty.
+
+To enable real Paystack hosted checkout, set these Vercel environment variables:
+
+- `PAYSTACK_SECRET_KEY`
+- `NEXT_PUBLIC_SITE_URL`
+- `PAYSTACK_CURRENCY` such as `NGN`
+- `PAYSTACK_AMOUNT_MULTIPLIER` if you want to convert displayed demo totals before charging, for example USD-priced demo totals to NGN
 
 `lib/cloudinary.ts` validates uploads and returns a mock URL unless Cloudinary credentials are configured.
 
