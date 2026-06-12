@@ -28,7 +28,7 @@ export const store: StoreState =
   });
 
 export const money = (value: number) =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
+  new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 }).format(value);
 
 export function listProducts(filters?: { query?: string; category?: string; status?: ProductStatus; sort?: string }) {
   let products = [...store.products];
@@ -172,7 +172,7 @@ export function getCart(userId = "usr_customer") {
     .filter(Boolean) as Array<CartItem & { product: Product; total: number }>;
   const subtotal = enriched.reduce((sum, item) => sum + item.total, 0);
   const tax = subtotal * 0.08;
-  const shipping = subtotal > 350 || subtotal === 0 ? 0 : 18;
+  const shipping = subtotal > 250000 || subtotal === 0 ? 0 : 4500;
   return { items: enriched, subtotal, tax, shipping, discount: 0, total: subtotal + tax + shipping };
 }
 

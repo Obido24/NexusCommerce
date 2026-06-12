@@ -59,7 +59,7 @@ To enable real Paystack hosted checkout, set these Vercel environment variables:
 - `PAYSTACK_SECRET_KEY`
 - `NEXT_PUBLIC_SITE_URL`
 - `PAYSTACK_CURRENCY` such as `NGN`
-- `PAYSTACK_AMOUNT_MULTIPLIER` if you want to convert displayed demo totals before charging, for example USD-priced demo totals to NGN
+- `PAYSTACK_AMOUNT_MULTIPLIER` should usually stay `1` because Midr Store prices are stored and displayed in NGN. Adjust only if you intentionally need to transform totals before charging.
 
 `lib/cloudinary.ts` validates uploads and returns a mock URL unless Cloudinary credentials are configured.
 

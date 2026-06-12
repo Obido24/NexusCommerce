@@ -61,8 +61,8 @@ export const demoProducts: Product[] = [
     sku: "MID-CLS-101",
     description:
       "A polished wrap dress with a flattering waist tie, soft lining, and bold Ankara-inspired print for brunch, work events, and weekend outings.",
-    price: 72,
-    comparePrice: 95,
+    price: 72000,
+    comparePrice: 95000,
     categoryId: "cat_clothes",
     category: "Clothes",
     status: "ACTIVE",
@@ -86,8 +86,8 @@ export const demoProducts: Product[] = [
       lastRestockedAt: "2026-06-02T10:00:00.000Z"
     },
     variants: [
-      { id: "var_dress_s", name: "Size", value: "Small", sku: "MID-CLS-101-S", price: 72 },
-      { id: "var_dress_m", name: "Size", value: "Medium", sku: "MID-CLS-101-M", price: 72 }
+      { id: "var_dress_s", name: "Size", value: "Small", sku: "MID-CLS-101-S", price: 72000 },
+      { id: "var_dress_m", name: "Size", value: "Medium", sku: "MID-CLS-101-M", price: 72000 }
     ],
     reviews: [
       {
@@ -110,8 +110,8 @@ export const demoProducts: Product[] = [
     sku: "MID-BAG-210",
     description:
       "A roomy structured tote with a smooth finish, reinforced handles, and a laptop-friendly interior for workdays and travel.",
-    price: 118,
-    comparePrice: 145,
+    price: 118000,
+    comparePrice: 145000,
     categoryId: "cat_bags",
     category: "Bags",
     status: "ACTIVE",
@@ -141,8 +141,8 @@ export const demoProducts: Product[] = [
       lastRestockedAt: "2026-05-29T10:00:00.000Z"
     },
     variants: [
-      { id: "var_tote_black", name: "Color", value: "Black", sku: "MID-BAG-210-BLK", price: 118 },
-      { id: "var_tote_tan", name: "Color", value: "Tan", sku: "MID-BAG-210-TAN", price: 118 }
+      { id: "var_tote_black", name: "Color", value: "Black", sku: "MID-BAG-210-BLK", price: 118000 },
+      { id: "var_tote_tan", name: "Color", value: "Tan", sku: "MID-BAG-210-TAN", price: 118000 }
     ],
     reviews: [
       {
@@ -164,8 +164,8 @@ export const demoProducts: Product[] = [
     slug: "midr-oud-bloom-perfume",
     sku: "MID-PRF-070",
     description: "A warm oud fragrance softened with rose, amber, and vanilla. Made for evening wear and memorable gifting.",
-    price: 54,
-    comparePrice: 68,
+    price: 54000,
+    comparePrice: 68000,
     categoryId: "cat_perfume",
     category: "Perfume",
     status: "ACTIVE",
@@ -189,8 +189,8 @@ export const demoProducts: Product[] = [
       lastRestockedAt: "2026-06-04T10:00:00.000Z"
     },
     variants: [
-      { id: "var_perfume_50", name: "Size", value: "50ml", sku: "MID-PRF-070-50", price: 54 },
-      { id: "var_perfume_100", name: "Size", value: "100ml", sku: "MID-PRF-070-100", price: 88 }
+      { id: "var_perfume_50", name: "Size", value: "50ml", sku: "MID-PRF-070-50", price: 54000 },
+      { id: "var_perfume_100", name: "Size", value: "100ml", sku: "MID-PRF-070-100", price: 88000 }
     ],
     reviews: [],
     createdAt: now
@@ -201,8 +201,8 @@ export const demoProducts: Product[] = [
     slug: "midr-linen-coord-set",
     sku: "MID-CLS-144",
     description: "A breathable two-piece linen set with a relaxed fit, clean tailoring, and easy day-to-night styling.",
-    price: 86,
-    comparePrice: 105,
+    price: 86000,
+    comparePrice: 105000,
     categoryId: "cat_clothes",
     category: "Clothes",
     status: "ACTIVE",
@@ -235,7 +235,7 @@ export const demoProducts: Product[] = [
     slug: "midr-satin-evening-clutch",
     sku: "MID-BAG-330",
     description: "A compact satin clutch with a soft sheen, magnetic closure, and detachable chain for dinner dates and events.",
-    price: 42,
+    price: 42000,
     categoryId: "cat_bags",
     category: "Bags",
     status: "ACTIVE",
@@ -268,7 +268,7 @@ export const demoProducts: Product[] = [
     slug: "midr-fresh-mist-perfume",
     sku: "MID-PRF-040",
     description: "A fresh daytime scent with citrus, clean musk, and jasmine for everyday wear.",
-    price: 38,
+    price: 38000,
     categoryId: "cat_perfume",
     category: "Perfume",
     status: "ACTIVE",
@@ -320,12 +320,12 @@ export const demoOrders: Order[] = [
     customerName: "Amara Cole",
     customerEmail: "customer@midr.store",
     status: "PROCESSING",
-    items: [{ productId: "prd_leather_tote", name: "Midr Structured Leather Tote", quantity: 1, unitPrice: 118, total: 118 }],
-    subtotal: 118,
+    items: [{ productId: "prd_leather_tote", name: "Midr Structured Leather Tote", quantity: 1, unitPrice: 118000, total: 118000 }],
+    subtotal: 118000,
     discount: 0,
-    tax: 9.44,
-    shipping: 18,
-    total: 145.44,
+    tax: 9440,
+    shipping: 4500,
+    total: 131940,
     paymentProvider: "paystack",
     paymentStatus: "PAID",
     shippingAddress: demoAddresses[0],
@@ -339,12 +339,12 @@ export const demoOrders: Order[] = [
     customerName: "Amara Cole",
     customerEmail: "customer@midr.store",
     status: "SHIPPED",
-    items: [{ productId: "prd_oud_perfume", name: "Midr Oud Bloom Perfume", quantity: 2, unitPrice: 54, total: 108 }],
-    subtotal: 108,
-    discount: 10.8,
-    tax: 7.78,
-    shipping: 0,
-    total: 104.98,
+    items: [{ productId: "prd_oud_perfume", name: "Midr Oud Bloom Perfume", quantity: 2, unitPrice: 54000, total: 108000 }],
+    subtotal: 108000,
+    discount: 10800,
+    tax: 8640,
+    shipping: 4500,
+    total: 110340,
     paymentProvider: "paystack",
     paymentStatus: "PAID",
     shippingAddress: demoAddresses[0],
@@ -355,7 +355,7 @@ export const demoOrders: Order[] = [
 
 export const demoCoupons: Coupon[] = [
   { id: "cpn_welcome", code: "WELCOME10", description: "10% off first order", percentOff: 10, active: true },
-  { id: "cpn_midr", code: "MIDR25", description: "$25 Midr shopping credit", amountOff: 25, active: true }
+  { id: "cpn_midr", code: "MIDR25", description: "₦25,000 Midr shopping credit", amountOff: 25000, active: true }
 ];
 
 export const demoCart: CartItem[] = [

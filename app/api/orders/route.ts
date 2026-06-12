@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     const payment = await createPaymentIntent({
       provider: input.provider,
       amount: order.total,
-      currency: input.provider === "paystack" ? (process.env.PAYSTACK_CURRENCY ?? "NGN") : "USD",
+      currency: input.provider === "paystack" ? (process.env.PAYSTACK_CURRENCY ?? "NGN") : "NGN",
       orderNumber: order.orderNumber,
       customerEmail: order.customerEmail,
       callbackUrl: `${origin}/checkout/success?order=${order.orderNumber}`

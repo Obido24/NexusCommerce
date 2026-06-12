@@ -44,8 +44,8 @@ async function main() {
       name: "Midr Ankara Wrap Dress",
       slug: "midr-ankara-wrap-dress",
       sku: "MID-CLS-101",
-      price: "72.00",
-      comparePrice: "95.00",
+      price: "72000.00",
+      comparePrice: "95000.00",
       categoryId: categories[0].id,
       image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80"
     },
@@ -53,8 +53,8 @@ async function main() {
       name: "Midr Structured Leather Tote",
       slug: "midr-structured-leather-tote",
       sku: "MID-BAG-210",
-      price: "118.00",
-      comparePrice: "145.00",
+      price: "118000.00",
+      comparePrice: "145000.00",
       categoryId: categories[1].id,
       image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1200&q=80"
     },
@@ -62,8 +62,8 @@ async function main() {
       name: "Midr Oud Bloom Perfume",
       slug: "midr-oud-bloom-perfume",
       sku: "MID-PRF-070",
-      price: "54.00",
-      comparePrice: "68.00",
+      price: "54000.00",
+      comparePrice: "68000.00",
       categoryId: categories[2].id,
       image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1200&q=80"
     }
@@ -119,13 +119,13 @@ async function main() {
       orderNumber: "MID-10045",
       userId: customer.id,
       status: "PROCESSING",
-      subtotal: "118.00",
-      tax: "9.44",
-      shipping: "18.00",
-      total: "145.44",
+      subtotal: "118000.00",
+      tax: "9440.00",
+      shipping: "4500.00",
+      total: "131940.00",
       shippingAddressId: address.id,
       items: {
-        create: [{ productId: product.id, quantity: 1, unitPrice: "118.00", total: "118.00" }]
+        create: [{ productId: product.id, quantity: 1, unitPrice: "118000.00", total: "118000.00" }]
       }
     }
   });
@@ -134,7 +134,7 @@ async function main() {
     data: {
       provider: "PAYSTACK",
       status: "PAID",
-      amount: "145.44",
+      amount: "131940.00",
       reference: "pay_seed_10045",
       orderId: order.id
     }

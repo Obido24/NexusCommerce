@@ -235,7 +235,7 @@ model Payment {
   provider      PaymentProvider
   status        PaymentStatus   @default(PENDING)
   amount        Decimal         @db.Decimal(10, 2)
-  currency      String          @default("USD")
+  currency      String          @default("NGN")
   reference     String          @unique
   transactionId String?
   metadata      Json?
