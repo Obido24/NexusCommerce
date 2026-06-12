@@ -6,3 +6,10 @@ export function getCartItemCount(cartItems: Array<Pick<CartItem, "quantity">> | 
     return count + (Number.isFinite(quantity) && quantity > 0 ? quantity : 0);
   }, 0);
 }
+
+export function getCartSubtotal(cartItems: Array<{ total: number }> | null | undefined) {
+  return (cartItems ?? []).reduce((subtotal, item) => {
+    const total = Number(item.total);
+    return subtotal + (Number.isFinite(total) && total > 0 ? total : 0);
+  }, 0);
+}

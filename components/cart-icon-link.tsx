@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,10 @@ import { useCart } from "@/components/cart-provider";
 
 export function CartIconLink() {
   const { count } = useCart();
+
+  useEffect(() => {
+    console.log("Cart Badge Count:", count);
+  }, [count]);
 
   return (
     <Button asChild variant="ghost" size="icon" aria-label={`Cart${count > 0 ? `, ${count} items` : ""}`}>

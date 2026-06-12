@@ -32,6 +32,10 @@ export function CartView() {
     load();
   }, []);
 
+  useEffect(() => {
+    if (cart) console.log("Cart Page Items:", cart.items);
+  }, [cart]);
+
   if (loading && !cart) return <div className="surface-card p-5 sm:p-8">Loading cart...</div>;
   if (!cart) return <div className="surface-card p-5 sm:p-8">Could not load cart.</div>;
 
