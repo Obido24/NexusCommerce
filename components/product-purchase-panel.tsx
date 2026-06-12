@@ -21,7 +21,7 @@ export function ProductPurchasePanel({ product }: { product: Product }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [wishlistMessage, setWishlistMessage] = useState("");
-  const { refresh } = useCart();
+  const { replaceCart, refresh } = useCart();
   const groupedVariants = useMemo(() => groupVariants(product), [product]);
   const selectedVariants = Object.entries(groupedVariants)
     .map(([name, variants]) => variants.find((variant) => variant.id === selectedVariantIds[name]) ?? variants[0])
@@ -30,12 +30,14 @@ export function ProductPurchasePanel({ product }: { product: Product }) {
   async function addToCart() {
     setLoading(true);
     setMessage("");
-    await fetch("/api/cart", {
+    const response = await fetch("/api/cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ productId: product.id, quantity })
     });
-    await refresh();
+    const payload = await response.json();
+    if (payload.data?.cart) replaceCart(payload.data.cart);
+    else await refresh();
     setLoading(false);
     setMessage(`${quantity} item${quantity > 1 ? "s" : ""} added to cart.`);
   }

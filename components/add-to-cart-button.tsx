@@ -7,16 +7,18 @@ import { useCart } from "@/components/cart-provider";
 
 export function AddToCartButton({ productId, quantity = 1, className }: { productId: string; quantity?: number; className?: string }) {
   const [loading, setLoading] = useState(false);
-  const { refresh } = useCart();
+  const { replaceCart, refresh } = useCart();
 
   async function add() {
     setLoading(true);
-    await fetch("/api/cart", {
+    const response = await fetch("/api/cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ productId, quantity })
     });
-    await refresh();
+    const payload = await response.json();
+    if (payload.data?.cart) replaceCart(payload.data.cart);
+    else await refresh();
     setLoading(false);
   }
 

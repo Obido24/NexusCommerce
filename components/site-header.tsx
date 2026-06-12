@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Heart, Search, ShoppingCart, UserCircle } from "lucide-react";
+import { Heart, Search, UserCircle } from "lucide-react";
+import { CartIconLink } from "@/components/cart-icon-link";
 import { Button } from "@/components/ui/button";
-import { getCart } from "@/lib/store";
 
 const nav = [
   { href: "/shop", label: "Shop" },
@@ -11,7 +11,6 @@ const nav = [
 ];
 
 export function SiteHeader() {
-  const cart = getCart();
   return (
     <header className="sticky top-0 z-40 h-16 border-b border-outline-variant bg-surface/95 backdrop-blur">
       <div className="page-shell flex h-full items-center justify-between gap-6">
@@ -42,16 +41,7 @@ export function SiteHeader() {
               <Heart className="h-5 w-5" />
             </Link>
           </Button>
-          <Button asChild variant="ghost" size="icon" aria-label="Cart">
-            <Link href="/cart" className="relative">
-              <ShoppingCart className="h-5 w-5" />
-              {cart.items.length > 0 ? (
-                <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-primary px-1 text-[10px] font-bold text-white">
-                  {cart.items.length}
-                </span>
-              ) : null}
-            </Link>
-          </Button>
+          <CartIconLink />
           <Button asChild variant="ghost" size="icon" aria-label="Account">
             <Link href="/account">
               <UserCircle className="h-5 w-5" />

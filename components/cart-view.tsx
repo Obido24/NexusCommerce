@@ -1,48 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart-provider";
 import { money } from "@/lib/store";
-import type { Product } from "@/lib/types";
-
-type CartPayload = {
-  items: Array<{ productId: string; quantity: number; product: Product; total: number }>;
-  subtotal: number;
-  tax: number;
-  shipping: number;
-  discount: number;
-  total: number;
-};
 
 export function CartView() {
-  const [cart, setCart] = useState<CartPayload | null>(null);
-  const { refresh } = useCart();
+  const { cart, loading, refresh, replaceCart } = useCart();
 
   async function load() {
-    const response = await fetch("/api/cart", { cache: "no-store" });
-    const payload = await response.json();
-    setCart(payload.data.cart);
     await refresh();
   }
 
   async function update(productId: string, quantity: number) {
-    await fetch("/api/cart", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ productId, quantity }) });
-    await load();
+    const response = await fetch("/api/cart", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ productId, quantity }) });
+    const payload = await response.json();
+    if (payload.data?.cart) replaceCart(payload.data.cart);
+    else await load();
   }
 
   async function remove(productId: string) {
-    await fetch(`/api/cart?productId=${productId}`, { method: "DELETE" });
-    await load();
+    const response = await fetch(`/api/cart?productId=${productId}`, { method: "DELETE" });
+    const payload = await response.json();
+    if (payload.data?.cart) replaceCart(payload.data.cart);
+    else await load();
   }
 
   useEffect(() => {
     load();
   }, []);
 
-  if (!cart) return <div className="surface-card p-5 sm:p-8">Loading cart...</div>;
+  if (loading && !cart) return <div className="surface-card p-5 sm:p-8">Loading cart...</div>;
+  if (!cart) return <div className="surface-card p-5 sm:p-8">Could not load cart.</div>;
 
   return (
     <div className="grid gap-5 lg:grid-cols-[1fr_380px] lg:gap-8">

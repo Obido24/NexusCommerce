@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation";
 import { CreditCard, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select } from "@/components/ui/select";
+import { useCart } from "@/components/cart-provider";
 
 export function CheckoutForm() {
   const router = useRouter();
+  const { refresh } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -37,6 +39,7 @@ export function CheckoutForm() {
       return;
     }
     window.sessionStorage.setItem("midr_latest_order", JSON.stringify(result.data));
+    await refresh();
     if (result.data.payment?.mode === "live" && result.data.payment?.redirectUrl) {
       window.location.assign(result.data.payment.redirectUrl);
       return;
