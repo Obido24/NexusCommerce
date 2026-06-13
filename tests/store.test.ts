@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { createPaymentIntent } from "@/lib/payments";
-import { addToCart, adjustInventory, createOrder, deleteCategory, getAnalyticsReport, getCart, getCategoryProductCounts, getCustomerProfile, getDashboardStats, getInventoryReport, listProducts, store, updateCustomerDisabled, updateOrderStatus, upsertCategory } from "@/lib/store";
+import { addToCart, adjustInventory, createOrder, deleteCategory, getAnalyticsReport, getCart, getCategoryProductCounts, getCustomerProfile, getDashboardStats, getInventoryReport, listProducts, mergeCart, store, updateCustomerDisabled, updateOrderStatus, upsertCategory } from "@/lib/store";
 
 describe("commerce store", () => {
   it("filters products by search query", () => {
@@ -13,6 +13,21 @@ describe("commerce store", () => {
     const cart = getCart();
     expect(cart.items.some((item) => item.productId === "prd_oud_perfume")).toBe(true);
     expect(cart.total).toBeGreaterThan(cart.subtotal);
+  });
+
+  it("keeps guest carts isolated and can merge them into a customer account", () => {
+    const guestA = `guest_a_${Date.now()}`;
+    const guestB = `guest_b_${Date.now()}`;
+    addToCart("prd_leather_tote", 1, guestA);
+    addToCart("prd_fresh_mist", 1, guestB);
+
+    expect(getCart(guestA).items.map((item) => item.productId)).toEqual(["prd_leather_tote"]);
+    expect(getCart(guestB).items.map((item) => item.productId)).toEqual(["prd_fresh_mist"]);
+
+    mergeCart(guestA, "usr_customer");
+    expect(getCart("usr_customer").items.some((item) => item.productId === "prd_leather_tote")).toBe(true);
+    expect(getCart(guestA).items).toEqual([]);
+    expect(getCart(guestB).items.map((item) => item.productId)).toEqual(["prd_fresh_mist"]);
   });
 
   it("creates an order from the active cart", () => {

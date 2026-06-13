@@ -2,7 +2,8 @@ import bcrypt from "bcryptjs";
 import { type NextRequest } from "next/server";
 import { createSessionToken, publicUser, SESSION_COOKIE_NAME, sessionCookieOptions } from "@/lib/auth";
 import { handleApiError, jsonError, jsonOk, parseJson, rateLimit } from "@/lib/api";
-import { store } from "@/lib/store";
+import { CART_SESSION_COOKIE_NAME, cartSessionCookieOptions } from "@/lib/cart-session";
+import { mergeCart, store } from "@/lib/store";
 import { registerSchema } from "@/lib/validators";
 
 export async function POST(request: NextRequest) {
@@ -22,9 +23,12 @@ export async function POST(request: NextRequest) {
     };
     store.users.push(user);
     const sessionUser = publicUser(user);
+    const guestCartId = request.cookies.get(CART_SESSION_COOKIE_NAME)?.value;
+    mergeCart(guestCartId, sessionUser.id);
     const token = await createSessionToken(sessionUser);
     const response = jsonOk({ user: sessionUser }, { status: 201 });
     response.cookies.set(SESSION_COOKIE_NAME, token, sessionCookieOptions());
+    response.cookies.set(CART_SESSION_COOKIE_NAME, "", { ...cartSessionCookieOptions(), maxAge: 0 });
     return response;
   } catch (error) {
     return handleApiError(error);

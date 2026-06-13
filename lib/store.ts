@@ -196,6 +196,21 @@ export function removeFromCart(productId: string, userId = "usr_customer") {
   return getCart(userId);
 }
 
+export function mergeCart(sourceUserId: string | undefined, targetUserId: string) {
+  if (!sourceUserId || sourceUserId === targetUserId) return getCart(targetUserId);
+  const sourceCart = store.carts[sourceUserId] ?? [];
+  if (!sourceCart.length) return getCart(targetUserId);
+
+  const targetCart = (store.carts[targetUserId] ??= []);
+  for (const sourceItem of sourceCart) {
+    const existing = targetCart.find((item) => item.productId === sourceItem.productId);
+    if (existing) existing.quantity += sourceItem.quantity;
+    else targetCart.push({ ...sourceItem });
+  }
+  store.carts[sourceUserId] = [];
+  return getCart(targetUserId);
+}
+
 export function toggleWishlist(productId: string, userId = "usr_customer") {
   const wishlist = (store.wishlists[userId] ??= []);
   if (wishlist.includes(productId)) store.wishlists[userId] = wishlist.filter((id) => id !== productId);

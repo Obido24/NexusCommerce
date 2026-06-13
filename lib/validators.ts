@@ -45,7 +45,7 @@ export const checkoutSchema = z.object({
   couponCode: z.string().optional(),
   address: z.object({
     id: z.string().optional().default("addr_checkout"),
-    userId: z.string().optional().default("usr_customer"),
+    userId: z.string().optional(),
     label: z.string().default("Shipping"),
     firstName: z.string().min(1),
     lastName: z.string().min(1),

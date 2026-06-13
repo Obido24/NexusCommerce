@@ -2,11 +2,13 @@ import { type NextRequest } from "next/server";
 import { addToCart, getCart, removeFromCart, updateCart } from "@/lib/store";
 import { cartSchema } from "@/lib/validators";
 import { handleApiError, jsonOk, parseJson, rateLimit } from "@/lib/api";
+import { attachCartSessionCookie, getCartOwner } from "@/lib/cart-session";
 
 export async function GET(request: NextRequest) {
   try {
     rateLimit(request);
-    return jsonOk({ cart: getCart() });
+    const owner = await getCartOwner(request);
+    return attachCartSessionCookie(jsonOk({ cart: getCart(owner.userId) }), owner);
   } catch (error) {
     return handleApiError(error);
   }
@@ -15,8 +17,9 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     rateLimit(request, 80);
+    const owner = await getCartOwner(request);
     const input = await parseJson(request, cartSchema);
-    return jsonOk({ cart: addToCart(input.productId, input.quantity ?? 1) });
+    return attachCartSessionCookie(jsonOk({ cart: addToCart(input.productId, input.quantity ?? 1, owner.userId) }), owner);
   } catch (error) {
     return handleApiError(error);
   }
@@ -25,8 +28,9 @@ export async function POST(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
   try {
     rateLimit(request, 80);
+    const owner = await getCartOwner(request);
     const input = await parseJson(request, cartSchema);
-    return jsonOk({ cart: updateCart(input.productId, input.quantity ?? 1) });
+    return attachCartSessionCookie(jsonOk({ cart: updateCart(input.productId, input.quantity ?? 1, owner.userId) }), owner);
   } catch (error) {
     return handleApiError(error);
   }
@@ -35,8 +39,9 @@ export async function PATCH(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   try {
     rateLimit(request, 80);
+    const owner = await getCartOwner(request);
     const productId = request.nextUrl.searchParams.get("productId");
-    return jsonOk({ cart: productId ? removeFromCart(productId) : getCart() });
+    return attachCartSessionCookie(jsonOk({ cart: productId ? removeFromCart(productId, owner.userId) : getCart(owner.userId) }), owner);
   } catch (error) {
     return handleApiError(error);
   }

@@ -27,8 +27,7 @@ export function CheckoutForm() {
         state: formData.get("state"),
         postalCode: formData.get("postalCode"),
         country: formData.get("country"),
-        label: "Shipping",
-        userId: "usr_customer"
+        label: "Shipping"
       }
     };
     const response = await fetch("/api/orders", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
