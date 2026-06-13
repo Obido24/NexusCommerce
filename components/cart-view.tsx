@@ -90,7 +90,7 @@ export function CartView() {
           <div className="flex justify-between"><span>Shipping</span><span>{money(cart.shipping)}</span></div>
           <div className="border-t border-outline-variant pt-3 text-lg font-bold"><div className="flex justify-between"><span>Total</span><span>{money(cart.total)}</span></div></div>
         </div>
-        <input className="focus-ring mt-5 h-10 w-full rounded-md border border-outline-variant px-3 text-sm" placeholder="Coupon code" defaultValue="WELCOME10" />
+        <input className="focus-ring mt-5 h-10 w-full rounded-md border border-outline-variant px-3 text-sm" placeholder="Coupon code" />
         <Button asChild className="mt-4 w-full" disabled={!cart.items.length}>
           <Link href="/checkout">Proceed to checkout</Link>
         </Button>

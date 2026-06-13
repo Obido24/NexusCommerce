@@ -24,26 +24,26 @@ export default function HomePage() {
           <img
             src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=2200&q=85"
             alt="Premium fashion model styled for Midr Store"
-            className="absolute inset-0 h-full w-full object-cover object-center opacity-70"
+            className="motion-hero-image absolute inset-0 h-full w-full object-cover object-center opacity-70"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/68 to-slate-950/42 md:bg-gradient-to-r md:from-slate-950/95 md:via-slate-950/72 md:to-slate-950/10" />
           <div className="page-shell relative py-14 text-white sm:py-16 md:py-24">
             <div className="max-w-3xl">
-              <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-blue-100 backdrop-blur">
+              <p className="motion-fade-up inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-blue-100 backdrop-blur">
                 <Sparkles className="h-3.5 w-3.5" />
                 Clothes, bags, and perfumes
               </p>
-              <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+              <h1 className="motion-fade-up motion-delay-100 mt-5 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
                 Luxury Fashion, Delivered To Your Doorstep
               </h1>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-100 sm:text-lg sm:leading-8">
+              <p className="motion-fade-up motion-delay-200 mt-5 max-w-2xl text-base leading-7 text-slate-100 sm:text-lg sm:leading-8">
                 Shop premium clothes, stylish bags, and signature perfumes carefully selected for modern fashion lovers.
               </p>
-              <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
+              <div className="motion-fade-up motion-delay-300 mt-8 grid gap-3 sm:flex sm:flex-wrap">
                 <Button asChild size="lg" className="h-12 px-8 text-base shadow-ambient">
                   <Link href="/shop">
                     Shop Now
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRight className="motion-soft-pulse h-4 w-4" />
                   </Link>
                 </Button>
                 <a
@@ -60,7 +60,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="categories" className="page-shell py-12 sm:py-14">
+        <section id="categories" className="page-shell motion-fade-up py-12 sm:py-14">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="label">Shop by Category</p>
@@ -71,8 +71,8 @@ export default function HomePage() {
             </Button>
           </div>
           <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {store.categories.map((category) => (
-              <Link key={category.id} href={`/shop?category=${category.slug}`} className="surface-card group overflow-hidden bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-ambient">
+            {store.categories.map((category, index) => (
+              <Link key={category.id} href={`/shop?category=${category.slug}`} style={{ animationDelay: `${120 + index * 80}ms` }} className="surface-card motion-card group overflow-hidden bg-white shadow-sm hover:shadow-ambient">
                 <div className="h-44 overflow-hidden bg-surface-container sm:h-48">
                   <img src={category.image} alt={category.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                 </div>
@@ -85,8 +85,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="page-shell">
-          <div className="overflow-hidden rounded-lg bg-primary text-white shadow-ambient">
+        <section className="page-shell motion-fade-up">
+          <div className="motion-scale-in overflow-hidden rounded-lg bg-primary text-white shadow-ambient">
             <div className="grid gap-5 p-6 sm:p-8 md:grid-cols-[1fr_auto] md:items-center">
               <div>
                 <p className="text-sm font-bold uppercase tracking-[0.12em] text-blue-100">Flash sale</p>
@@ -100,7 +100,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="new-arrivals" className="page-shell py-12 sm:py-14">
+        <section id="new-arrivals" className="page-shell motion-fade-up py-12 sm:py-14">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="label">Trending Products</p>
@@ -117,12 +117,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="border-y border-outline-variant bg-white">
+        <section className="motion-fade-up border-y border-outline-variant bg-white">
           <div className="page-shell grid gap-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
             {trustBadges.map((badge) => {
               const Icon = badge.icon;
               return (
-                <div key={badge.title} className="surface-card bg-white p-5 shadow-sm">
+                <div key={badge.title} className="surface-card motion-card bg-white p-5 shadow-sm">
                   <span className="grid h-11 w-11 place-items-center rounded-md bg-blue-50 text-primary">
                     <Icon className="h-5 w-5" />
                   </span>
@@ -134,8 +134,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="page-shell py-12 sm:py-14">
-          <div className="surface-card flex flex-col gap-4 bg-white p-6 shadow-sm md:flex-row md:items-center md:justify-between">
+        <section className="page-shell motion-fade-up py-12 sm:py-14">
+          <div className="surface-card motion-scale-in flex flex-col gap-4 bg-white p-6 shadow-sm md:flex-row md:items-center md:justify-between">
             <div>
               <p className="label">Newsletter</p>
               <h2 className="mt-1 text-2xl font-semibold">Get new drops and private offers.</h2>

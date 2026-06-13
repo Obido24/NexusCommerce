@@ -97,7 +97,7 @@ export function CheckoutForm() {
         </label>
         <label>
           <span className="text-sm font-semibold">Coupon</span>
-          <input name="couponCode" defaultValue="WELCOME10" className="focus-ring mt-1 h-10 w-full rounded-md border border-outline-variant px-3 text-sm" />
+          <input name="couponCode" placeholder="Optional coupon code" className="focus-ring mt-1 h-10 w-full rounded-md border border-outline-variant px-3 text-sm" />
         </label>
       </div>
       <div className="mt-5 flex gap-3 rounded-md bg-emerald-50 p-4 text-sm text-emerald-800">

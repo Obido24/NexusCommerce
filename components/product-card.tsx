@@ -8,7 +8,7 @@ import { WishlistToggleButton } from "@/components/wishlist-toggle-button";
 
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <article className="surface-card group flex overflow-hidden transition hover:-translate-y-0.5 hover:shadow-ambient sm:block">
+    <article className="surface-card motion-card group flex overflow-hidden hover:shadow-ambient sm:block">
       <Link href={`/products/${product.slug}`} className="block w-32 shrink-0 sm:w-full">
         <div className="relative h-full min-h-36 overflow-hidden bg-surface-container sm:aspect-[4/3] sm:min-h-0">
           <Image src={product.images[0].url} alt={product.images[0].alt} fill className="object-cover transition duration-500 group-hover:scale-105" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 128px" />
